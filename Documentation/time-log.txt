@@ -1,0 +1,18 @@
+3/20
+Wesley	- 1.5 hours	- Learning CSS
+
+3/21
+Wesley	- 2.5 hours 	- Learning CSS
+Caden	- 4 hours	- Learning JavaScript
+
+3/22
+Caden	- 1 hour		- UML Activity Diagram
+Caden	- 0.5 hours	- Team meeting (Design)
+Wesley	- 0.5 hours	- Team meeting (Design)
+Chen	- 0.5 hours	- Team meeting (Design)
+
+3/23
+Caden	- 1 hour		- Team meeting (Workload Distribution)
+Steven	- 1 hour		- Team meeting (Workload Distribution)
+Chen	- 1 hour		- Team meeting (Workload Distribution)
+Wesley	- 0.5 hours	- Team meeting (Workload Distribution)
