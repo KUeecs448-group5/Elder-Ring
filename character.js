@@ -1,5 +1,4 @@
-var mM = 1;//manaMultiplier
-var dM = 1;//damageMultiplier
+
 
 //character creator used "a1 = new character"
 function character(m_health, m_magic, m_armor){
@@ -8,30 +7,32 @@ function character(m_health, m_magic, m_armor){
 	this.magic = m_magic;
 	this.max_magic = m_magic;
 	this.armor = m_armor;
+	this.mM = 1;//manaMultiplier
+	this.dM = 1;//damageMultiplier
 }
 
 //function to calculate and apply damage to defender, input is base damage
 function applyDamage(defender,damage){
 	if(defender.armor>(dM*damage)){}
 	else{
-		defender.health = defender.health - (dM*damage) + defender.armor;
+		defender.health = defender.health - (defender.dM*damage) + defender.armor;
 	}
 }
 
 //heals defender, makes sure no overheal
 function applyHeal(defender,damage){
-	if(((damage*dM)+defender.health)>defender.max_health){
+	if(((damage*defender.dM)+defender.health)>defender.max_health){
 		defender.health = defender.max_health;
 	}
 	else{
-		defender.health = defender.health + (damage*dM);
+		defender.health = defender.health + (damage*defender.dM);
 	}
 }
 
 
 //takes magic from attacker, input base mana
 function applyMagic(attacker,mana){
-	attacker.magic = attacker.magic - (mM*mana);
+	attacker.magic = attacker.magic - (attacker.mM*mana);
 }
 
 function single(attacker, defender, damage, mana){
