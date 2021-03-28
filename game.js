@@ -10,12 +10,14 @@ function newGame(){
     }
     
     do {
-        for(let i = 0; i < 4; i++){
+        for(let i = 0; i < playerArray.length(); i++){
             playerAction(/*parameters*/);
+            updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
             //check win condition -> return from newGame function if true
         }
-        for(let i = 0; i < 4; i++){
+        for(let i = 0; i < enemyArray.length(); i++){
             enemyAction(enemyArray[i]);
+            updateArray(playerArray); //if a player charater dies, they will be removed from the player array
             //check win condition -> return from newGame function if true
         }
     } while(1);
@@ -26,8 +28,8 @@ function playerAction(/*parameters*/){
 }
 
 function enemyAction(toAct){
-    action = Math.floor(Math.random() * 4);
-    target = Math.floor(Math.random() * 3);
+    action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
+    target = Math.floor(Math.random() * playerArray.length());
     //need to validate target - cannot attack dead player or heal an ally at full health
     pseudoMultiplier = Math.random() * 10;
     if(select === 0){
@@ -35,11 +37,13 @@ function enemyAction(toAct){
 	toAct.singleEnemy(toAct, playerArray[target]);
     } else if(select === 1){
         //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
-	toAct aoeEnemy(toAct, playerArray);
+	toAct.aoeEnemy(toAct, playerArray);
     } else if(select === 2){
+        //item ?
+    } else if(select === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
+        target = retLowestHealth(enemyArray);
         //toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
-	toAct.healEnemy(toAct, enemyArray[target]);
-    } else if(select === 3){
+	    toAct.healEnemy(toAct, enemyArray[target]);
     } else {
         console.log("Random enemy action selection failure");
     }
@@ -47,4 +51,31 @@ function enemyAction(toAct){
 
 function checkWin(/*parameters*/){
 
+}
+
+function updateArray(array) { //splicing function for dead characters
+    for(let i = array.length() - 1; i >= 0; i--){
+        if(array[i].health === 0){
+            array.splice(i, 1); //remove dead character from array
+        }
+    }
+}
+
+function checkHeal(array) { //returns false if whole team has full health
+    for(let i = 0; i < array.length(); i++){
+        if(array.health === 0){
+            return(true);
+        }
+    }
+    return(false);
+}
+
+function retLowestHealth(array) { //can be used in special enemy attack AI. necessary for enemy healing AI
+    retNum = Math.floor(Math.random() * array.length()); //set initial return value to random character index
+    for(let i = 0; i < array.length(); i++){
+        if(array[i].health < retNum){
+            retNum = array[i].health; //set return value to lowest heath value in index
+        }
+    }
+    return(retNum);
 }
