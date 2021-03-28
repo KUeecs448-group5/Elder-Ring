@@ -30,11 +30,14 @@ function enemyAction(toAct){
     target = Math.floor(Math.random() * 3);
     pseudoMultiplier = Math.random() * 10;
     if(select === 0){
-        toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
+        //toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
+	toAct.singleEnemy(toAct, playerArray[target]);
     } else if(select === 1){
-        toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
+        //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
+	toAct aoeEnemy(toAct, playerArray);
     } else if(select === 2){
-        toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
+        //toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
+	toAct.healEnemy(toAct, enemyArray[target]);
     } else if(select === 3){
     } else {
         console.log("Random enemy action selection failure");

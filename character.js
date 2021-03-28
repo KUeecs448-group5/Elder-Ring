@@ -2,19 +2,19 @@
 
 //character creator used "a1 = new character"
 function character(m_health, m_magic, m_armor){
-	this.health = m_health;
-	this.max_health = m_health;
-	this.magic = m_magic;
-	this.max_magic = m_magic;
-	this.armor = m_armor;
-	this.mM = 1;//manaMultiplier
-	this.dM = 1;//damageMultiplier
-	this.crit = 10;
+	this.health = m_health;//curent health of character, if this reaches 0 they should die
+	this.max_health = m_health;//max_health to pervent/keep track of overhealing
+	this.magic = m_magic;//current magic level for spells and skills, should fail/not cast if there is not enought magic
+	this.max_magic = m_magic;//max_magic to pervent over"heal"
+	this.armor = m_armor;//current armor value, armor must all be broken before health begins to go down
+	this.mM = 1;//manaMultiplier, for things like buffs and debuffs / difficulty
+	this.dM = 1;//damageMultiplier, same^
+	this.crit = 10;//random(0-crit) amount of damage added to base damage
 }
 
 //function to calculate and apply damage to defender, input is base damage
 function applyDamage(attacker,defender,damage){
-	var dam = defender.dM*(damage+random(attacker.crit));
+	var dam = defender.dM*(damage+random(attacker.crit));//dam = final damage calculation
 	if(defender.armor>0){
 		var armorDamage = defender.armor - dam;
 		if(armorDamage<0){
