@@ -28,6 +28,7 @@ function playerAction(/*parameters*/){
 function enemyAction(toAct){
     action = Math.floor(Math.random() * 4);
     target = Math.floor(Math.random() * 3);
+    //need to validate target - cannot attack dead player or heal an ally at full health
     pseudoMultiplier = Math.random() * 10;
     if(select === 0){
         toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
