@@ -1,0 +1,122 @@
+body{
+    background-image:url(Battle.jpeg);
+    background-size:cover;
+
+}
+
+.Round{
+    position:fixed;
+    left:650px;
+    top:50px;
+    color: rgb(245, 233, 233);
+    font-size: 300%;
+}
+#heal{
+    position:fixed;
+    right:400px;
+    top:570px;
+    color: rgb(247, 6, 6);
+    font-size: 150%;
+}
+#mana{
+    position:fixed;
+    right:200px;
+    top:570px;
+    color: rgb(1, 5, 253);
+    font-size: 150%;
+}
+.HP1{
+    position:fixed;
+    right:375px;
+    top:610px;
+    color: rgb(247, 6, 6);
+    font-size: 150%;
+}
+.HP2{
+    position:fixed;
+    right:375px;
+    top:670px;
+    color: rgb(247, 6, 6);
+    font-size: 150%;
+}
+.HP3{
+    position:fixed;
+    right:375px;
+    top:730px;
+    color: rgb(247, 6, 6);
+    font-size: 150%;
+}
+.MP1{
+    position:fixed;
+    right:175px;
+    top:610px;
+    color: rgb(1, 5, 253);
+    font-size: 150%;
+}
+.MP2{
+    position:fixed;
+    right:175px;
+    top:670px;
+    color: rgb(1, 5, 253);
+    font-size: 150%;
+}
+.MP3{
+    position:fixed;
+    right:175px;
+    top:730px;
+    color: rgb(1, 5, 253);
+    font-size: 150%;
+}
+#name{
+    position:fixed;
+    right:570px;
+    top:570px;
+    color: rgb(215, 253, 1);
+    font-size: 150%;
+}
+
+
+.button{
+    background-color: blue;
+    border:none;
+    color: white;
+    padding:15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: relative;
+    top:450px;
+    left:0px;
+}
+.Attack{
+    position:fixed; 
+    font-size: 20px;
+    width:20%;
+    left:30px;
+    top:600px;
+}
+.AOE{
+    position:fixed; 
+    font-size: 20px;
+    width:20%;
+    left:350px;
+    top:600px;
+}
+.Heal{
+    position:fixed;
+    font-size: 20px;
+    width:20%;
+    left:30px;
+    top:700px;
+}
+.Item{
+    position:fixed;
+    font-size: 20px;
+    width:20%;
+    left:350px;
+    top:700px;
+}
+
