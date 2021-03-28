@@ -28,19 +28,19 @@ function playerAction(/*parameters*/){
 }
 
 function enemyAction(toAct){
-    action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
-    target = Math.floor(Math.random() * playerArray.length());
+    var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
+    var target = Math.floor(Math.random() * playerArray.length());
     //need to validate target - cannot attack dead player or heal an ally at full health
     pseudoMultiplier = Math.random() * 10;
-    if(select === 0){
+    if(action === 0){
         //toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
 	toAct.singleEnemy(toAct, playerArray[target]);
-    } else if(select === 1){
+    } else if(action === 1){
         //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
 	toAct.aoeEnemy(toAct, playerArray);
-    } else if(select === 2){
+    } else if(action === 2){
         //item ?
-    } else if(select === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
+    } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
         //toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
 	    toAct.healEnemy(toAct, enemyArray[target]);
@@ -63,7 +63,7 @@ function updateArray(array) { //splicing function for dead characters
 
 function checkHeal(array) { //returns false if whole team has full health
     for(let i = 0; i < array.length(); i++){
-        if(array.health === 0){
+        if(array[i].health !== array[i].max_heath){
             return(true);
         }
     }
@@ -71,7 +71,7 @@ function checkHeal(array) { //returns false if whole team has full health
 }
 
 function retLowestHealth(array) { //can be used in special enemy attack AI. necessary for enemy healing AI
-    retNum = Math.floor(Math.random() * array.length()); //set initial return value to random character index
+    var retNum = Math.floor(Math.random() * array.length()); //set initial return value to random character index
     for(let i = 0; i < array.length(); i++){
         if(array[i].health < retNum){
             retNum = array[i].health; //set return value to lowest heath value in index
