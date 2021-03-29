@@ -1,12 +1,13 @@
 //overall game function
+import Character from './character.js';
 function newGame(){
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
     for(let i = 0; i < 4; i++){ //create 3 player characters
-        playerArray[i] = new character(100, 100, 50);
+        playerArray[i] = new Character(100, 100, 50);
     }
     for(let i = 0; i < 4; i++){ //create 3 enemy characters
-        enemyArray[i] = new character(80, 100, 100);
+        enemyArray[i] = new Character(80, 100, 100);
     }
     
     do {
@@ -23,8 +24,16 @@ function newGame(){
     } while(1);
 }
 
-function playerAction(/*parameters*/){
+function playerAction(playerSelection,action,enemySelection){
+    if(action == 0){
+        playerArray[input].applyDamage(playerArray[playerSelection],enemyArray[enemySelection],10);
+    } else if(action == 1){
+        playerArray[input].applyHeal(playerArray[playerSelection],enemyArray[enemySelection],10);
+    } else if(action == 2){
+        playerArray[input].applyMagic(playerArray[playerSelection],enemyArray[enemySelection],10);
+    } else if(action == 3){
 
+    }
 }
 
 function enemyAction(toAct){
@@ -63,7 +72,7 @@ function updateArray(array) { //splicing function for dead characters
 
 function checkHeal(array) { //returns false if whole team has full health
     for(let i = 0; i < array.length(); i++){
-        if(array[i].health !== array[i].max_heath){
+        if(array[i].health !== array[i].max_health){
             return(true);
         }
     }
@@ -79,3 +88,5 @@ function retLowestHealth(array) { //can be used in special enemy attack AI. nece
     }
     return(retNum);
 }
+
+export {newGame,playerAction,enemyAction,checkWin};
