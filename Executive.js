@@ -11,7 +11,7 @@ gameRules.playerAction(playerSelection,enemySelection,10);
 
 
 
-
+console.log("hello");
 
 
 
