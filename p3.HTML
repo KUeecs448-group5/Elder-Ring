@@ -4,13 +4,10 @@
     <head>
         <title>Battle</title>
         <link rel="stylesheet" href="./P3.css">
-        
-        
-        
+        <script src = "Executive.js" type ="module"></script>
     </head>
-        
-    
-            <body ondragstart='return false' oncontextmenu='self.event.returnValue=false'> <!--Anti-dragging to generate new page & shield right-click menu-->
+
+        <body ondragstart='return false' oncontextmenu='self.event.returnValue=false'> <!--Anti-dragging to generate new page & shield right-click menu-->
         
                 <span class="Round">Round: <label id='count'>0</label></span>
                 <span class="HP1"><label id='heal1'>100</label>/100</span>
@@ -26,14 +23,10 @@
                 <text id='mana'>MP</text>
                 <text id='name'>NAME</text>
 
-                <button class="button Attack">ATTACK</button>
-                <button class="button AOE">AOE ATTACK</button>
-                <button class="button Heal">HEAL</button>
-                <button class="button Item">ITEM</button>
-            
-            
-            <script>
-                
-            </script> 
-    </body>
+                <button class="button Attack" id = "Attack">ATTACK</button>
+                <button class="button AOE" id = "AOE">AOE ATTACK</button>
+                <button class="button Heal" id = "Heal">HEAL</button>
+                <button class="button Item" id = "Item">ITEM</button>
+        </body>
+        
 </html>
