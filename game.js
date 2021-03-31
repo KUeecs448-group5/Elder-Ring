@@ -1,8 +1,8 @@
 //overall game function
 import Character from './character.js';
 function newGame(){
-    const playerArray = []; //player character array
-    const enemyArray = []; //enemy character array
+    static const playerArray = []; //player character array
+    static const enemyArray = []; //enemy character array
     for(let i = 0; i < 4; i++){ //create 3 player characters
         playerArray[i] = new Character(100, 100, 50);
     }
@@ -62,11 +62,13 @@ function checkWin(/*parameters*/){
 
 }
 
+//will need to be removed
 function updateArray(array) { //splicing function for dead characters
     for(let i = array.length() - 1; i >= 0; i--){
         if(array[i].health === 0){
             array.splice(i, 1); //remove dead character from array
         }
+        //edit health bars
     }
 }
 
