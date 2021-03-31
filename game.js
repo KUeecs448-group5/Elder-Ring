@@ -1,5 +1,7 @@
 //overall game function
 import Character from './character.js';
+var playerAction=setInterval(playerAction,3000);
+var enemyAction=setInterval(enemyAction,3000);
 function newGame(){
     static const playerArray = []; //player character array
     static const enemyArray = []; //enemy character array

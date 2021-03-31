@@ -1,7 +1,8 @@
-
-
+import { playerAction, enemyAction } from "./game";
+var isAlive=setInterval(isAlive,1000);
 //character creator used "a1 = new character"
 export default class Character{
+	
 	constructor(m_health, m_magic, m_armor){
 		this.health = m_health;//curent health of character, if this reaches 0 they should die
 		this.max_health = m_health;//max_health to pervent/keep track of overhealing
@@ -107,5 +108,16 @@ export default class Character{
 
 		hello(){
 			console.log("Warrior says Hi.");
-		}	
+		}
+		
+
+		isAlive(attacker, defender){
+			if(attacker.health < 1){
+				clearInterval(playerAction);	
+			}
+
+			if(defender.health < 1){
+				clearInterval(enemyAction);
+			}
+		}
 }
