@@ -4,6 +4,35 @@ body{
 
 }
 
+#menu{
+    width: 10%;
+}
+.player{
+    position: fixed;
+    right: 2.5%;
+}
+.player img{
+    width: 175px;
+}
+
+.skeleton img{
+    width: 7%;
+}
+
+.boss img{
+    position: relative;
+    left: 50px;
+    width: 15%;
+}
+
+.menu{
+    max-width: 80%;
+    position: relative;
+    bottom: 2.5%;
+    left: 10%;
+    height: 10%;
+}
+
 .Round{
     position:fixed;
     left:650px;
@@ -25,6 +54,11 @@ body{
     color: rgb(1, 5, 253);
     font-size: 150%;
 }
+.HP{
+    color: rgb(247, 6, 6);
+    font-size: 150%;
+}
+
 .HP1{
     position:fixed;
     right:375px;
@@ -119,4 +153,3 @@ body{
     left:350px;
     top:700px;
 }
-
