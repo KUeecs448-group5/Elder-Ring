@@ -7,7 +7,7 @@ function newGame(){
     const enemyArray = []; //enemy character array
     playerArray[0] = new Character(100,100,0,"Archer",0);
     playerArray[1] = new Character(100,100,0,"Barbarian",1);
-    playerArray[2] = new Character(100,100,0,"Cunt",2);
+    playerArray[2] = new Character(100,100,0,"Mage",2);
     enemyArray[0] = new Character(80,100,100,"Bad Guy",1);
     enemyArray[1] = new Character(80,100,100,"Bad Guy 2",2);
     enemyArray[2] = new Character(80,100,100,"Bad Guy 3",3);
