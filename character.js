@@ -5,7 +5,7 @@ export default class Character{
 	
 	constructor(m_health, m_magic, m_armor,m_name,numberValue){
 		this.health = m_health;//curent health of character, if this reaches 0 they should die
-		this.max_health = m_health;//max_health to pervent/keep track of overhealing
+		this.max_health = 100;//max_health to pervent/keep track of overhealing
 		this.magic = m_magic;//current magic level for spells and skills, should fail/not cast if there is not enought magic
 		this.max_magic = m_magic;//max_magic to pervent over"heal"
 		this.armor = m_armor;//current armor value, armor must all be broken before health begins to go down
@@ -18,54 +18,86 @@ export default class Character{
 
 		applyDamage(attacker,defender,damage,characterValue){
 			var dam = defender.dM*(damage+this.random(attacker.crit));//dam = final damage calculation
-			if(defender.armor>0){
-				var armorDamage = defender.armor - dam;
-				if(armorDamage<0){
-					defender.arm1or = 0;
-					armorDamage = -1*armorDamage;
-					defender.health = defender.health - dam;
-				}
-				else{
-					defender.armor = defender.armor - dam;
-				}
-			}
-			else{
+			// if(defender.armor>0){
+			// 	var armorDamage = defender.armor - dam;
+			// 	if(armorDamage<0){
+			// 		defender.arm1or = 0;
+			// 		armorDamage = -1*armorDamage;
+			// 		defender.health = defender.health - dam;
+			// 	}
+			// 	else{
+			// 		defender.armor = defender.armor - dam;
+			// 	}
+			// }
+			// else{
 				defender.health = defender.health - dam;
-			}
+			//}
 			console.log(dam + " damage applied");
 			if(characterValue == 0){
-				document.getElementById("heal1").innerHTML = defender.health;
+				document.getElementById("ehealth1").innerHTML = defender.health;
 			}
 			else if(characterValue == 1){
-				document.getElementById("heal2").innerHTML = defender.health;
+				document.getElementById("ehealth2").innerHTML = defender.health;
 			}
 			else if(characterValue == 2){
-				document.getElementById("heal3").innerHTML = defender.health;
+				document.getElementById("ehealth3").innerHTML = defender.health;
 			}
+			else if(characterValue == 3){
+				document.getElementById("health1").innerHTML = defender.health;
+			}
+			else if(characterValue == 4){
+				document.getElementById("health2").innerHTML = defender.health;
+			}
+			else if(characterValue == 5){
+				document.getElementById("health3").innerHTML = defender.health;
+			}
+
+			console.log("health: "+ defender.health)
 		}
 		
 		//heals defender, makes sure no overheal
 		applyHeal(attacker,defender,damage){
 			var dam = defender.dM*(damage+this.random(attacker.crit));
+			console.log(attacker+" healed "+defender+"for "+ dam);
 			if((dam+defender.health)>defender.max_health){
 				defender.health = defender.max_health;
 			}
 			else{
 				defender.health = defender.health + dam;
 			}
+
+			if(defender.numberValue == 0){
+				document.getElementById("ehealth1").innerHTML = defender.health;
+			}
+			else if(defender.numberValue == 1){
+				document.getElementById("ehealth2").innerHTML = defender.health;
+			}
+			else if(defender.numberValue == 2){
+				document.getElementById("ehealth3").innerHTML = defender.health;
+			}
+			else if(defender.numberValue == 3){
+				document.getElementById("health1").innerHTML = defender.health;
+			}
+			else if(defender.numberValue == 4){
+				document.getElementById("health2").innerHTML = defender.health;
+			}
+			else if(defender.numberValue == 5){
+				document.getElementById("health3").innerHTML = defender.health;
+			}
+
 		}
 		
 		
 		//takes magic from attacker, input base mana
-		applyMagic(attacker,mana,characterValue){
+		applyMagic(attacker,mana){
 
-			if(characterValue == 0){
+			if(attacker.numberValue == 3){
 				document.getElementById("mana1").innerHTML = attacker.magic - mana;
 			}
-			else if(characterValue == 1){
+			else if(attacker.numberValue == 4){
 				document.getElementById("mana2").innerHTML = attacker.magic - mana;
 			}
-			else if(characterValue == 2){
+			else if(attacker.numberValue == 5){
 				document.getElementById("mana3").innerHTML = attacker.magic - mana;
 			}
 			attacker.magic = attacker.magic - (attacker.mM*mana);
@@ -84,6 +116,7 @@ export default class Character{
 		
 		aoe(attacker, group, damage, mana){
 			group.map(x=>this.applyDamage(attacker,x,damage));
+
 			this.applyMagic(attacker,mana);	
 		}
 		
@@ -106,11 +139,14 @@ export default class Character{
 		aoePlayer(attacker, group){
 			this.aoe(attacker, group, 5, 15);
 			console.log(attacker.getName() + " performs AOE on Bad Guys");
+			document.getElementById("ehealth1").innerHTML = group[0].health;
+			document.getElementById("ehealth2").innerHTML = group[1].health;
+			document.getElementById("ehealth3").innerHTML = group[2].health;
 		}
 		
 		healPlayer(attacker, defender){
 			this.heal(attacker, defender, 10, 15);
-			console.log(attacker.getName()+" heals " + defender.getName());
+			console.log(attacker.name+" heals " + defender.name);
 		}
 		
 		groupHealPlayer(attacker, group){
@@ -119,14 +155,20 @@ export default class Character{
 		
 		singleEnemy(attacker, defender){
 			this.single(attacker, defender, 20, 10);
+			console.log(attacker.getName() + " performs single attack on " + defender.name);
 		}
 		
 		aoeEnemy(attacker, group){
 			this.aoe(attacker, group, 5, 15);
+			console.log(attacker.getName() + " performs aoe on " + group);
+			document.getElementById("health1").innerHTML = group[0].health;
+			document.getElementById("health2").innerHTML = group[1].health;
+			document.getElementById("health3").innerHTML = group[2].health;
 		}
 		
 		healEnemy(attacker, defender){
 			this.heal(attacker, defender, 10, 15);
+			console.log(attacker.getName() + " heals " + defender.getName());
 		}
 		
 		groupHealEnemy(attacker, group){
