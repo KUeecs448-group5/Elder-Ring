@@ -36,7 +36,7 @@ function attackAction(){
     }
     let randomEnemyIndex = Math.floor(Math.random() * playerArray.length);
     playerArray[playerSelection].singlePlayer(playerArray[playerSelection],enemyArray[enemySelection])
-    enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
+    //enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
     updateArray(playerArray);
     updateArray(enemyArray);
 
@@ -56,6 +56,9 @@ function healAction(){
     let playerSelection = parseInt(prompt("who would you like to use heal?"));
     let allySelection = parseInt(prompt("who would you like heal to be used on?"));
     playerArray[playerSelection].healPlayer(playerArray[playerSelection],playerArray[allySelection]);
+    //enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
+    updateArray(playerArray);
+    updateArray(enemyArray);
 }
 //figure out why this repeats
 function playerAction(playerArray,enemyArray,player,enemy){
@@ -74,7 +77,7 @@ function enemyAction(enemyArray, playerArray, toAct){
     var target = Math.floor(Math.random() * playerArray.length);
     //need to validate target - cannot attack dead player or heal an ally at full health
     var pseudoMultiplier = Math.random() * 10;
-    console.log("Enemy health: " + toAct.health);
+    //console.log("Enemy health: " + toAct.health);
     
     console.log("playerArray.length: " + playerArray.length);
     if(action === 0){
