@@ -17,6 +17,9 @@ function newGame(){
     // for(let i = 0; i < 4; i++){ //create 3 enemy characters
     //     enemyArray[i] = new Character(80, 100, 100);
     // }
+
+    //attack all players with 0 to get health bars started
+
     let playerSelection = prompt("who would you like to attack with?");
     let enemySelection = prompt("who would you like to attack?(For Heal,type 3)");
     let playerSelection2 = parseInt(playerSelection);
@@ -25,21 +28,26 @@ function newGame(){
         enemySelection = prompt("Who in your party would you like to heal?");
         enemySelection2 = parseInt(enemySelection);
     }
-    playerAction(playerArray,playerArray,playerSelection2,enemySelection2);
-    // do {
-    //     for(let i = 0; i < playerArray.length; i++){
-    //         playerAction(playerSelection,action,enemySelection);
-    //         updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
-    //         //check win condition -> return from newGame function if true
-    //     }
-    //     for(let i = 0; i < enemyArray.length; i++){
-    //         enemyAction(enemyArray[i]);
-    //         updateArray(playerArray); //if a player charater dies, they will be removed from the player array
-    //         //check win condition -> return from newGame function if true
-    //     }
-    // } while(1);
+    //playerAction(playerArray,playerArray,playerSelection2,enemySelection2);
+    do {
+        for(let i = 0; i < playerArray.length; i++){
+            playerAction(playerArray,playerArray,playerSelection2,enemySelection2);
+            updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
+            if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
+                return;
+            }
+        }
+        for(let i = 0; i < enemyArray.length; i++){
+            enemyAction(enemyArray[i]);
+            updateArray(playerArray); //if a player charater dies, they will be removed from the player array
+            if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
+                return;
+            }
+        }
+    } while(1);
 }
 
+//figure out why this repeats
 function playerAction(playerArray,enemyArray,player,enemy){
     document.getElementById("Attack").addEventListener
     ("click", () => 
