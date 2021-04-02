@@ -69,6 +69,7 @@ function enemyAction(enemyArray, playerArray, toAct){
     var target = Math.floor(Math.random() * playerArray.length);
     //need to validate target - cannot attack dead player or heal an ally at full health
     var pseudoMultiplier = Math.random() * 10;
+    console.log("Enemy health: " + toAct.health);
     console.log("Enemy action: " + action);
     console.log("playerArray.length: " + playerArray.length);
     if(action === 0){
@@ -87,9 +88,10 @@ function enemyAction(enemyArray, playerArray, toAct){
         //item ?
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
-        console.log("Enemy is healing enemy " + target + ".");
+        console.log("Enemy is healing enemy " + target + ". Enemy " + target + " health = " + enemyArray[target].health);
         //toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
-         toAct.healEnemy(toAct, enemyArray[target]);
+        toAct.healEnemy(toAct, enemyArray[target]);
+        console.log("Enemy " + target + " health: " + enemyArray[target].health);
     } else {
         console.log("Random enemy action selection failure");
     }
@@ -125,10 +127,13 @@ function checkHeal(array) { //returns false if whole team has full health
 }
 
 function retLowestHealth(array) { //can be used in special enemy attack AI. necessary for enemy healing AI
-    var retNum = Math.floor(Math.random() * array.length); //set initial return value to random character index
+    //var retNum = Math.floor(Math.random() * array.length); //set initial return value to random character index
+    var minHealth = 100;
+    var retNum;
     for(let i = 0; i < array.length; i++){
-        if(array[i].health < retNum){
-            retNum = array[i].health; //set return value to lowest heath value in index
+        if(array[i].health < minHealth){
+            retNum = i; //set return value to lowest heath value in index
+            minHealth = array[i].health;
         }
     }
     return(retNum);

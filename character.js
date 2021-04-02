@@ -46,7 +46,7 @@ export default class Character{
 		
 		//heals defender, makes sure no overheal
 		applyHeal(attacker,defender,damage){
-			var dam = defender.dM*(damage+Math.random(attacker.crit));
+			var dam = defender.dM*(damage+this.random(attacker.crit));
 			if((dam+defender.health)>defender.max_health){
 				defender.health = defender.max_health;
 			}
