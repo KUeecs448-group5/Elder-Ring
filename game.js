@@ -27,12 +27,12 @@ function newGame(){
     }
     playerAction(playerArray,playerArray,playerSelection2,enemySelection2);
     // do {
-    //     for(let i = 0; i < playerArray.length1; i++){
+    //     for(let i = 0; i < playerArray.length; i++){
     //         playerAction(playerSelection,action,enemySelection);
     //         updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
     //         //check win condition -> return from newGame function if true
     //     }
-    //     for(let i = 0; i < enemyArray.length1; i++){
+    //     for(let i = 0; i < enemyArray.length; i++){
     //         enemyAction(enemyArray[i]);
     //         updateArray(playerArray); //if a player charater dies, they will be removed from the player array
     //         //check win condition -> return from newGame function if true
