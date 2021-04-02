@@ -76,9 +76,15 @@ function playerAction(playerArray,enemyArray,player,enemy){
 //     }
 // }
 
-function checkWin(/*parameters*/){
-
+function checkWin(array){
+    for( let i =0; i <array.length; i++){
+        if(array[i].health === 0){ 
+            return(true);
+        }  
+    } 
+    return(false);
 }
+
 
 //will need to be removed
 function updateArray(array) { //splicing function for dead characters
