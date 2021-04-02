@@ -52,7 +52,7 @@ export default class Character{
 				document.getElementById("health3").innerHTML = defender.health;
 			}
 
-			console.log("health: "+ defender.health)
+			console.log("Enemy "+defender.numberValue+1+ " health: "+ defender.health);
 		}
 		
 		//heals defender, makes sure no overheal
