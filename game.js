@@ -22,10 +22,11 @@ function newGame(){
     enemyArray[0] = new Character(100,100,100,"Bad Guy 1",0);
     enemyArray[1] = new Character(100,100,100,"Bad Guy 2",1);
     enemyArray[2] = new Character(100,100,100,"Bad Guy 3",2);
-    do {
+    //do {
         
         for(let i = 0; i < playerArray.length; i++){
             playerAction(playerArray,enemyArray, i);
+            console.log("PLAYER ACTION JUST PERFORMED. PLAYER i = " + i);
             updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
             /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
                 return;
@@ -39,7 +40,7 @@ function newGame(){
                 return;
             }*/
         }
-    } while(1);
+    //} while(1);
 }
 /*
 function attackAction(){
@@ -78,6 +79,7 @@ function healAction(){
 */
 //figure out why this repeats
 function playerAction(playerArray,enemyArray,player){
+    console.log("BEGIN ENEMY " + player + " ACTION");
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
@@ -85,9 +87,11 @@ function playerAction(playerArray,enemyArray,player){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
     }
+
     aoe.onclick = function(){
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
     }
+
     heal.onclick = function(){
         var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
@@ -101,11 +105,10 @@ function enemyAction(enemyArray, playerArray, toAct){
     var pseudoMultiplier = Math.random() * 10;
     //console.log("Enemy health: " + toAct.health);
     
-    console.log("playerArray.length: " + playerArray.length);
+    console.log("BEGIN ENEMY " + toAct.getNumberValue() + " ATTACK. action = " + action);
     if(action === 0){
         //toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
         toAct.singleEnemy(toAct, playerArray[target]);
-        console.log("Player " + target + " health: " + playerArray[target].health);
     } else if(action === 1){
         //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
         toAct.aoeEnemy(toAct, playerArray);
@@ -115,6 +118,7 @@ function enemyAction(enemyArray, playerArray, toAct){
         console.log("Player 2 health: " + playerArray[2].health);
     } else if(action === 2){
         //item ?
+        console.log("Enemy item action.");
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
         console.log("Enemy is healing enemy " + target + ". Enemy " + target + " health = " + enemyArray[target].health);

@@ -160,7 +160,7 @@ export default class Character{
 		
 		aoeEnemy(attacker, group){
 			this.aoe(attacker, group, 5, 15);
-			console.log(attacker.getName() + " performs aoe on " + group);
+			console.log(attacker.getName() + " performs aoe");
 		}
 		
 		healEnemy(attacker, defender){
