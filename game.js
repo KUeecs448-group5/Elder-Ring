@@ -79,7 +79,7 @@ function healAction(){
 */
 //figure out why this repeats
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN ENEMY " + player + " ACTION");
+    console.log("BEGIN PLAYER " + player + " ACTION");
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
@@ -87,11 +87,9 @@ function playerAction(playerArray,enemyArray,player){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
     }
-
     aoe.onclick = function(){
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
     }
-
     heal.onclick = function(){
         var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
