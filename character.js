@@ -17,10 +17,14 @@ export default class Character{
 		this.item = 3;//number of firebombs
 	}
 
-		useBomb(attacker, defender, characterValue){
+		useBomb(attacker, defender){
 			if(attacker.item>0){
-				this.applyDamage(attacker,defender,10,characterValue);
+				this.applyDamage(attacker,defender,10,defender.getNumberValue());
 				attacker.item--;
+				console.log("Attacking with item");
+			}
+			else{
+				console.log("Failed attacking with item");
 			}
 			
 		}
