@@ -134,7 +134,7 @@ function playerAction(playerArray,enemyArray,player){
     }
     item.onclick = function(){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
-        playerArray[player].useBomb(playerArray[player],enemyArray[select]);
+        playerArray[player].useBomb(playerArray[player],enemyArray[select],);
     }
 }
 
