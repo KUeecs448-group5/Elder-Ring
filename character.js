@@ -35,11 +35,25 @@ export default class Character{
 			// 		defender.health = defender.health - dam;
 			// 	}
 			// 	else{
-			// 		defender.armor = defender.armor - dam;
+			// 		if(defender.health - dam >= 0)
+			//		{
+			//			defender.health = defender.health - dam;
+			//		}
+			//		else
+			//		{
+			//			defender.health = 0;
+			//		}
 			// 	}
 			// }
 			// else{
-				defender.health = defender.health - dam;
+				if(defender.health - dam >= 0)
+				{
+					defender.health = defender.health - dam;
+				}
+				else
+				{
+					defender.health = 0;
+				}
 			//}
 			console.log(dam + " damage applied");
 			if(characterValue == 0){
@@ -100,7 +114,7 @@ export default class Character{
 		//takes magic from attacker, input base mana
 		applyMagic(attacker,mana){
 			var man = attacker.magic - (attacker.mM*mana);
-			if(man>0){
+			if(man>=0){
 				if(attacker.numberValue == 3){
 					document.getElementById("mana1").innerHTML = man;
 				}
