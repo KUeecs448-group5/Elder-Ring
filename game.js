@@ -22,6 +22,7 @@ function newGame(){
     enemyArray[0] = new Character(100,100,100,"Bad Guy 1",0);
     enemyArray[1] = new Character(100,100,100,"Bad Guy 2",1);
     enemyArray[2] = new Character(100,100,100,"Bad Guy 3",2);
+    //should be set interval or requestAnimationFrame loop or something. while loop will lock up browser and take up all cpu
     //do {
         
         for(let i = 0; i < playerArray.length; i++){
@@ -94,6 +95,7 @@ function playerAction(playerArray,enemyArray,player){
         var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
     }
+    //
 }
 
 function enemyAction(enemyArray, playerArray, toAct){
@@ -111,9 +113,6 @@ function enemyAction(enemyArray, playerArray, toAct){
         //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
         toAct.aoeEnemy(toAct, playerArray);
         console.log("Enemy does AOE.");
-        console.log("Player 0 health: " + playerArray[0].health);
-        console.log("Player 1 health: " + playerArray[1].health);
-        console.log("Player 2 health: " + playerArray[2].health);
     } else if(action === 2){
         //item ?
         console.log("Enemy item action.");
