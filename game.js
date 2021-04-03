@@ -22,26 +22,27 @@ function newGame(){
     enemyArray[0] = new Character(100,100,100,"Bad Guy 1",0);
     enemyArray[1] = new Character(100,100,100,"Bad Guy 2",1);
     enemyArray[2] = new Character(100,100,100,"Bad Guy 3",2);
+    setOwnPlayer(0);
     //do {
         
-        for(let i = 0; i < playerArray.length; i++){
-            playerAction(playerArray,enemyArray, i);
-            console.log("PLAYER ACTION JUST PERFORMED. PLAYER i = " + i);
-            updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
-            /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
-                return;
-            }*/
-        }
+        // for(let i = 0; i < playerArray.length; i++){
+        //     playerAction(playerArray,enemyArray, i);
+        //     console.log("PLAYER ACTION JUST PERFORMED. PLAYER i = " + i);
+        //     updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
+        //     /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
+        //         return;
+        //     }*/
+        // }
         
-        for(let i = 0; i < enemyArray.length; i++){
-            enemyAction(enemyArray, playerArray, enemyArray[i]);
-            updateArray(playerArray); //if a player charater dies, they will be removed from the player array
+        // for(let i = 0; i < enemyArray.length; i++){
+        //     enemyAction(enemyArray, playerArray, enemyArray[i]);
+        //     updateArray(playerArray); //if a player charater dies, they will be removed from the player array
             /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
                 return;
             }*/
         }
     //} while(1);
-}
+
 /*
 function attackAction(){
     let playerSelection = parseInt(prompt("who would you like to attack with?"));
@@ -78,18 +79,52 @@ function healAction(){
 }
 */
 //figure out why this repeats
+
+function enemyAttack(){
+    for(let i = 0; i < enemyArray.length; i++){
+             enemyAction(enemyArray, playerArray, enemyArray[i]);
+             updateArray(playerArray); //if a player charater dies, they will be removed from the player array
+             /*if(checkWin(enemyArray) || checkWin(playerAction)){ check win condition -> return from newGame function if true
+                 return;
+             }*/
+         }
+}
+
+function setOwnPlayer(player){
+    playerAction(playerArray,enemyArray, player);
+    console.log("PERFORM PLAYER ACTION. PLAYER = " + player);
+    updateArray(enemyArray);
+}
+
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN PLAYER " + player + " ACTION");
+    console.log("BEGIN PLAYER" + player + " ACTION");
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
     attack.onclick = function(){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
+        player++;
+        if(player == playerArray.length){
+            console.log("Enemy's turn.");
+            enemyAttack();
+            if(!playerArray || playerArray.length == 0){
+                alert("Team is dead");
+            }
+            else{
+                setOwnPlayer(0);
+            }
+        }else{
+            setOwnPlayer(player);
+        }
+
+        
     }
+
     aoe.onclick = function(){
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
     }
+
     heal.onclick = function(){
         var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
@@ -98,13 +133,14 @@ function playerAction(playerArray,enemyArray,player){
 
 function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
+    let act = 0;
     var target = Math.floor(Math.random() * playerArray.length);
     //need to validate target - cannot attack dead player or heal an ally at full health
     var pseudoMultiplier = Math.random() * 10;
     //console.log("Enemy health: " + toAct.health);
     
     console.log("BEGIN ENEMY " + toAct.getNumberValue() + " ATTACK. action = " + action);
-    if(action === 0){
+    if(act === 0){
         //toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
         toAct.singleEnemy(toAct, playerArray[target]);
     } else if(action === 1){
