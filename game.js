@@ -18,15 +18,30 @@ function newGame(){
     playerArray[0] = new Character(80,100,0,"Archer",3);
     playerArray[1] = new Character(100,100,0,"Barbarian",4);
     playerArray[2] = new Character(100,100,0,"Mage",5);
+
     enemyArray[0] = new Character(100,100,100,"Bad Guy 1",0);
     enemyArray[1] = new Character(100,100,100,"Bad Guy 2",1);
     enemyArray[2] = new Character(100,100,100,"Bad Guy 3",2);
-    
-    document.getElementById("Attack").addEventListener("click", attackAction);
-    document.getElementById("AOE").addEventListener("click", aoeAction);
-    document.getElementById("Heal").addEventListener("click", healAction);
+    do {
+        
+        for(let i = 0; i < playerArray.length; i++){
+            playerAction(playerArray,enemyArray, i);
+            updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
+            /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
+                return;
+            }*/
+        }
+        
+        for(let i = 0; i < enemyArray.length; i++){
+            enemyAction(enemyArray, playerArray, enemyArray[i]);
+            updateArray(playerArray); //if a player charater dies, they will be removed from the player array
+            /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
+                return;
+            }*/
+        }
+    } while(1);
 }
-
+/*
 function attackAction(){
     let playerSelection = parseInt(prompt("who would you like to attack with?"));
     let enemySelection = parseInt(prompt("who would you like to attack?(For Heal,type 3)"));
@@ -60,16 +75,24 @@ function healAction(){
     updateArray(playerArray);
     updateArray(enemyArray);
 }
+*/
 //figure out why this repeats
-function playerAction(playerArray,enemyArray,player,enemy){
+function playerAction(playerArray,enemyArray,player){
+    var attack = document.getElementById("Attack");
+    var aoe = document.getElementById("AOE");
+    var heal = document.getElementById("Heal");
     
-    document.getElementById("AOE").addEventListener
-    ("click", () => 
-    playerArray[player].aoePlayer(playerArray[player],enemyArray));
-
-    document.getElementById("Heal").addEventListener
-    ("click", () => 
-    playerArray[player].healPlayer(playerArray[player],playerArray[enemy]));
+    attack.onclick = function(){
+        var select = parseInt(prompt("who would you like to attack (0-2)?:"));
+        playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
+    }
+    aoe.onclick = function(){
+        playerArray[player].aoePlayer(playerArray[player],enemyArray);
+    }
+    heal.onclick = function(){
+        var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
+        playerArray[player].healPlayer(playerArray[player],enemyArray);
+    }
 }
 
 function enemyAction(enemyArray, playerArray, toAct){
