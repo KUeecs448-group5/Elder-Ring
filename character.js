@@ -14,7 +14,16 @@ export default class Character{
 		this.crit = 10;//random(0-crit) amount of damage added to base damage
 		this.name = m_name;
 		this.numberValue = numberValue;
+		this.item = 3;//number of firebombs
 	}
+
+		useBomb(attacker, defender, characterValue){
+			if(attacker.item>0){
+				this.applyDamage(attacker,defender,10,characterValue);
+				attacker.item--;
+			}
+			
+		}
 
 		applyDamage(attacker,defender,damage,characterValue){
 			var dam = defender.dM*(damage+this.random(attacker.crit));//dam = final damage calculation
@@ -90,18 +99,24 @@ export default class Character{
 		
 		//takes magic from attacker, input base mana
 		applyMagic(attacker,mana){
-
-			if(attacker.numberValue == 3){
-				document.getElementById("mana1").innerHTML = attacker.magic - mana;
+			var man = attacker.magic - (attacker.mM*mana);
+			if(man>0){
+				if(attacker.numberValue == 3){
+					document.getElementById("mana1").innerHTML = man;
+				}
+				else if(attacker.numberValue == 4){
+					document.getElementById("mana2").innerHTML = man;
+				}
+				else if(attacker.numberValue == 5){
+					document.getElementById("mana3").innerHTML = man;
+				}
+				attacker.magic = man;
+				console.log(mana + " mana used");
+				return true;
 			}
-			else if(attacker.numberValue == 4){
-				document.getElementById("mana2").innerHTML = attacker.magic - mana;
+			else{
+				return false;
 			}
-			else if(attacker.numberValue == 5){
-				document.getElementById("mana3").innerHTML = attacker.magic - mana;
-			}
-			attacker.magic = attacker.magic - (attacker.mM*mana);
-			console.log(mana + " mana used");
 			
 		}
 		
@@ -110,27 +125,30 @@ export default class Character{
 		}
 		
 		single(attacker, defender, damage, mana){
-			this.applyDamage(attacker,defender,damage,defender.getNumberValue());
-			this.applyMagic(attacker,mana,attacker.getNumberValue());
+			if(this.applyMagic(attacker,mana,attacker.getNumberValue())){
+				this.applyDamage(attacker,defender,damage,defender.getNumberValue());
+			}
 		}
 		
 		aoe(attacker, group, damage, mana){
-			//group.map(x=>this.applyDamage(attacker,x,damage,x.getNumberValue()));
-			for(let i = 0; i < group.length; i++){
-				this.applyDamage(attacker, group[i], damage, group[i].getNumberValue());
+			if(this.applyMagic(attacker,mana)){
+				//group.map(x=>this.applyDamage(attacker,x,damage,x.getNumberValue()));
+				for(let i = 0; i < group.length; i++){
+					this.applyDamage(attacker, group[i], damage, group[i].getNumberValue());
+				}
 			}
-
-			this.applyMagic(attacker,mana);	
 		}
 		
 		heal(attacker, defender, damage, mana){//I know this doesnt make sense but im keeping the variables the same for consistancy
-			this.applyHeal(attacker,defender,damage);
-			this.applyMagic(attacker,mana);	
+			if(this.applyMagic(attacker,mana)){
+				this.applyHeal(attacker,defender,damage);
+			}	
 		}
 		
 		groupHeal(attacker, group, damage, mana){
-			group.map(attacker,x=>this.applyHeal(x,damage));
-			this.applyMagic(attacker,mana);
+			if(this.applyMagic(attacker,mana)){
+				group.map(attacker,x=>this.applyHeal(x,damage));
+			}
 		}
 		
 		//dont know what to call these so ill be explicit

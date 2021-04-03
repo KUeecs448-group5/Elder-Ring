@@ -83,6 +83,7 @@ function playerAction(playerArray,enemyArray,player){
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
+    var item = document.getElementById("Item");
     attack.onclick = function(){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
@@ -93,6 +94,10 @@ function playerAction(playerArray,enemyArray,player){
     heal.onclick = function(){
         var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
+    }
+    item.onclick = function(){
+        var select = parseInt(prompt("who would you like to attack (0-2)?:"));
+        playerArray[player].useBomb(playerArray[player],enemyArray[select]);
     }
 }
 
