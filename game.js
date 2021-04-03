@@ -94,7 +94,7 @@ function enemyAttack(){
 function setOwnPlayer(player){
     playerAction(playerArray,enemyArray, player);
     console.log("PERFORM PLAYER ACTION. PLAYER = " + player);
-    updateArray(enemyArray);
+    //updateArray(enemyArray);
 }
 
 function playerAction(playerArray,enemyArray,player){
