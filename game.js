@@ -104,7 +104,8 @@ function playerAction(playerArray,enemyArray,player){
     var heal = document.getElementById("Heal");
     var item = document.getElementById("Item");
     attack.onclick = function(){
-        var select = parseInt(prompt("who would you like to attack (0-2)?:"));
+        //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
+        var select = verifyTarget(enemyArray, 0, "attack");
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
         player++;
         if(player == playerArray.length){
@@ -128,12 +129,27 @@ function playerAction(playerArray,enemyArray,player){
     }
 
     heal.onclick = function(){
-        var select = parseInt(prompt("who would you like to use heal (0-2)?:"));
+        var select = parseInt(prompt("who would you like to heal (0-2)?:"));
         playerArray[player].healPlayer(playerArray[player],enemyArray);
     }
     item.onclick = function(){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].useBomb(playerArray[player],enemyArray[select]);
+    }
+}
+
+function verifyTarget(group, invalidVal, action){
+    var retSelect = parseInt(prompt("Who would you like to " + action + "?:"));
+    if(retSelect >= group.length){
+        alert("Target " + retSelect + " is an invalid target. Please try again.");
+        return verifyTarget(group, invalidVal, action);
+    }
+    else if(group[retSelect].health == invalidVal){
+        alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
+        return verifyTarget(group, invalidVal, action);
+    }
+    else {
+        return retSelect;
     }
 }
 
