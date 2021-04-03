@@ -81,7 +81,6 @@ function playerAction(playerArray,enemyArray,player){
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
-    
     attack.onclick = function(){
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);

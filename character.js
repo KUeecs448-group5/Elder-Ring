@@ -52,7 +52,7 @@ export default class Character{
 				document.getElementById("health3").innerHTML = defender.health;
 			}
 
-			console.log("Enemy "+defender.numberValue+1+ " health: "+ defender.health);
+			console.log("Character "+ characterValue + " health: "+ defender.health);
 		}
 		
 		//heals defender, makes sure no overheal
@@ -115,7 +115,10 @@ export default class Character{
 		}
 		
 		aoe(attacker, group, damage, mana){
-			group.map(x=>this.applyDamage(attacker,x,damage));
+			//group.map(x=>this.applyDamage(attacker,x,damage,x.getNumberValue()));
+			for(let i = 0; i < group.length; i++){
+				this.applyDamage(attacker, group[i], damage, group[i].getNumberValue());
+			}
 
 			this.applyMagic(attacker,mana);	
 		}
@@ -139,9 +142,6 @@ export default class Character{
 		aoePlayer(attacker, group){
 			this.aoe(attacker, group, 5, 15);
 			console.log(attacker.getName() + " performs AOE on Bad Guys");
-			document.getElementById("ehealth1").innerHTML = group[0].health;
-			document.getElementById("ehealth2").innerHTML = group[1].health;
-			document.getElementById("ehealth3").innerHTML = group[2].health;
 		}
 		
 		healPlayer(attacker, defender){
@@ -161,9 +161,6 @@ export default class Character{
 		aoeEnemy(attacker, group){
 			this.aoe(attacker, group, 5, 15);
 			console.log(attacker.getName() + " performs aoe on " + group);
-			document.getElementById("health1").innerHTML = group[0].health;
-			document.getElementById("health2").innerHTML = group[1].health;
-			document.getElementById("health3").innerHTML = group[2].health;
 		}
 		
 		healEnemy(attacker, defender){
