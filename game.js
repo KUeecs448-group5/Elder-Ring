@@ -15,10 +15,6 @@ function newGame(){
     setOwnPlayer(0);
 }
 
-function replay(){
-
-}
-
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
         console.log("\n\n");
@@ -28,7 +24,7 @@ function enemyAttack(){
         if(checkWin(playerArray)){
             alert("You Lost. Press the banner to play again.");
             document.getElementById("youDW").src = "assets/youdied.png";
-            document.getElementById("youDW").style.visibility = "visible";
+            document.getElementById("loseLink").style.visibility = "visible";
         }
     }
 }
@@ -173,7 +169,7 @@ function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
         alert("You won! Press the banner to play again.");
         document.getElementById("youDW").src = "assets/victory.png";
-            document.getElementById("youDW").style.visibility = "visible";
+            document.getElementById("loseLink").style.visibility = "visible";
     }else if(current + 1 === group.length){
         return(-1); //enemy turn
     }

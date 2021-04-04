@@ -131,8 +131,11 @@ body{
     font-size: 150%;
 }
 
-#youDW{
+#loseLink{
     visibility: hidden;
+}
+
+#youDW{
     position: relative;
     top: -250px;
     left: -150px;
