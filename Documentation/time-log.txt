@@ -1,3 +1,12 @@
+Team 5 Project 3 Estimated Total Hours: 45
+***
+Estimation derived through Agile user story method, with Project 1 and Project 2 used as our inventory of products.
+We think Project 1 was equivalent to 8 story points and Project 2 was equivalent to 18 story points.
+We estimate Project 3 will be equivalent to 13 story points
+Project 1 took 43.5 hours and Project 2 took 58 hours. (~3.9 hours per story point)
+We estimate Project 3 will take 50.75 hours
+***
+
 3/20
 Wesley	- 1.5 hours	- Learning CSS
 
@@ -15,4 +24,40 @@ Chen	- 0.5 hours	- Team meeting (Design)
 Caden	- 1 hour		- Team meeting (Workload Distribution)
 Steven	- 1 hour		- Team meeting (Workload Distribution)
 Chen	- 1 hour		- Team meeting (Workload Distribution)
-Wesley	- 0.5 hours	- Team meeting (Workload Distribution)
+Wesley	- 0.5 hours	    - Team meeting (Workload Distribution)
+
+3/27
+Wesley  - 2.5 hours     - Character.js v1 implementation
+Caden   - 2 hours       - newGame ground work & enemyAction
+Steven  — 2.5 hours     - working on/understanding code
+
+3/28
+Chen    — 3 hours       - Temporary CSS and HTML
+Caden   - 1.5 hours     - game.js helper functions and improvements
+
+3/31
+Chen    - 1 hour        - isAlive function
+Steven  - 2.5 hours     - got buttons to work, hp and mp bars to partially work
+
+4/1
+Caden   - 2 hours       - implement static character models and create assets directory
+Bai     - 1.5 hours     - checkWin function
+Caden	- 1.5 hours		- Team meeting
+Steven	- 1.5 hours		- Team meeting
+Wesley	- 1.5 hours		- Team meeting
+
+4/2
+Steven  - 4.5 hours     - Work on buttons, healthbar, and playerLoop
+Caden   - 1.5 hours     - Function reworking and bug fixes
+
+4/3
+Wesley  - 1 hour        - Item functions
+Steven  - 2 hours       - Player gameplay playerLoop
+Caden   - 2.5 hours     - target verification, gameplay loop troubleshooting
+
+4/4
+Caden   - 5 hours       - bug fixes, add replay feature, improve front end,
+                          block dead player interaction, console log improvements.
+
+Total: 53.5
+***DONT FORGET TIME ESTIMATE***

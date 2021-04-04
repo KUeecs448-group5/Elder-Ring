@@ -1,0 +1,18 @@
+GIF Rotator: https://ezgif.com/rotate
+
+Player characters:
+Solaire: https://i.pinimg.com/originals/c0/d3/8c/c0d38c518fdbf6012e0475bb7a0598a5.gif
+Halbert guy: https://64.media.tumblr.com/c89dd9f4cc48cd4c5cf3d42372445a58/tumblr_inline_p8448tPMTS1r2gwmq_400.gifv
+Artorias: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/b94e2f13-a4d0-4a60-bd6d-3280fc81da10/d9ew9qo-ce00ef0a-2577-455f-b0d5-8ca3d12dc363.gif
+
+Enemy characters:
+Nito: https://i.pinimg.com/originals/a3/5c/e8/a35ce8c6039b3a1a23aca7706e07c6fa.gif
+Skeleton: https://img.itch.zone/aW1nLzIxODY1MTMuZ2lm/original/VIGEEd.gif
+
+Banners:
+You died banner: https://www.deviantart.com/tackyinsertion8/art/Dark-Souls-you-died-screen-766220302
+Victory banner: https://staticdelivery.nexusmods.com/mods/482/images/513-3-1413756594.png
+
+Functions:
+Math.random: https://www.w3schools.com/jsref/jsref_random.asp
+Truncation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
