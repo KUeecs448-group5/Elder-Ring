@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="./P3.css">
         <script src = "Executive.js" type ="module"></script>
     </head>
-        <body ondragstart='return false' oncontextmenu='self.event.returnValue=false'> <!--Anti-dragging to generate new page & shield right-click menu-->
+        <body ondragstart='return false' oncontextmenu='self.event.returnValue=false' style="overflow: hidden"></body> <!--Anti-dragging to generate new page & shield right-click menu-->
             <!--<span class="Round">Round: <label id='count'>0</label></span>-->
             <div id="row1">
                 <span class ="skeleton">
@@ -59,6 +59,7 @@
             <button class="button AOE" id = "AOE">AOE ATTACK</button>
             <button class="button Heal" id = "Heal">HEAL</button>
             <button class="button Item" id = "Item">ITEM</button>
+            <span class="banner"><a id = "LoseLink" href=p3.HTML><img id="youDW" src="assets/youdied.png"/></a></span>
             </div>
         </body>
 </html>

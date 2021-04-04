@@ -4,24 +4,33 @@ import Character from './character.js';
     const enemyArray = []; //enemy character array
     
 function newGame(){
-    playerArray[0] = new Character(80,100,0,"Spear Knight",3);
+    playerArray[0] = new Character(100,100,0,"Spear Knight",3);
     playerArray[1] = new Character(100,100,0,"Shield Knight",4);
     playerArray[2] = new Character(100,100,0,"Sword Knight",5);
 
     enemyArray[0] = new Character(100,100,100,"Skeleton 1",0);
     enemyArray[1] = new Character(200,100,100,"Boss Skeleton",1);
     enemyArray[2] = new Character(100,100,100,"Skeleton 2",2);
+    
     setOwnPlayer(0);
+}
+
+function replay(){
+
 }
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
-             console.log("\n\n");
-             enemyAction(enemyArray, playerArray, enemyArray[i]);
-             /*if(checkWin(enemyArray) || checkWin(playerAction)){ check win condition -> return from newGame function if true
-                 return;
-             }*/
-         }
+        console.log("\n\n");
+        if(enemyArray[i].health !== 0){
+        enemyAction(enemyArray, playerArray, enemyArray[i]);
+        }
+        if(checkWin(playerArray)){
+            alert("You Lost. Press the banner to play again.");
+            document.getElementById("youDW").src = "assets/youdied.png";
+            document.getElementById("youDW").style.visibility = "visible";
+        }
+    }
 }
 
 function setOwnPlayer(player){
@@ -29,7 +38,7 @@ function setOwnPlayer(player){
 }
 
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN PLAYER " + player + " ACTION");
+    console.log("BEGIN " + playerArray[player].getName() + " ACTION");
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     var attack = document.getElementById("Attack");
@@ -65,18 +74,18 @@ function playerAction(playerArray,enemyArray,player){
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-        player++;
-        if(player == playerArray.length){
+        var next = getNext(player, playerArray, enemyArray);
+        if(next === -1){
             console.log("Enemy's turn.");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
             }
             else{
-                setOwnPlayer(0);
+                setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
-            setOwnPlayer(player);
+            setOwnPlayer(next);
         }
     }
 
@@ -144,38 +153,46 @@ function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
     
-    console.log("BEGIN ENEMY " + toAct.getNumberValue() + " ATTACK. action = " + action);
     if(action === 0){
         toAct.singleEnemy(toAct, playerArray[target]);
     } else if(action === 1){
         toAct.aoeEnemy(toAct, playerArray);
-        console.log("Enemy does AOE.");
     } else if(action === 2){
         toAct.useBomb(toAct ,playerArray[target]);
-        console.log("Enemy item action.");
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
-        console.log(toAct.getName() + " heals " + enemyArray[target].getName());
         toAct.healEnemy(toAct, enemyArray[target]);
-        console.log("Enemy " + target + " health: " + enemyArray[target].health);
     }
 }
-/*
+
 function checkWin(array){
-    for( let i =0; i <array.length; i++){
-        if(array.isAlive()){ 
+    for( let i = 0; i < array.length; i++){
+        if(array[i].isAlive()){ 
             return(false);
         }  
     }
     return(true);
 }
-*/
 
-
+function getNext(current, group, oppGroup){
+    if(checkWin(oppGroup)){
+        alert("You won!. Press the banner to play again.");
+        document.getElementById("youDW").src = "assets/victory.png";
+            document.getElementById("youDW").style.visibility = "visible";
+    }else if(current + 1 === group.length){
+        return(-1); //enemy turn
+    }
+    else if(group[current+1].health <= 0){
+        return(getNext(current+1, group, oppGroup));
+    }
+    else{
+        return(current+1);
+    }
+}
 
 function checkHeal(array) { //returns false if whole team has full health
     for(let i = 0; i < array.length; i++){
-        if(array[i].health !== array[i].max_health){
+        if(array[i].health !== array[i].max_health && array[i].health !== 0){
             return(true);
         }
     }
