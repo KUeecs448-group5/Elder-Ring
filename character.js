@@ -85,7 +85,7 @@ export default class Character{
 		//heals defender, makes sure no overheal
 		applyHeal(attacker,defender,damage){
 			var dam = defender.dM*(damage+this.random(attacker.crit));
-			console.log(attacker+" healed "+defender+"for "+ dam);
+			console.log(attacker.name +" healed "+defender.name+" for "+ dam);
 			if((dam+defender.health)>defender.max_health){
 				defender.health = defender.max_health;
 			}
@@ -182,7 +182,6 @@ export default class Character{
 		
 		healPlayer(attacker, defender){
 			this.heal(attacker, defender, 10, 15);
-			console.log(attacker.name+" heals " + defender.name);
 		}
 		
 		groupHealPlayer(attacker, group){
