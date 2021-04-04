@@ -5,7 +5,7 @@ export default class Character{
 	
 	constructor(m_health, m_magic, m_armor,m_name,numberValue){
 		this.health = m_health;//curent health of character, if this reaches 0 they should die
-		this.max_health = 100;//max_health to pervent/keep track of overhealing
+		this.max_health = m_health;//max_health to pervent/keep track of overhealing
 		this.magic = m_magic;//current magic level for spells and skills, should fail/not cast if there is not enought magic
 		this.max_magic = m_magic;//max_magic to pervent over"heal"
 		this.armor = m_armor;//current armor value, armor must all be broken before health begins to go down
@@ -19,9 +19,9 @@ export default class Character{
 
 		useBomb(attacker, defender){
 			if(attacker.item>0){
-				this.applyDamage(attacker,defender,10,defender.getNumberValue());
+				this.applyDamage(attacker,defender,20,defender.getNumberValue());
 				attacker.item--;
-				console.log("Attacking with item");
+				console.log(attacker.getName() + " bomb inventory: " + attacker.item);
 			}
 			else{
 				console.log("Failed attacking with item");
@@ -59,7 +59,7 @@ export default class Character{
 					defender.health = 0;
 				}
 			//}
-			console.log(dam + " damage applied");
+			//console.log(dam + " damage applied");
 			if(characterValue == 0){
 				document.getElementById("ehealth1").innerHTML = defender.health;
 			}
@@ -79,7 +79,7 @@ export default class Character{
 				document.getElementById("health3").innerHTML = defender.health;
 			}
 
-			console.log("Character "+ characterValue + " health: "+ defender.health);
+			console.log(defender.getName() + " health: "+ defender.health);
 		}
 		
 		//heals defender, makes sure no overheal
@@ -144,13 +144,14 @@ export default class Character{
 		
 		single(attacker, defender, damage, mana){
 			if(this.applyMagic(attacker,mana,attacker.getNumberValue())){
+				console.log(attacker.getName() + " does single attack on " + defender.getName());
 				this.applyDamage(attacker,defender,damage,defender.getNumberValue());
 			}
 		}
 		
 		aoe(attacker, group, damage, mana){
 			if(this.applyMagic(attacker,mana)){
-				//group.map(x=>this.applyDamage(attacker,x,damage,x.getNumberValue()));
+				console.log(attacker.getName() + " does AOE attack");
 				for(let i = 0; i < group.length; i++){
 					this.applyDamage(attacker, group[i], damage, group[i].getNumberValue());
 				}
@@ -159,54 +160,51 @@ export default class Character{
 		
 		heal(attacker, defender, damage, mana){//I know this doesnt make sense but im keeping the variables the same for consistancy
 			if(this.applyMagic(attacker,mana)){
+				console.log(attacker.getName() + " heals " + defender.getName());
 				this.applyHeal(attacker,defender,damage);
 			}	
 		}
-		
+		/*
 		groupHeal(attacker, group, damage, mana){
 			if(this.applyMagic(attacker,mana)){
 				group.map(attacker,x=>this.applyHeal(x,damage));
 			}
 		}
-		
+		*/
 		//dont know what to call these so ill be explicit
 		singlePlayer(attacker, defender){
-			this.single(attacker, defender, 20, 10);
-			console.log(attacker.getName() + " performs single attack on " + defender.getName());
+			this.single(attacker, defender, 15, 10);
 		}
 		
 		aoePlayer(attacker, group){
 			this.aoe(attacker, group, 5, 15);
-			console.log(attacker.getName() + " performs AOE on Bad Guys");
 		}
 		
 		healPlayer(attacker, defender){
 			this.heal(attacker, defender, 10, 15);
 		}
-		
+		/*
 		groupHealPlayer(attacker, group){
 			this.groupHeal(attacker, defender, 10, 15);
 		}
-		
+		*/
 		singleEnemy(attacker, defender){
 			this.single(attacker, defender, 20, 10);
-			console.log(attacker.getName() + " performs single attack on " + defender.name);
+			
 		}
 		
 		aoeEnemy(attacker, group){
 			this.aoe(attacker, group, 5, 15);
-			console.log(attacker.getName() + " performs aoe");
 		}
 		
 		healEnemy(attacker, defender){
 			this.heal(attacker, defender, 10, 15);
-			console.log(attacker.getName() + " heals " + defender.getName());
 		}
-		
+		/*
 		groupHealEnemy(attacker, group){
 			this.groupHeal(attacker, defender, 10, 15);
 		}
-
+		*/
 		getName(){
 			return this.name;
 		}
