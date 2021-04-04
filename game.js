@@ -1,91 +1,23 @@
 //overall game function
 import Character from './character.js';
-//var playerAction2=setInterval(playerAction,3000);
-//var enemyAction2=setInterval(enemyAction,3000);
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
     
 function newGame(){
-    
-    // for(let i = 0; i < 4; i++){ //create 3 player characters
-    //     playerArray[i] = new Character(100, 100, 50);
-    // }
-    // for(let i = 0; i < 4; i++){ //create 3 enemy characters
-    //     enemyArray[i] = new Character(80, 100, 100);
-    // }
+    playerArray[0] = new Character(80,100,0,"Spear Knight",3);
+    playerArray[1] = new Character(100,100,0,"Shield Knight",4);
+    playerArray[2] = new Character(100,100,0,"Sword Knight",5);
 
-    //attack all players with 0 to get health bars started
-    playerArray[0] = new Character(80,100,0,"Archer",3);
-    playerArray[1] = new Character(100,100,0,"Barbarian",4);
-    playerArray[2] = new Character(100,100,0,"Mage",5);
-
-    enemyArray[0] = new Character(100,100,100,"Bad Guy 1",0);
-    enemyArray[1] = new Character(100,100,100,"Bad Guy 2",1);
-    enemyArray[2] = new Character(100,100,100,"Bad Guy 3",2);
-    //should be set interval or requestAnimationFrame loop or something. while loop will lock up browser and take up all cpu
+    enemyArray[0] = new Character(100,100,100,"Skeleton 1",0);
+    enemyArray[1] = new Character(200,100,100,"Boss Skeleton",1);
+    enemyArray[2] = new Character(100,100,100,"Skeleton 2",2);
     setOwnPlayer(0);
-    //do {
-        
-        // for(let i = 0; i < playerArray.length; i++){
-        //     playerAction(playerArray,enemyArray, i);
-        //     console.log("PLAYER ACTION JUST PERFORMED. PLAYER i = " + i);
-        //     updateArray(enemyArray); //if an enemy character dies, they will be removed from the enemy array
-        //     /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
-        //         return;
-        //     }*/
-        // }
-        
-        // for(let i = 0; i < enemyArray.length; i++){
-        //     enemyAction(enemyArray, playerArray, enemyArray[i]);
-        //     updateArray(playerArray); //if a player charater dies, they will be removed from the player array
-            /*if(checkWin(enemyArray) || checkWin(playerAction)){ //check win condition -> return from newGame function if true
-                return;
-            }*/
-        }
-    //} while(1);
-
-/*
-function attackAction(){
-    let playerSelection = parseInt(prompt("who would you like to attack with?"));
-    let enemySelection = parseInt(prompt("who would you like to attack?(For Heal,type 3)"));
-   
-    if(enemySelection == 3){
-        enemySelection = parseInt(prompt("Who in your party would you like to heal?"));
-    }
-    let randomEnemyIndex = Math.floor(Math.random() * playerArray.length);
-    playerArray[playerSelection].singlePlayer(playerArray[playerSelection],enemyArray[enemySelection])
-    //enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
-    updateArray(playerArray);
-    updateArray(enemyArray);
-
 }
-
-function aoeAction(){
-    let playerSelection = parseInt(prompt("who would you like to attack with?"));
-    let randomEnemyIndex = Math.floor(Math.random() * playerArray.length);
-    playerArray[playerSelection].aoePlayer(playerArray[playerSelection],enemyArray)
-    //enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
-    updateArray(playerArray);
-    updateArray(enemyArray);
-
-}
-
-function healAction(){
-    let playerSelection = parseInt(prompt("who would you like to use heal?"));
-    let allySelection = parseInt(prompt("who would you like heal to be used on?"));
-    playerArray[playerSelection].healPlayer(playerArray[playerSelection],playerArray[allySelection]);
-    //enemyAction(enemyArray, playerArray, enemyArray[randomEnemyIndex]);
-    updateArray(playerArray);
-    updateArray(enemyArray);
-}
-*/
-//figure out why this repeats
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
              console.log("\n\n");
              enemyAction(enemyArray, playerArray, enemyArray[i]);
-             updateArray(playerArray); //if a player charater dies, they will be removed from the player array
              /*if(checkWin(enemyArray) || checkWin(playerAction)){ check win condition -> return from newGame function if true
                  return;
              }*/
@@ -94,12 +26,10 @@ function enemyAttack(){
 
 function setOwnPlayer(player){
     playerAction(playerArray,enemyArray, player);
-    console.log("PERFORM PLAYER ACTION. PLAYER = " + player);
-    //updateArray(enemyArray);
 }
 
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN PLAYER" + player + " ACTION");
+    console.log("BEGIN PLAYER " + player + " ACTION");
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
@@ -146,7 +76,7 @@ function playerAction(playerArray,enemyArray,player){
 
     heal.onclick = function(){
         console.clear();
-        var select = parseInt(prompt("who would you like to heal (0-2)?:"));
+        var select = verifyTarget(playerArray, 100, "heal");
         playerArray[player].healPlayer(playerArray[player],playerArray[select]);
         player++;
         if(player == playerArray.length){
@@ -166,8 +96,8 @@ function playerAction(playerArray,enemyArray,player){
     }
     item.onclick = function(){
         console.clear();
-        var select = parseInt(prompt("who would you like to attack (0-2)?:"));
-        playerArray[player].useBomb(playerArray[player],enemyArray[select],);
+        var select = verifyTarget(enemyArray, 0, "attack");
+        playerArray[player].useBomb(playerArray[player],enemyArray[select]);
         player++;
         if(player == playerArray.length){
             console.log("Enemy's turn.");
@@ -202,31 +132,22 @@ function verifyTarget(group, invalidVal, action){
 
 function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
-    let act = 0;
     var target = Math.floor(Math.random() * playerArray.length);
-    //need to validate target - cannot attack dead player or heal an ally at full health
-    var pseudoMultiplier = Math.random() * 10;
-    //console.log("Enemy health: " + toAct.health);
     
     console.log("BEGIN ENEMY " + toAct.getNumberValue() + " ATTACK. action = " + action);
-    if(act === 0){
-        //toAct.single(toAct, playerArray[target], 25 + pseudoMultiplier, 10);
+    if(action === 0){
         toAct.singleEnemy(toAct, playerArray[target]);
     } else if(action === 1){
-        //toAct.aoe(toAct, playerArray, 10 + pseudoMultiplier, 15);
         toAct.aoeEnemy(toAct, playerArray);
         console.log("Enemy does AOE.");
     } else if(action === 2){
-        //item ?
+        toAct.useBomb(toAct ,playerArray[target]);
         console.log("Enemy item action.");
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
-        console.log("Enemy is healing enemy " + target + ". Enemy " + target + " health = " + enemyArray[target].health);
-        //toAct.heal(toAct, enemyArray[target], 5 + pseudoMultiplier, 15);
+        console.log(toAct.getName() + " heals " + enemyArray[target].getName());
         toAct.healEnemy(toAct, enemyArray[target]);
         console.log("Enemy " + target + " health: " + enemyArray[target].health);
-    } else {
-        console.log("Random enemy action selection failure");
     }
 }
 /*
@@ -240,16 +161,6 @@ function checkWin(array){
 }
 */
 
-//will need to be removed
-function updateArray(array) { //splicing function for dead characters
-    for(let i = array.length - 1; i >= 0; i--){
-        if(array[i].health === 0){
-            array.splice(i, 1); //remove dead character from array
-        }
-        //edit health bars
-    }
-}
-
 function checkHeal(array) { //returns false if whole team has full health
     for(let i = 0; i < array.length; i++){
         if(array[i].health !== array[i].max_health){
@@ -261,15 +172,15 @@ function checkHeal(array) { //returns false if whole team has full health
 
 function retLowestHealth(array) { //can be used in special enemy attack AI. necessary for enemy healing AI
     //var retNum = Math.floor(Math.random() * array.length); //set initial return value to random character index
-    var minHealth = 100;
+    var minGap = 0;
     var retNum;
     for(let i = 0; i < array.length; i++){
-        if(array[i].health < minHealth){
+        if(array[i].max_health - array[i].health > minGap && array[i].health != 0){
             retNum = i; //set return value to lowest heath value in index
-            minHealth = array[i].health;
+            minGap = array[i].max_health - array[i].health;
         }
     }
     return(retNum);
 }
 
-export {newGame,playerAction,updateArray,checkHeal,retLowestHealth}; //add checkwin
+export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin
