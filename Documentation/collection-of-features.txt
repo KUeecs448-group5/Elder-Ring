@@ -1,41 +1,41 @@
 1. Character object (for both user and enemy) - Wesley
--Health variable
+-Necessary variables (name, health, mana, etc.)
 -4 action functions (all receive a target character object as a parameter):
----Single attack (random val 15-25 for damage)
----Area attack (random val 5-10 for damage)
+---Single attack (15-25 damage)
+---Area attack (5-10 damage)
 ---Heal (+10-15 health for teammate or user)
----Item / Special attack (single use - random val 20-30 for damage)
+---Item / Special attack (3x use - 20-30 damage)
 
 2. Front end - Chen
-See pokemon or final fantasy battle menu for visual direction 
 -HTML / CSS
--User I/O
----Display messages
----Take inputs from users (from buttons)
+--4 action buttons
+--Character HP/MP counters
 
 3. Overall game loop - Bai
--Create loop around game functions (object declaration, action loops) for replay option
 -Win condition
 --Check if all enemy objects or all player objects have health values equal to or below 0
---Break game loop if satisfied
---Set win/replay messages for
---Replay when replay is selected
 
-4. Enemy action loop - Caden
+4. Enemy action - Caden
 -Loop through each enemy in enemy character array
 -For each enemy:
 ---Randomly select action
+-----Deny heal when team is not injured
+-----Heal ally with lowest health
 ---Randomly select target
 ---Do action (character object method call)
 
-5. Player action loop - Steven
--Loop through each player in player character array
+5. Player action - Steven
+-For each player in player character array
 -For each player:
 ---I/O action selection
 ---I/O target selection
 ---Do action (character object method call)
+---Go to next character or go to enemy action loop
 
-6. Game instantiation - Caden
+6. Game operations - Caden
 -Start game I/O
 -Create 2 character object arrays of size 3 (one player array, one enemy array)
 -Go to action loops
+-User I/O verification
+-Prompt user to play again when win condition is method
+-Character models
