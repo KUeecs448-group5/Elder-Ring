@@ -30,6 +30,8 @@ function setOwnPlayer(player){
 
 function playerAction(playerArray,enemyArray,player){
     console.log("BEGIN PLAYER " + player + " ACTION");
+    document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
+    document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     var attack = document.getElementById("Attack");
     var aoe = document.getElementById("AOE");
     var heal = document.getElementById("Heal");
@@ -39,6 +41,8 @@ function playerAction(playerArray,enemyArray,player){
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         var select = verifyTarget(enemyArray, 0, "attack");
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
+        document.getElementById("name"+(player+1)).style.borderBottom = "none";
+        document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         player++;
         if(player == playerArray.length){
             console.log("Enemy's turn.");
@@ -59,6 +63,8 @@ function playerAction(playerArray,enemyArray,player){
     aoe.onclick = function(){
         console.clear();
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
+        document.getElementById("name"+(player+1)).style.borderBottom = "none";
+        document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         player++;
         if(player == playerArray.length){
             console.log("Enemy's turn.");
@@ -78,6 +84,8 @@ function playerAction(playerArray,enemyArray,player){
         console.clear();
         var select = verifyTarget(playerArray, 100, "heal");
         playerArray[player].healPlayer(playerArray[player],playerArray[select]);
+        document.getElementById("name"+(player+1)).style.borderBottom = "none";
+        document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         player++;
         if(player == playerArray.length){
             console.log("Enemy's turn.");
@@ -98,6 +106,8 @@ function playerAction(playerArray,enemyArray,player){
         console.clear();
         var select = verifyTarget(enemyArray, 0, "attack");
         playerArray[player].useBomb(playerArray[player],enemyArray[select]);
+        document.getElementById("name"+(player+1)).style.borderBottom = "none";
+        document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         player++;
         if(player == playerArray.length){
             console.log("Enemy's turn.");
@@ -160,6 +170,8 @@ function checkWin(array){
     return(true);
 }
 */
+
+
 
 function checkHeal(array) { //returns false if whole team has full health
     for(let i = 0; i < array.length; i++){

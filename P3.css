@@ -1,7 +1,6 @@
 body{
-    background-image:url(assets/Battle.jpeg);
-    background-size:cover;
-
+    background: url(assets/Battle.jpeg);
+    background-size: cover;
 }
 
 #menu{
@@ -80,21 +79,44 @@ body{
     color: rgb(247, 6, 6);
     font-size: 150%;
 }
-.MP1{
+
+.Name1{
+    position:fixed;
+    left: 55%;
+    top:610px;
+    color: rgb(215, 253, 1);
+    font-size: 150%;
+}
+.Name2{
+    position:fixed;
+    left:55%;
+    top:670px;
+    color: rgb(215, 253, 1);
+    font-size: 150%;
+}
+.Name3{
+    position:fixed;
+    left:55%;
+    top:730px;
+    color: rgb(215, 253, 1);
+    font-size: 150%;
+}
+
+#MP1{
     position:fixed;
     right:175px;
     top:610px;
     color: rgb(1, 5, 253);
     font-size: 150%;
 }
-.MP2{
+#MP2{
     position:fixed;
     right:175px;
     top:670px;
     color: rgb(1, 5, 253);
     font-size: 150%;
 }
-.MP3{
+#MP3{
     position:fixed;
     right:175px;
     top:730px;
@@ -103,7 +125,7 @@ body{
 }
 #name{
     position:fixed;
-    right:570px;
+    right:40%;
     top:570px;
     color: rgb(215, 253, 1);
     font-size: 150%;
