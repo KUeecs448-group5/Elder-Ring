@@ -52,21 +52,19 @@ function playerAction(playerArray,enemyArray,player){
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-        player++;
-        if(player == playerArray.length){
+        var next = getNext(player, playerArray, enemyArray);
+        if(next === -1){
             console.log("Enemy's turn.");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
             }
             else{
-                setOwnPlayer(0);
+                setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
-            setOwnPlayer(player);
+            setOwnPlayer(next);
         }
-
-        
     }
 
     aoe.onclick = function(){
@@ -95,21 +93,19 @@ function playerAction(playerArray,enemyArray,player){
         playerArray[player].healPlayer(playerArray[player],playerArray[select]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-        player++;
-        if(player == playerArray.length){
+        var next = getNext(player, playerArray, enemyArray);
+        if(next === -1){
             console.log("Enemy's turn.");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
             }
             else{
-                setOwnPlayer(0);
+                setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
-            setOwnPlayer(player);
+            setOwnPlayer(next);
         }
-        
-        
     }
     item.onclick = function(){
         console.clear();
@@ -117,20 +113,19 @@ function playerAction(playerArray,enemyArray,player){
         playerArray[player].useBomb(playerArray[player],enemyArray[select]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-        player++;
-        if(player == playerArray.length){
+        var next = getNext(player, playerArray, enemyArray);
+        if(next === -1){
             console.log("Enemy's turn.");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
             }
             else{
-                setOwnPlayer(0);
+                setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
-            setOwnPlayer(player);
+            setOwnPlayer(next);
         }
-
     }
 }
 
@@ -140,7 +135,7 @@ function verifyTarget(group, invalidVal, action){
         alert("Target " + retSelect + " is an invalid target. Please try again.");
         return verifyTarget(group, invalidVal, action);
     }
-    else if(group[retSelect].health == invalidVal){
+    else if(group[retSelect].health == invalidVal ||(group[retSelect].health === 0 && action === "heal")){
         alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
         return verifyTarget(group, invalidVal, action);
     }
@@ -176,7 +171,7 @@ function checkWin(array){
 
 function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
-        alert("You won!. Press the banner to play again.");
+        alert("You won! Press the banner to play again.");
         document.getElementById("youDW").src = "assets/victory.png";
             document.getElementById("youDW").style.visibility = "visible";
     }else if(current + 1 === group.length){
