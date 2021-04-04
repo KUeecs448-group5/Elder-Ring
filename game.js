@@ -83,6 +83,7 @@ function healAction(){
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
+             console.log("\n\n");
              enemyAction(enemyArray, playerArray, enemyArray[i]);
              updateArray(playerArray); //if a player charater dies, they will be removed from the player array
              /*if(checkWin(enemyArray) || checkWin(playerAction)){ check win condition -> return from newGame function if true
@@ -104,6 +105,7 @@ function playerAction(playerArray,enemyArray,player){
     var heal = document.getElementById("Heal");
     var item = document.getElementById("Item");
     attack.onclick = function(){
+        console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         var select = verifyTarget(enemyArray, 0, "attack");
         playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
@@ -125,16 +127,61 @@ function playerAction(playerArray,enemyArray,player){
     }
 
     aoe.onclick = function(){
+        console.clear();
         playerArray[player].aoePlayer(playerArray[player],enemyArray);
+        player++;
+        if(player == playerArray.length){
+            console.log("Enemy's turn.");
+            enemyAttack();
+            if(!playerArray || playerArray.length == 0){
+                alert("Team is dead");
+            }
+            else{
+                setOwnPlayer(0);
+            }
+        }else{
+            setOwnPlayer(player);
+        }
     }
 
     heal.onclick = function(){
+        console.clear();
         var select = parseInt(prompt("who would you like to heal (0-2)?:"));
-        playerArray[player].healPlayer(playerArray[player],enemyArray);
+        playerArray[player].healPlayer(playerArray[player],playerArray[select]);
+        player++;
+        if(player == playerArray.length){
+            console.log("Enemy's turn.");
+            enemyAttack();
+            if(!playerArray || playerArray.length == 0){
+                alert("Team is dead");
+            }
+            else{
+                setOwnPlayer(0);
+            }
+        }else{
+            setOwnPlayer(player);
+        }
+        
+        
     }
     item.onclick = function(){
+        console.clear();
         var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         playerArray[player].useBomb(playerArray[player],enemyArray[select],);
+        player++;
+        if(player == playerArray.length){
+            console.log("Enemy's turn.");
+            enemyAttack();
+            if(!playerArray || playerArray.length == 0){
+                alert("Team is dead");
+            }
+            else{
+                setOwnPlayer(0);
+            }
+        }else{
+            setOwnPlayer(player);
+        }
+
     }
 }
 
