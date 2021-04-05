@@ -8,23 +8,23 @@ We estimate Project 3 will take 50.75 hours
 ***
 
 3/20
-Wesley	- 1.5 hours	- Learning CSS
+Wesley	- 1.5 hours	    - Learning CSS
 
 3/21
 Wesley	- 2.5 hours 	- Learning CSS
-Caden	- 4 hours	- Learning JavaScript
+Caden	- 4 hours	    - Learning JavaScript
 
 3/22
 Caden	- 1 hour		- UML Activity Diagram
-Caden	- 0.5 hours	- Team meeting (Design)
-Wesley	- 0.5 hours	- Team meeting (Design)
-Chen	- 0.5 hours	- Team meeting (Design)
+Caden	- 0.5 hours	    - Team meeting (Design)
+Wesley	- 0.5 hours	    - Team meeting (Design)
+Chen	- 0.5 hours	    - Team meeting (Design)
 
 3/23
 Caden	- 1 hour		- Team meeting (Workload Distribution)
 Steven	- 1 hour		- Team meeting (Workload Distribution)
 Chen	- 1 hour		- Team meeting (Workload Distribution)
-Wesley	- 0.5 hours	    - Team meeting (Workload Distribution)
+Wesley	- 0.5 hours	- Team meeting (Workload Distribution)
 
 3/27
 Wesley  - 2.5 hours     - Character.js v1 implementation
@@ -42,9 +42,9 @@ Steven  - 2.5 hours     - got buttons to work, hp and mp bars to partially work
 4/1
 Caden   - 2 hours       - implement static character models and create assets directory
 Bai     - 1.5 hours     - checkWin function
-Caden	- 1.5 hours		- Team meeting
-Steven	- 1.5 hours		- Team meeting
-Wesley	- 1.5 hours		- Team meeting
+Caden	- 1.5 hours	    - Team meeting
+Steven	- 1.5 hours	    - Team meeting
+Wesley	- 1.5 hours	    - Team meeting
 
 4/2
 Steven  - 4.5 hours     - Work on buttons, healthbar, and playerLoop
@@ -58,6 +58,8 @@ Caden   - 2.5 hours     - target verification, gameplay loop troubleshooting
 4/4
 Caden   - 5 hours       - bug fixes, add replay feature, improve front end,
                           block dead player interaction, console log improvements.
+Wesley  - 1 hour        - software architecture essay
+Steven  - 1 hour        - design paradigm essay
+Caden   - 0.5 hours     - design patterns essay
 
-Total: 53.5
-***DONT FORGET TIME ESTIMATE***
+Total: 55.5
