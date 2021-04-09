@@ -1,11 +1,21 @@
 body{
     background: url(assets/Battle.jpeg);
     background-size: cover;
-    
 }
-
-#menu{
-    width: 10%;
+#row1{
+    width: 100%;
+    position: fixed;
+    top: 5%;
+}
+#row2{
+    width: 100%;
+    position: fixed;
+    top: 25%;
+}
+#row3{
+    width: 100%;
+    position: fixed;
+    top: 45%;
 }
 .player{
     position: fixed;
@@ -14,121 +24,61 @@ body{
 .player img{
     width: 175px;
 }
-
+.enemy{
+    left: 2.5%;
+}
 .skeleton img{
     width: 7%;
 }
 
 .boss img{
-    position: relative;
-    left: 50px;
     width: 15%;
 }
 
-.menu{
-    max-width: 80%;
-    position: relative;
-    bottom: 2.5%;
-    left: 10%;
-    height: 10%;
-}
-
-.Round{
-    position:fixed;
-    left:650px;
-    top:50px;
-    color: rgb(245, 233, 233);
-    font-size: 300%;
-}
-#heal{
-    position:fixed;
-    right:400px;
-    top:570px;
-    color: rgb(247, 6, 6);
-    font-size: 150%;
-}
-#mana{
-    position:fixed;
-    right:200px;
-    top:570px;
-    color: rgb(1, 5, 253);
-    font-size: 150%;
-}
 .HP{
     color: rgb(247, 6, 6);
     font-size: 150%;
 }
 
-.HP1{
-    position:fixed;
-    right:375px;
-    top:610px;
-    color: rgb(247, 6, 6);
-    font-size: 150%;
-}
-.HP2{
-    position:fixed;
-    right:375px;
-    top:670px;
-    color: rgb(247, 6, 6);
-    font-size: 150%;
-}
-.HP3{
-    position:fixed;
-    right:375px;
-    top:730px;
-    color: rgb(247, 6, 6);
-    font-size: 150%;
+#menu{
+    background-color: blue;
 }
 
-.Name1{
-    position:fixed;
+.characterInfo{
+    position: fixed;
     left: 55%;
-    top:610px;
-    color: rgb(215, 253, 1);
     font-size: 150%;
 }
-.Name2{
-    position:fixed;
-    left:55%;
-    top:670px;
-    color: rgb(215, 253, 1);
-    font-size: 150%;
+.label{
+    bottom: 20%;
 }
-.Name3{
-    position:fixed;
-    left:55%;
-    top:730px;
-    color: rgb(215, 253, 1);
-    font-size: 150%;
+.c1{
+    bottom: 15%;
 }
 
-#MP1{
-    position:fixed;
-    right:175px;
-    top:610px;
-    color: rgb(1, 5, 253);
-    font-size: 150%;
+.c2{
+    bottom: 10%;
 }
-#MP2{
-    position:fixed;
-    right:175px;
-    top:670px;
-    color: rgb(1, 5, 253);
-    font-size: 150%;
+
+.c3{
+    bottom: 5%;
 }
-#MP3{
-    position:fixed;
-    right:175px;
-    top:730px;
-    color: rgb(1, 5, 253);
-    font-size: 150%;
+
+.name{
+    color: yellow;
 }
+
+.mana{
+    position: fixed;
+    left: 80%;
+    color: blue;
+}
+
 #name{
     position:fixed;
     right:40%;
     top:570px;
-    color: rgb(215, 253, 1);
+    color: yellow;
     font-size: 150%;
 }
 
@@ -144,46 +94,43 @@ body{
     z-index: 1;
 }
 
+#buttons{
+    position: fixed;
+    bottom: 2.5%;
+    font-size: 20px;
+}
+
 .button{
-    background-color: blue;
-    border:none;
-    color: white;
-    padding:15px 32px;
-    text-align: center;
-    text-decoration: none;
+    background-color: transparent;
+    border-color: white;
     display: inline-block;
-    font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    position: relative;
-    top:450px;
-    left:0px;
+    position:fixed;
+    width: 6.75%;
+    height: 12%;
 }
+
 .Attack{
-    position:fixed; 
-    font-size: 20px;
-    width:20%;
-    left:30px;
-    top:600px;
+    left:35.5%;
+    bottom:12.5%;
 }
 .AOE{
-    position:fixed; 
-    font-size: 20px;
-    width:20%;
-    left:350px;
-    top:600px;
+    left:35.5%;
+    bottom:0%;
 }
 .Heal{
-    position:fixed;
-    font-size: 20px;
-    width:20%;
-    left:30px;
-    top:700px;
+    left: 42.5%;
+    bottom: 12.5%;
 }
 .Item{
-    position:fixed;
-    font-size: 20px;
-    width:20%;
-    left:350px;
-    top:700px;
+    left:42.5%;
+    bottom:0%;
+}
+.icon{
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

@@ -5,10 +5,10 @@
         <link rel="stylesheet" href="./P3.css">
         <script src = "Executive.js" type ="module"></script>
     </head>
-        <body ondragstart='return false' oncontextmenu='self.event.returnValue=false' style="overflow: hidden"></body> <!--Anti-dragging to generate new page & shield right-click menu-->
+        <body ondragstart='return false' oncontextmenu='self.event.returnValue=false'> <!--Anti-dragging to generate new page & shield right-click menu-->
             <!--<span class="Round">Round: <label id='count'>0</label></span>-->
             <div id="row1">
-                <span class ="skeleton">
+                <span class ="enemy skeleton">
                     <img src="assets/skeleton.gif"/>
                     <span class="HP"><label id='ehealth1'>100</label>/100</span>
                 </span>
@@ -17,8 +17,9 @@
                     <img src="assets/spear.gif"/>
                 </span>
             </div>
+            
             <div id="row2">
-                <span class ="boss">
+                <span class ="enemy boss">
                     <img src="assets/nito.gif"/>
                     <span class="HP"><label id='ehealth2'>200</label>/200</span>
                 </span>
@@ -28,7 +29,7 @@
                 </span>
             </div>
             <div id="row3">
-                <span class ="skeleton">
+                <span class ="enemy skeleton">
                     <img src="assets/skeleton.gif"/>
                     <span class="HP"><label id='ehealth3'>100</label>/100</span>
                 </span>
@@ -37,29 +38,34 @@
                     <img src="assets/artorias.gif"/>
                 </span>
             </div>
-            <div class="menu">
-            <!--
-            <span class="HP1"><label id='heal1'>100</label>/100</span>
-            <span class="HP2"><label id='heal2'>100</label>/100</span>
-            <span class="HP3"><label id='heal3'>100</label>/100</span>
-            -->
-            <span id="MP1"><label id='mana1'>100</label>/100</span>
-            <span id="MP2"><label id='mana2'>100</label>/100</span>
-            <span id="MP3"><label id='mana3'>100</label>/100</span>
-            <span class="Name1"><label id='name1'>Spear Knight</label></span>
-            <span class="Name2"><label id='name2'>Shield Knight</label></span>
-            <span class="Name3"><label id='name3'>Sword Knight</label></span>
-            <!--
-            <text id='heal'>HP</text>
-            -->
-            <text id='mana'>MP</text>
-            <text id='name'>NAME</text>
-
-            <button class="button Attack" id = "Attack">ATTACK</button>
-            <button class="button AOE" id = "AOE">AOE ATTACK</button>
-            <button class="button Heal" id = "Heal">HEAL</button>
-            <button class="button Item" id = "Item">ITEM</button>
-            <span class="banner"><a id = "loseLink" href=p3.HTML><img id="youDW" src="assets/youdied.png"/></a></span>
+        
+            <div id="menu">
+                <div class = "characterInfo label">
+                    <text class='name'><strong>NAME</strong></text> 
+                    <text class='mana'><strong>MP</strong></text>
+                </div>    
+                <div class = "characterInfo c1">
+                    <label class= "name" id='name1'>Spear Knight</label>
+                    <span class = "mana" id="MP1"><label id='mana1'>100</label>/100</span>
+                </div>
+                <div class = "characterInfo c2">
+                    <label class= "name" id='name2'>Shield Knight</label>
+                    <span class ="mana" id="MP2"><label id='mana2'>100</label>/100</span>
+                </div>
+                <div class = "characterInfo c3">
+                    <label class= "name" id='name3'>Sword Knight</label>
+                    <span class="mana" id="MP3"><label id='mana3'>100</label>/100</span>
+                </div>
+                
+                <section id="buttons">
+                    <button class="button Attack" id = "Attack"><img class="icon" src="assets/sword.png"></button>
+                    <button class="button AOE" id = "AOE"><img class="icon" src="assets/aoe.png"></button>
+                    <button class="button Heal" id = "Heal"><img class="icon" src="assets/heal.png"></button>
+                    <button class="button Item" id = "Item"><img class="icon" src="assets/bomb.png"></button>
+                </section>
             </div>
+        <!--
+            <span class="banner"><a id = "loseLink" href=p3.HTML><img id="youDW" src="assets/youdied.png"/></a></span>
+        -->
         </body>
 </html>
