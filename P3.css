@@ -48,13 +48,33 @@
     font-size: 150%;
 }
 
+#infoBox{
+    position:fixed;
+    left:3%;
+    bottom:.5%;
+    height: 24.5%;
+    width: 30%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    font-size: 125%;
+}
+
+.actionInfo{
+    position: fixed;
+    left: 3%;
+    font-size: 150%;
+    color: white;
+}
+
 .characterInfo{
     position: fixed;
     left: 55%;
     font-size: 150%;
 }
 .label{
-    bottom: 20%;
+    bottom: 25%;
 }
 .c1{
     bottom: 15%;
