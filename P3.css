@@ -1,7 +1,15 @@
-body{
-    background: url(assets/Battle.jpeg);
-    background-size: cover;
+.body-img{
+    z-index: 0%;
+    width: 101%;
+    height: 101%;
+    padding:0;
+    border: 0;
+    margin:0;
+    position:fixed;
+    left:0;
+    top:0;
 }
+
 #row1{
     width: 100%;
     position: fixed;
@@ -38,10 +46,6 @@ body{
 .HP{
     color: rgb(247, 6, 6);
     font-size: 150%;
-}
-
-#menu{
-    background-color: blue;
 }
 
 .characterInfo{
