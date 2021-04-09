@@ -10,6 +10,15 @@
     top:0;
 }
 
+.title-img{
+    z-index:0.5;
+    position: fixed;
+    top: 0;
+    left: 30%;
+    width: 40%;
+
+}
+
 #row1{
     width: 100%;
     position: fixed;
