@@ -55,7 +55,7 @@ function playerAction(playerArray,enemyArray,player){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         var select = verifyTarget(enemyArray, 0, "attack");
-        playerArray[player].singlePlayer(enemyArray[select],values[0]);
+        playerArray[player].damage_single(enemyArray[select],values[0]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -96,7 +96,7 @@ function playerAction(playerArray,enemyArray,player){
     heal.onclick = function(){
         console.clear();
         var select = verifyTarget(playerArray, 100, "heal");
-        playerArray[player].heal(playerArray[select],values[2]);
+        playerArray[player].heal_single(playerArray[select],values[2]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -155,14 +155,14 @@ function enemyAction(enemyArray, playerArray, toAct){
     var target = Math.floor(Math.random() * playerArray.length);
     
     if(action === 0){
-        toAct.damage(playerArray[target],values[4]);
+        toAct.damage_single(playerArray[target],values[4]);
     } else if(action === 1){
         toAct.damage(playerArray,values[5]);
     } else if(action === 2){
         toAct.useItem(playerArray[target],values[3]);
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
-        toAct.heal(enemyArray[target],values[6]);
+        toAct.heal_single(enemyArray[target],values[6]);
     }
 }
 
