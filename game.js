@@ -4,16 +4,26 @@ import Character from './character.js';
     const enemyArray = []; //enemy character array
     
 function newGame(){
-    playerArray[0] = new Character(100,100,0,"Spear Knight",3);
-    playerArray[1] = new Character(100,100,0,"Shield Knight",4);
-    playerArray[2] = new Character(100,100,0,"Sword Knight",5);
+    playerArray[0] = new Character(100,100,"Spear Knight",3);
+    playerArray[1] = new Character(100,100,"Shield Knight",4);
+    playerArray[2] = new Character(100,100,"Sword Knight",5);
 
-    enemyArray[0] = new Character(100,100,100,"Skeleton 1",0);
-    enemyArray[1] = new Character(200,100,100,"Boss Skeleton",1);
-    enemyArray[2] = new Character(100,100,100,"Skeleton 2",2);
+    enemyArray[0] = new Character(100,100,"Skeleton 1",0);
+    enemyArray[1] = new Character(200,100,"Boss Skeleton",1);
+    enemyArray[2] = new Character(100,100,"Skeleton 2",2);
     
     setOwnPlayer(0);
 }
+
+var values = [
+    [15,10],//single attack player 0
+    [5,5],//aoe player 1
+    [10,15],//heal player 2
+    [20,0],//item 3
+    [20,10],//single attack enemy 4
+    [5,5],//aoe enemy 5
+    [10,15]//heal enemy 6
+]
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
@@ -38,14 +48,26 @@ function playerAction(playerArray,enemyArray,player){
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     var attack = document.getElementById("Attack");
+    attack.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
+    })
     var aoe = document.getElementById("AOE");
+    aoe.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "AoE attack. Low damage(5-15) but damages all enemies. Mana cost:15";
+    })
     var heal = document.getElementById("Heal");
+    heal.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Heal target from 10-20 health. Mana cost: 10";
+    })
     var item = document.getElementById("Item");
+    item.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
+    })
     attack.onclick = function(){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         var select = verifyTarget(enemyArray, 0, "attack");
-        playerArray[player].singlePlayer(playerArray[player],enemyArray[select]);
+        playerArray[player].damage_single(enemyArray[select],values[0]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -65,7 +87,7 @@ function playerAction(playerArray,enemyArray,player){
 
     aoe.onclick = function(){
         console.clear();
-        playerArray[player].aoePlayer(playerArray[player],enemyArray);
+        playerArray[player].damage(enemyArray,values[1]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -86,7 +108,7 @@ function playerAction(playerArray,enemyArray,player){
     heal.onclick = function(){
         console.clear();
         var select = verifyTarget(playerArray, 100, "heal");
-        playerArray[player].healPlayer(playerArray[player],playerArray[select]);
+        playerArray[player].heal_single(playerArray[select],values[2]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -106,7 +128,7 @@ function playerAction(playerArray,enemyArray,player){
     item.onclick = function(){
         console.clear();
         var select = verifyTarget(enemyArray, 0, "attack");
-        playerArray[player].useBomb(playerArray[player],enemyArray[select]);
+        playerArray[player].useItem(enemyArray[select],values[3]);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -145,14 +167,14 @@ function enemyAction(enemyArray, playerArray, toAct){
     var target = Math.floor(Math.random() * playerArray.length);
     
     if(action === 0){
-        toAct.singleEnemy(toAct, playerArray[target]);
+        toAct.damage_single(playerArray[target],values[4]);
     } else if(action === 1){
-        toAct.aoeEnemy(toAct, playerArray);
+        toAct.damage(playerArray,values[5]);
     } else if(action === 2){
-        toAct.useBomb(toAct ,playerArray[target]);
+        toAct.useItem(playerArray[target],values[3]);
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
-        toAct.healEnemy(toAct, enemyArray[target]);
+        toAct.heal_single(enemyArray[target],values[6]);
     }
 }
 
