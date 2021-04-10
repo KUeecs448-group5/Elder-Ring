@@ -16,7 +16,7 @@ export default class Character{
 		this.item = 3;//number of firebombs
 	}
 
-	applyDamage(defender,damage,characterValue){
+	applyDamage(defender,damage){
 		var dam = defender.dM*(damage+this.random(this.crit));//dam = final damage calculation
 		// if(defender.armor>0){
 		// 	var armorDamage = defender.armor - dam;
@@ -47,22 +47,22 @@ export default class Character{
 			}
 		//}
 		//console.log(dam + " damage applied");
-		if(characterValue == 0){
+		if(defender.numberValue == 0){
 			document.getElementById("ehealth1").innerHTML = defender.health;
 		}
-		else if(characterValue == 1){
+		else if(defender.numberValue == 1){
 			document.getElementById("ehealth2").innerHTML = defender.health;
 		}
-		else if(characterValue == 2){
+		else if(defender.numberValue == 2){
 			document.getElementById("ehealth3").innerHTML = defender.health;
 		}
-		else if(characterValue == 3){
+		else if(defender.numberValue == 3){
 			document.getElementById("health1").innerHTML = defender.health;
 		}
-		else if(characterValue == 4){
+		else if(defender.numberValue == 4){
 			document.getElementById("health2").innerHTML = defender.health;
 		}
-		else if(characterValue == 5){
+		else if(defender.numberValue == 5){
 			document.getElementById("health3").innerHTML = defender.health;
 		}
 

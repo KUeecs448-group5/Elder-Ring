@@ -48,9 +48,21 @@ function playerAction(playerArray,enemyArray,player){
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     var attack = document.getElementById("Attack");
+    attack.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
+    })
     var aoe = document.getElementById("AOE");
+    aoe.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "AoE attack. Low damage(5-15) but damages all enemies. Mana cost:15";
+    })
     var heal = document.getElementById("Heal");
+    heal.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Heal target from 10-20 health. Mana cost: 10";
+    })
     var item = document.getElementById("Item");
+    item.addEventListener("mouseover",function(){
+        document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
+    })
     attack.onclick = function(){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
