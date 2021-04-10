@@ -179,10 +179,10 @@ export default class Character{
 
 	useItem(defender, nums){
 		if(this.item>0){
-			console.log(this.getName() + " used a bomb on " + defender.getName());
+			console.log(this.getName() + " used an item on " + defender.getName());
 			this.applyDamage(defender,nums[0]);
 			this.item--;
-			console.log(this.getName() + " bomb inventory: " + this.item);
+			console.log(this.getName() + " item inventory: " + this.item);
 			
 		}
 		else{

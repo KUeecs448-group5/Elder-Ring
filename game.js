@@ -5,8 +5,8 @@ import Character from './character.js';
     
 function newGame(){
     playerArray[0] = new Character(100,100,"Spear Knight",3);
-    playerArray[1] = new Character(100,100,"Shield Knight",4);
-    playerArray[2] = new Character(100,100,"Sword Knight",5);
+    playerArray[1] = new Character(100,100,"Solaire",4);
+    playerArray[2] = new Character(100,100,"Artorias",5);
 
     enemyArray[0] = new Character(100,100,"Skeleton 1",0);
     enemyArray[1] = new Character(200,100,"Boss Skeleton",1);
@@ -47,6 +47,19 @@ function playerAction(playerArray,enemyArray,player){
     console.log("BEGIN " + playerArray[player].getName() + " ACTION");
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
+    if(player === 0){
+        document.getElementById("weapon icon").src = "assets/halberd.png";
+        document.getElementById("spell icon").src = "assets/aoe.png";
+        document.getElementById("item icon").src = "assets/bomb.png";
+    } else if (player === 1){
+        document.getElementById("weapon icon").src = "assets/solaire-sword.png";
+        document.getElementById("spell icon").src = "assets/lightning_storm.png";
+        document.getElementById("item icon").src = "assets/lightning_urn.png";
+    } else {
+        document.getElementById("weapon icon").src = "assets/sword.png";
+        document.getElementById("spell icon").src = "assets/affinity.png";
+        document.getElementById("item icon").src = "assets/throwing_knife.png";
+    }
     var attack = document.getElementById("Attack");
     attack.addEventListener("mouseover",function(){
         document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
