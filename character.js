@@ -49,21 +49,33 @@ export default class Character{
 		//console.log(dam + " damage applied");
 		if(defender.numberValue == 0){
 			document.getElementById("ehealth1").innerHTML = defender.health;
+			let health = document.getElementById("ehealthbar1")
+			health.value = health.value -dam;
 		}
 		else if(defender.numberValue == 1){
 			document.getElementById("ehealth2").innerHTML = defender.health;
+			let health = document.getElementById("ehealthbar2")
+			health.value = health.value -dam;
 		}
 		else if(defender.numberValue == 2){
 			document.getElementById("ehealth3").innerHTML = defender.health;
+			let health = document.getElementById("ehealthbar3")
+			health.value = health.value -dam;
 		}
 		else if(defender.numberValue == 3){
 			document.getElementById("health1").innerHTML = defender.health;
+			let health = document.getElementById("healthbar1")
+			health.value = health.value -dam;
 		}
 		else if(defender.numberValue == 4){
 			document.getElementById("health2").innerHTML = defender.health;
+			let health = document.getElementById("healthbar2")
+			health.value = health.value -dam;
 		}
 		else if(defender.numberValue == 5){
 			document.getElementById("health3").innerHTML = defender.health;
+			let health = document.getElementById("healthbar3")
+			health.value = health.value -dam;
 		}
 
 		console.log(defender.getName() + " health: "+ defender.health);
