@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <audio controls autoplay>
+    <audio controls loop id="PPP">
         <source src="assets/GwynLordofCinder.mp3" type="audio/mpeg">
     </audio>
     <head>
@@ -11,43 +11,45 @@
     </head>
     <body ondragstart='return false' style="overflow: hidden"> <!--Anti-dragging to generate new page & shield right-click menu-->
         <!--<span class="Round">Round: <label id='count'>0</label></span>-->
+        
+
         <img class="body-img" src="assets/Battle.jpeg">
         <img class="title-img" src="assets/ElderRing.png">
         <div id="row1">
             <span class ="enemy skeleton">
-                <img src="assets/skeleton.gif"/>
+                <img id="enemy1" src="assets/skeleton.gif">
                 <span class="HP"><label id='ehealth1'>100</label>/100</span>
             </span>
             <progress id="ehealthbar1" value="100" max="100"></progress>
             <span class ="player">
                 <span class="HP"><label id='health1'>100</label>/100</span>
                 <progress id="healthbar1" value="100" max="100"></progress>
-                <img src="assets/spear.gif"/>
+                <img id = "player1" src="assets/spear.gif">
             </span>
         </div>
         
         <div id="row2">
             <span class ="enemy boss">
-                <img src="assets/nito.gif"/>
+                <img id="enemy2" src="assets/nito.gif">
                 <span class="HP"><label id='ehealth2'>200</label>/200</span>
             </span>
             <progress id="ehealthbar2" value="200" max="200"></progress>
             <span class ="player">
                 <span class="HP"><label id='health2'>100</label>/100</span>
                 <progress id="healthbar2" value="100" max="100"></progress>
-                <img src="assets/solaire.gif"/>
+                <img id="player2" src="assets/solaire.gif">
             </span>
         </div>
         <div id="row3">
             <span class ="enemy skeleton">
-                <img src="assets/skeleton.gif"/>
+                <img id="enemy3 "src="assets/skeleton.gif">
                 <span class="HP"><label id='ehealth3'>100</label>/100</span>
             </span>
             <progress id="ehealthbar3" value="100" max="100"></progress>
             <span class ="player">
                 <span class="HP"><label id='health3'>100</label>/100</span>
                 <progress id="healthbar3" value="100" max="100"></progress>
-                <img src="assets/artorias.gif"/>
+                <img id="player3" src="assets/artorias.gif">
             </span>
         </div>
         <section class = "actionInfo label">
@@ -82,6 +84,9 @@
             <button class="button Item" id = "Item"><img class="icon" id="item icon" src="assets/bomb.png"></button>
         </section>
         <a id = "loseLink" href=p3.HTML><img id="youDW" src="assets/youdied.png"/></a>
-    
+        <div id="start">
+            <img class="start-img" src="assets/ElderRing.png">
+            <p class="DarkSouls">PRESS START BUTTON</p>
+        </div>
     </body>
 </html>

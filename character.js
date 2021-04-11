@@ -43,7 +43,32 @@ export default class Character{
 			}
 			else
 			{
+				console.log("A Character Has Died")
 				defender.health = 0;
+				if(defender.getNumberValue() == 0){
+					console.log("Hiding enemy 1");
+					document.getElementById("enemy1").style.visibility = "hidden";
+				}
+				else if(defender.getNumberValue() == 1){
+					console.log("Hiding enemy 2");
+					document.getElementById("enemy2").style.visibility = "hidden";
+				}
+				else if(defender.getNumberValue() == 2){
+					console.log("Hiding enemy 3");
+					document.getElementById("enemy3").style.visibility = "hidden";
+				}
+				else if(defender.getNumberValue() == 3){
+					console.log("Hiding player 1");
+					document.getElementById("player1").style.visibility = "hidden";
+				}
+				else if(defender.getNumberValue() == 4){
+					console.log("Hiding player 2");
+					document.getElementById("player2").style.visibility = "hidden";
+				}
+				else if(defender.getNumberValue() == 5){
+					console.log("Hiding player 3");
+					document.getElementById("player3").style.visibility = "hidden";
+				}
 			}
 		//}
 		//console.log(dam + " damage applied");

@@ -2,8 +2,8 @@
 import Character from './character.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
-    
 function newGame(){
+    document.getElementById("PPP").play();
     playerArray[0] = new Character(100,100,"Spear Knight",3);
     playerArray[1] = new Character(100,100,"Solaire",4);
     playerArray[2] = new Character(100,100,"Artorias",5);
