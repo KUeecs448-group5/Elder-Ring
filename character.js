@@ -1,5 +1,33 @@
 import { playerAction } from "./game.js";
 //character creator used "a1 = new character"
+
+var deathId = [
+	"enemy1",
+	"enemy2",
+	"enemy3",
+	"player1",
+	"player2",
+	"player3"
+]
+
+var healthId = [
+	["ehealth1","ehealthbar1"],
+	["ehealth2","ehealthbar2"],
+	["ehealth3","ehealthbar3"],
+	["health1","healthbar1"],
+	["health2","healthbar2"],
+	["health3","healthbar3"]
+]
+
+var manaId = [
+	"",
+	"",
+	"",
+	"mana1",
+	"mana2",
+	"mana3"
+]
+
 export default class Character{
 	
 	constructor(m_health, m_magic, m_name, numberValue){
@@ -45,64 +73,15 @@ export default class Character{
 			{
 				console.log("A Character Has Died")
 				defender.health = 0;
-				if(defender.getNumberValue() == 0){
-					console.log("Hiding enemy 1");
-					document.getElementById("enemy1").style.visibility = "hidden";
-				}
-				else if(defender.getNumberValue() == 1){
-					console.log("Hiding enemy 2");
-					document.getElementById("enemy2").style.visibility = "hidden";
-				}
-				else if(defender.getNumberValue() == 2){
-					console.log("Hiding enemy 3");
-					document.getElementById("enemy3").style.visibility = "hidden";
-				}
-				else if(defender.getNumberValue() == 3){
-					console.log("Hiding player 1");
-					document.getElementById("player1").style.visibility = "hidden";
-				}
-				else if(defender.getNumberValue() == 4){
-					console.log("Hiding player 2");
-					document.getElementById("player2").style.visibility = "hidden";
-				}
-				else if(defender.getNumberValue() == 5){
-					console.log("Hiding player 3");
-					document.getElementById("player3").style.visibility = "hidden";
-				}
+				console.log("Hiding " + deathId[defender.getNumberValue()]);
+				document.getElementById(deathId[defender.getNumberValue()]).style.visibility = "hidden";
+			
 			}
 		//}
 		//console.log(dam + " damage applied");
-		if(defender.numberValue == 0){
-			document.getElementById("ehealth1").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar1")
-			health.value = health.value -dam;
-		}
-		else if(defender.numberValue == 1){
-			document.getElementById("ehealth2").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar2")
-			health.value = health.value -dam;
-		}
-		else if(defender.numberValue == 2){
-			document.getElementById("ehealth3").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar3")
-			health.value = health.value -dam;
-		}
-		else if(defender.numberValue == 3){
-			document.getElementById("health1").innerHTML = defender.health;
-			let health = document.getElementById("healthbar1")
-			health.value = health.value -dam;
-		}
-		else if(defender.numberValue == 4){
-			document.getElementById("health2").innerHTML = defender.health;
-			let health = document.getElementById("healthbar2")
-			health.value = health.value -dam;
-		}
-		else if(defender.numberValue == 5){
-			document.getElementById("health3").innerHTML = defender.health;
-			let health = document.getElementById("healthbar3")
-			health.value = health.value -dam;
-		}
-
+		document.getElementById(healthId[defender.getNumberValue()][0]).innerHTML = defender.health;
+		let health = document.getElementById(healthId[defender.getNumberValue()][1]);
+		health.value = health.value - dam;
 		console.log(defender.getName() + " health: "+ defender.health);
 	}
 	
@@ -116,38 +95,9 @@ export default class Character{
 		else{
 			defender.health = defender.health + dam;
 		}
-
-		if(defender.numberValue == 0){
-			document.getElementById("ehealth1").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar1")
-			health.value = health.value + dam;
-		}
-		else if(defender.numberValue == 1){
-			document.getElementById("ehealth2").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar2")
-			health.value = health.value + dam;
-		}
-		else if(defender.numberValue == 2){
-			document.getElementById("ehealth3").innerHTML = defender.health;
-			let health = document.getElementById("ehealthbar3")
-			health.value = health.value + dam;
-		}
-		else if(defender.numberValue == 3){
-			document.getElementById("health1").innerHTML = defender.health;
-			let health = document.getElementById("healthbar1")
-			health.value = health.value + dam;
-		}
-		else if(defender.numberValue == 4){
-			document.getElementById("health2").innerHTML = defender.health;
-			let health = document.getElementById("healthbar2")
-			health.value = health.value + dam;
-		}
-		else if(defender.numberValue == 5){
-			document.getElementById("health3").innerHTML = defender.health;
-			let health = document.getElementById("healthbar3")
-			health.value = health.value + dam;
-		}
-
+		document.getElementById(healthId[defender.getNumberValue()][0]).innerHTML = defender.health;
+		let health = document.getElementById(healthId[defender.getNumberValue()][1]);
+		health.value = health.value + dam;
 	}
 	
 	
@@ -155,14 +105,8 @@ export default class Character{
 	applyMagic(mana){
 		var man = this.magic - (this.mM*mana);
 		if(man>=0){
-			if(this.numberValue == 3){
-				document.getElementById("mana1").innerHTML = man;
-			}
-			else if(this.numberValue == 4){
-				document.getElementById("mana2").innerHTML = man;
-			}
-			else if(this.numberValue == 5){
-				document.getElementById("mana3").innerHTML = man;
+			if(this.getNumberValue()>2){
+				document.getElementById(manaId[this.getNumberValue()]).innerHTML = man;
 			}
 			this.magic = man;
 			console.log(this.getName() + " used " +  mana + " Mana. " + this.magic + " Mana remaining.");

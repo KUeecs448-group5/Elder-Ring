@@ -189,9 +189,10 @@
 }
 .DarkSouls{
     z-index:0.5;
+    font-size: 100%;
     position: fixed;
     top: 57vh;
-    width: 40%;
+    width: 36%;
     left: 44%;
     color: white;
     position: fixed;
