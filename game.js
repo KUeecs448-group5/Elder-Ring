@@ -62,18 +62,40 @@ function playerAction(playerArray,enemyArray,player){
     }
     var attack = document.getElementById("Attack");
     attack.addEventListener("mouseover",function(){
+        if(player === 0){
+            document.getElementById("action").innerHTML = "<strong>Halberd</strong>";
+        } else if (player === 1) {
+            document.getElementById("action").innerHTML = "<strong>Sunlight Sword</strong>";
+        } else if (player === 2) {
+            document.getElementById("action").innerHTML = "<strong>Wolf Knight Sword</strong>";
+        }
         document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
     })
     var aoe = document.getElementById("AOE");
     aoe.addEventListener("mouseover",function(){
-        document.getElementById("infoBox").innerHTML = "AoE attack. Low damage(5-15) but damages all enemies. Mana cost:15";
+        if(player === 0){
+            document.getElementById("action").innerHTML = "<strong>Fire Storm</strong>";
+        } else if (player === 1) {
+            document.getElementById("action").innerHTML = "<strong>Lightning Strike</strong>";
+        } else if (player === 2) {
+            document.getElementById("action").innerHTML = "<strong>Dark Affinity</strong>";
+        }
+        document.getElementById("infoBox").innerHTML = "Area of Effect attack. Low damage(5-15) but damages all enemies. Mana cost:15";
     })
     var heal = document.getElementById("Heal");
     heal.addEventListener("mouseover",function(){
+        document.getElementById("action").innerHTML = "<strong>Estus Flask</strong>";
         document.getElementById("infoBox").innerHTML = "Heal target from 10-20 health. Mana cost: 10";
     })
     var item = document.getElementById("Item");
     item.addEventListener("mouseover",function(){
+        if(player === 0){
+            document.getElementById("action").innerHTML = "<strong>Fire Bomb</strong>";
+        } else if (player === 1) {
+            document.getElementById("action").innerHTML = "<strong>Lightning Urn</strong>";
+        } else if (player === 2) {
+            document.getElementById("action").innerHTML = "<strong>Throwing Knife</strong>";
+        }
         document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
     })
     attack.onclick = function(){
