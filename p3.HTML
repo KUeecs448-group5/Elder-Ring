@@ -7,6 +7,7 @@
         <title>Elder Ring</title>
         <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
         <link rel="stylesheet" href="./P3.css">
+        <script src="https://kit.fontawesome.com/ed8caa1c08.js" crossorigin="anonymous"></script>
         <script src = "Executive.js" type ="module"></script>
     </head>
     <body ondragstart='return false' style="overflow: hidden"> <!--Anti-dragging to generate new page & shield right-click menu-->
@@ -53,7 +54,11 @@
             </span>
         </div>
         <section class = "actionInfo label">
-            <label id='action'><strong>Info</strong></label><text>
+            <span>
+                <!--not working!!-->
+                <i class="fa fa-info-circle"></i>
+                <label id='action'><strong>Action</strong></label><text>
+            </span>
         </section>
         <div id = "infoBox"></div>
 
