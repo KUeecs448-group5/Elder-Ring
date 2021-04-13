@@ -116,25 +116,27 @@ function playerAction(playerArray,enemyArray,player){
         //var select = verifyTarget(enemyArray, 0, "attack");
         for(let i = 0; i <= 2; i++){
             charId[i].onclick = function(){
-                for(let i = 0; i <= 5; i++){//disable buttons
-                        charId[i].onclick = function(){};
-                    }
-                playerArray[player].damage_single(enemyArray[i],values[0]);
-                document.getElementById("name"+(player+1)).style.borderBottom = "none";
-                document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-                var next = getNext(player, playerArray, enemyArray);
-                if(next === -1){
-                    console.log("Enemy's turn.");
-                    enemyAttack();
-                    if(!playerArray || playerArray.length == 0){
-                        alert("Team is dead");
+                if(preVerifyTarget(i,enemyArray, 0, "attack")){
+                    for(let i = 0; i <= 5; i++){//disable buttons
+                            charId[i].onclick = function(){};
+                        }
+                    playerArray[player].damage_single(enemyArray[i],values[0]);
+                    document.getElementById("name"+(player+1)).style.borderBottom = "none";
+                    document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                    var next = getNext(player, playerArray, enemyArray);
+                    if(next === -1){
+                        console.log("Enemy's turn.");
+                        enemyAttack();
+                        if(!playerArray || playerArray.length == 0){
+                            alert("Team is dead");
+                        }
+                        else{
+                            setOwnPlayer(getNext(-1,playerArray,enemyArray));
+                        }
                     }
                     else{
-                        setOwnPlayer(getNext(-1,playerArray,enemyArray));
+                        setOwnPlayer(next);
                     }
-                }
-                else{
-                    setOwnPlayer(next);
                 }
             }
         }  
@@ -214,6 +216,20 @@ function verifyTarget(group, invalidVal, action){
     }
     else {
         return retSelect;
+    }
+}
+
+function preVerifyTarget(retSelect,group, invalidVal, action){
+    if(retSelect >= group.length || retSelect < 0){
+        alert("Target " + retSelect + " is an invalid target. Please try again.");
+        return false;
+    }
+    else if(group[retSelect].health == invalidVal ||(group[retSelect].health === 0 && action === "heal")){
+        alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
+        return false;
+    }
+    else {
+        return true;
     }
 }
 
