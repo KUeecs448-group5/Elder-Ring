@@ -1,4 +1,5 @@
 //overall game function
+import debug from './Executive.js';
 import Character from './character.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
@@ -15,6 +16,15 @@ function newGame(){
     setOwnPlayer(0);
 }
 
+var charId = [
+    document.getElementById("enemy1Click"),
+    document.getElementById("enemy2Click"),
+    document.getElementById("enemy3Click"),
+    document.getElementById("player1Click"),
+    document.getElementById("player2Click"),
+    document.getElementById("player3Click"),
+];
+
 var values = [
     [15,10],//single attack player 0
     [5,5],//aoe player 1
@@ -23,7 +33,9 @@ var values = [
     [20,10],//single attack enemy 4
     [5,5],//aoe enemy 5
     [10,15]//heal enemy 6
-]
+];
+
+
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
@@ -101,23 +113,31 @@ function playerAction(playerArray,enemyArray,player){
     attack.onclick = function(){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
-        var select = verifyTarget(enemyArray, 0, "attack");
-        playerArray[player].damage_single(enemyArray[select],values[0]);
-        document.getElementById("name"+(player+1)).style.borderBottom = "none";
-        document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-        var next = getNext(player, playerArray, enemyArray);
-        if(next === -1){
-            console.log("Enemy's turn.");
-            enemyAttack();
-            if(!playerArray || playerArray.length == 0){
-                alert("Team is dead");
+        //var select = verifyTarget(enemyArray, 0, "attack");
+        for(let i = 0; i <= 2; i++){
+            charId[i].onclick = function(){
+                for(let i = 0; i <= 5; i++){//disable buttons
+                        charId[i].onclick = function(){};
+                    }
+                playerArray[player].damage_single(enemyArray[i],values[0]);
+                document.getElementById("name"+(player+1)).style.borderBottom = "none";
+                document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                var next = getNext(player, playerArray, enemyArray);
+                if(next === -1){
+                    console.log("Enemy's turn.");
+                    enemyAttack();
+                    if(!playerArray || playerArray.length == 0){
+                        alert("Team is dead");
+                    }
+                    else{
+                        setOwnPlayer(getNext(-1,playerArray,enemyArray));
+                    }
+                }
+                else{
+                    setOwnPlayer(next);
+                }
             }
-            else{
-                setOwnPlayer(getNext(-1,playerArray,enemyArray));
-            }
-        }else{
-            setOwnPlayer(next);
-        }
+        }  
     }
 
     aoe.onclick = function(){
@@ -184,7 +204,7 @@ function playerAction(playerArray,enemyArray,player){
 
 function verifyTarget(group, invalidVal, action){
     var retSelect = parseInt(prompt("Who would you like to " + action + "?:"));
-    if(retSelect >= group.length){
+    if(retSelect >= group.length || retSelect < 0){
         alert("Target " + retSelect + " is an invalid target. Please try again.");
         return verifyTarget(group, invalidVal, action);
     }
