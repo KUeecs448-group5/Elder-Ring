@@ -40,6 +40,7 @@
 }
 .player img{
     width: 175px;
+    height: 175px;
 }
 .enemy{
     left: 2.5%;

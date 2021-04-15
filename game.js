@@ -3,8 +3,12 @@ import debug from './Executive.js';
 import Character from './character.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
-function newGame(){
-    document.getElementById("PPP").play();
+function newGame(world){
+    gameMode = world;
+    if(gameMode != 0){
+        worldChange(gameMode);
+    }
+    document.getElementById(music[gameMode]).play();
     playerArray[0] = new Character(100,100,"Spear Knight",3);
     playerArray[1] = new Character(100,100,"Solaire",4);
     playerArray[2] = new Character(100,100,"Artorias",5);
@@ -15,6 +19,45 @@ function newGame(){
     
     setOwnPlayer(0);
 }
+
+let gameMode = 0;
+
+let music = [
+    "PPP",
+    "OWA"
+];
+
+let playerIdleGifs = [
+    [
+        "assets/spear.gif",
+        "assets/solaire.gif",
+        "assets/artorias.gif"
+    ],
+    [
+        "assets/FFGirlIdle.gif",
+        "assets/cloudStrifeIdle.gif",
+        "assets/barretWallaceIdle.gif"
+    ]
+];
+
+let enemyIdleGifs = [
+    [
+        "assets/skeleton.gif",
+        "assets/nito.gif",
+        "assets/skeleton.gif"
+    ],
+    [
+        "assets/skeleton.gif",
+        "assets/SephirothIdle.gif",
+        "assets/skeleton.gif"
+    ]
+];
+
+let background = [
+    "assets/Battle.jpeg",
+    "assets/Battle2.jpg"
+];
+
 
 var charId = [
     document.getElementById("enemy1Click"),
@@ -30,12 +73,27 @@ var values = [
     [5,5],//aoe player 1
     [10,15],//heal player 2
     [20,0],//item 3
-    [20,10],//single attack enemy 4
-    [5,5],//aoe enemy 5
-    [10,15]//heal enemy 6
+    [20+(gameMode*5),10],//single attack enemy 4
+    [5+(gameMode*5),5],//aoe enemy 5
+    [10+(gameMode*5),15]//heal enemy 6
 ];
 
-
+function worldChange(i){
+    console.log("Changing things");
+    document.getElementById("background").src = background[i];
+    charId[0].src = enemyIdleGifs[i][0];
+    charId[1].src = enemyIdleGifs[i][1];
+    charId[2].src = enemyIdleGifs[i][2];
+    charId[3].src = playerIdleGifs[i][0];
+    charId[4].src = playerIdleGifs[i][1];
+    charId[5].src = playerIdleGifs[i][2];
+    if(gameMode == 1){
+        charId[3].style.transform = "scale(0.85)";
+        charId[4].style.width = "200px";
+        charId[5].style.transform = "scale(0.85)";
+        //document.getElementById("player1").style.border = "solid 1px transparent"
+    }
+}
 
 function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){

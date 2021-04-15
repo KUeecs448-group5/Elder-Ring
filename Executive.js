@@ -7,6 +7,6 @@ var debug = false;
 menu.onclick = function() {
     console.log("Clicked")
     menu.style.visibility  = "hidden";
-    gameRules.newGame();
+    gameRules.newGame(1);//start world 0/1
 }
 export default debug;
