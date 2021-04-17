@@ -58,6 +58,11 @@
     font-size: 150%;
 }
 
+.MP{
+    color: rgb(0,0,255);
+    font-size: 150%;
+}
+
 #infoBox{
     position:fixed;
     left:3%;
@@ -87,15 +92,18 @@
     bottom: 25%;
 }
 .c1{
-    bottom: 15%;
+    top: 17%;
+    left:40%;
 }
 
 .c2{
-    bottom: 10%;
+    top: 37%;
+    left:40%;
 }
 
 .c3{
-    bottom: 5%;
+    top: 57%;
+    left:40%;
 }
 
 .name{
@@ -104,7 +112,7 @@
 
 .mana{
     position: fixed;
-    left: 80%;
+    left: 70%;
     color: blue;
 }
 
@@ -197,4 +205,17 @@
     left: 44%;
     color: white;
     position: fixed;
+}
+
+#infoBox2{
+    position:fixed;
+    right:3%;
+    bottom:.5%;
+    height: 24.5%;
+    width: 40%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    font-size: 125%;
 }

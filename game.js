@@ -22,6 +22,8 @@ function newGame(world){
 
 let gameMode = 0;
 
+let actionBox = document.getElementById("infoBox2");
+
 let music = [
     "PPP",
     "OWA"
@@ -114,7 +116,7 @@ function setOwnPlayer(player){
 }
 
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN " + playerArray[player].getName() + " ACTION");
+    setTimeout(function(){actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"},3000)
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     if(player === 0){
@@ -183,7 +185,7 @@ function playerAction(playerArray,enemyArray,player){
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn")
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -207,7 +209,7 @@ function playerAction(playerArray,enemyArray,player){
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
         if(next === -1){
-            console.log("Enemy's turn.");
+            console.log("Enemy's turn")
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
@@ -233,7 +235,7 @@ function playerAction(playerArray,enemyArray,player){
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn")
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -264,7 +266,7 @@ function playerAction(playerArray,enemyArray,player){
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn")
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -316,8 +318,9 @@ function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
     
+    action = 0
     if(action === 0){
-        toAct.damage_single(playerArray[target],values[4]);
+        setTimeout(function(){toAct.damage_single(playerArray[target],values[4])},2000);
     } else if(action === 1){
         toAct.damage(playerArray,values[5]);
     } else if(action === 2){

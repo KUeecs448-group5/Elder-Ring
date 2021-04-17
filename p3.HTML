@@ -26,9 +26,13 @@
                 <progress id="ehealthbar1" value="100" max="100"></progress>
             </span>
             <span id="player1" class="player">
-                <span class="HP"><label id='health1'>100</label>/100</span>
+                <span class="HP">HP <label id='health1'>100</label>/100</span>
                 <progress id="healthbar1" value="100" max="100"></progress>
                 <img id="player1Click" src="assets/spear.gif">
+                <br>
+                <span class="MP" id = "MP1">MP <label id='mana1'>100</label>/100</span>
+                <progress id="manabar1" value="100" max="100"></progress>
+                
             </span>
         </div>
         
@@ -39,9 +43,12 @@
                 <progress id="ehealthbar2" value="200" max="200"></progress>
             </span>
             <span id="player2" class ="player">
-                <span class="HP"><label id='health2'>100</label>/100</span>
+                <span class="HP">HP <label id='health2'>100</label>/100</span>
                 <progress id="healthbar2" value="100" max="100"></progress>
                 <img id="player2Click" src="assets/solaire.gif">
+                <br>
+                <span class="MP" id = "MP2">MP <label id='mana2'>100</label>/100</span>
+                <progress id="manabar2" value="100" max="100"></progress>
             </span>
         </div>
         <div id="row3">
@@ -51,9 +58,13 @@
                 <progress id="ehealthbar3" value="100" max="100"></progress>
             </span>
             <span id="player3" class="player">
-                <span class="HP"><label id='health3'>100</label>/100</span>
+                <span class="HP">HP <label id='health3'>100</label>/100</span>
                 <progress id="healthbar3" value="100" max="100"></progress>
                 <img id="player3Click" src="assets/artorias.gif">
+                <br>
+                <span class="MP" id = "MP3">MP <label id='mana3'>100</label>/100</span>
+                <progress id="manabar3" value="100" max="100"></progress>
+                
             </span>
         </div>
         <section class = "actionInfo label">
@@ -65,21 +76,21 @@
         </section>
         <div id = "infoBox"></div>
 
-        <section class = "characterInfo label">
+        <!-- <section class = "characterInfo label">
             <text class='name'><strong>NAME</strong></text> 
             <text class='mana'><strong>MP</strong></text>
-        </section>    
+        </section>     -->
+        <div id = "infoBox2"></div>
         <section class = "characterInfo c1">
             <label class= "name" id='name1'>Spear Knight</label>
-            <span class = "mana" id="MP1"><label id='mana1'>100</label>/100</span>
+   \
         </section>
         <section class = "characterInfo c2">
             <label class= "name" id='name2'>Solaire</label>
-            <span class ="mana" id="MP2"><label id='mana2'>100</label>/100</span>
+            
         </section>
         <section class = "characterInfo c3">
             <label class= "name" id='name3'>Artorias</label>
-            <span class="mana" id="MP3"><label id='mana3'>100</label>/100</span>
         </section>
         
         <section id="buttons">
