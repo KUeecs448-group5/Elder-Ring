@@ -6,21 +6,47 @@ import Character from './character.js';
 function newGame(world){
     gameMode = world;
     if(gameMode != 0){
-        worldChange(gameMode);
+        worldChange();
     }
     document.getElementById(music[gameMode]).play();
-    playerArray[0] = new Character(100,100,"Spear Knight",3);
-    playerArray[1] = new Character(100,100,"Solaire",4);
-    playerArray[2] = new Character(100,100,"Artorias",5);
+    playerArray[0] = new Character(100,100,names[gameMode][0],3);
+    playerArray[1] = new Character(100,100,names[gameMode][1],4);
+    playerArray[2] = new Character(100,100,names[gameMode][2],5);
 
-    enemyArray[0] = new Character(100,100,"Skeleton 1",0);
-    enemyArray[1] = new Character(200,100,"Boss Skeleton",1);
-    enemyArray[2] = new Character(100,100,"Skeleton 2",2);
+    enemyArray[0] = new Character(100,100,enames[gameMode][0],0);
+    enemyArray[1] = new Character(200,100,enames[gameMode][1],1);
+    enemyArray[2] = new Character(100,100,enames[gameMode][2],2);
     
     setOwnPlayer(0);
 }
 
 let gameMode = 0;
+
+let names = [
+    [
+        "Spear Knight",
+        "Solaire",
+        "Artorias"
+    ],
+    [
+        "Tifa Lockhart",
+        "Cloud Strife",
+        "Barret Wallace"
+    ]
+];
+
+let enames = [
+    [
+        "Skeleton 1",
+        "Nito",
+        "Skeleton 2"
+    ],
+    [
+        "Skeleton 1",
+        "Sephiroth",
+        "Skeleton 2"
+    ]
+]
 
 let music = [
     "PPP",
@@ -68,6 +94,12 @@ var charId = [
     document.getElementById("player3Click"),
 ];
 
+var nameId = [
+    document.getElementById("name1"),
+    document.getElementById("name2"),
+    document.getElementById("name3")
+];
+
 var values = [
     [15,10],//single attack player 0
     [5,5],//aoe player 1
@@ -78,28 +110,40 @@ var values = [
     [10+(gameMode*5),15]//heal enemy 6
 ];
 
-function worldChange(i){
+function worldChange(){
     console.log("Changing things");
-    document.getElementById("background").src = background[i];
-    charId[0].src = enemyIdleGifs[i][0];
-    charId[1].src = enemyIdleGifs[i][1];
-    charId[2].src = enemyIdleGifs[i][2];
-    charId[3].src = playerIdleGifs[i][0];
-    charId[4].src = playerIdleGifs[i][1];
-    charId[5].src = playerIdleGifs[i][2];
+    document.getElementById("background").src = background[gameMode];
+    for(let i=0;i<=2;i++){
+        charId[i].src = enemyIdleGifs[gameMode][i];
+    }
+    for(let i=0;i<=2;i++){
+        charId[i+3].src = playerIdleGifs[gameMode][i];
+    }
+    for(let i=0;i<=2;i++){
+        nameId[i].innerHTML = names[gameMode][i];
+    }
     if(gameMode == 1){
         charId[3].style.transform = "scale(0.85)";
         charId[4].style.width = "200px";
         charId[5].style.transform = "scale(0.85)";
         //document.getElementById("player1").style.border = "solid 1px transparent"
     }
+    document.getElementById()
 }
 
-function enemyAttack(){
+function sleep(ms) {	
+    return new Promise(resolve => setTimeout(resolve, ms));	
+  }	
+  	
+async function enemyAttack(){	
+    await sleep(2000)	
+    actionBox.innerHTML = "Enemy's Turn";	
+    await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
-        enemyAction(enemyArray, playerArray, enemyArray[i]);
+            enemyAction(enemyArray, playerArray, enemyArray[i])	
+            await sleep(3000)
         }
         if(checkWin(playerArray)){
             alert("You Lost. Press the banner to play again.");
@@ -107,65 +151,130 @@ function enemyAttack(){
             document.getElementById("loseLink").style.visibility = "visible";
         }
     }
+    await sleep(2000)	
+    actionBox.innerHTML = "It is now Spear Knight's turn"
 }
 
 function setOwnPlayer(player){
     playerAction(playerArray,enemyArray, player);
 }
 
+
+let bAattack =[//button Asset attack
+    [//all sword button images
+        "assets/halberd.png",
+        "assets/solaire-sword.png",
+        "assets/sword.png"
+    ],
+    [//attack button
+        "assets/heal.png",
+        "assets/busterSword.png",
+        "assets/heal.png"
+    ]
+];
+
+let bAaoe=[
+    [//all aoe button images
+        "assets/aoe.png",
+        "assets/lightning_storm.png",
+        "assets/affinity.png"
+    ],
+    [//aoe
+        "assets/heal.png",
+        "assets/heal.png",
+        "assets/heal.png"
+    ]
+];
+
+let bAitem=[
+    [//all item button images
+        "assets/bomb.png",
+        "assets/lightning_urn.png",
+        "assets/throwing_knife.png"
+    ],
+    [
+        "assets/heal.png",
+        "assets/heal.png",
+        "assets/heal.png"
+    ]
+];
+
+let bAheal=[
+    "assets/heal.png",
+    "assets/cure.png"
+];
+
+let bTattack =[//button Text attack
+    [//all sword button images
+        "<strong>Halberd</strong>",
+        "<strong>Sunlight Sword</strong>",
+        "<strong>Wolf Knight Sword</strong>"
+    ],
+    [//attack button
+        "assets/heal.png",
+        "<strong>Buster Sword</strong>",
+        "assets/heal.png"
+    ]
+];
+
+let bTaoe=[
+    [//all aoe button images
+        "<strong>Fire Storm</strong>",
+        "<strong>Lightning Strike</strong>",
+        "<strong>Dark Affinity</strong>"
+    ],
+    [//aoe
+        "assets/heal.png",
+        "assets/heal.png",
+        "assets/heal.png"
+    ]
+];
+
+let bTitem=[
+    [//all item button images
+        "<strong>Fire Bomb</strong>",
+        "<strong>Lightning Urn</strong>",
+        "<strong>Throwing Knife</strong>"
+    ],
+    [
+        "assets/heal.png",
+        "assets/heal.png",
+        "assets/heal.png"
+    ]
+];
+
+let bTheal=[
+    "<strong>Estus Flask</strong>",
+    "<strong>Cure</strong>"
+];
+
 function playerAction(playerArray,enemyArray,player){
-    console.log("BEGIN " + playerArray[player].getName() + " ACTION");
+    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"	
+    //actionBox.innerHTML = "It is now " + playerArray[player].getName() + "'s turn"
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
-    if(player === 0){
-        document.getElementById("weapon icon").src = "assets/halberd.png";
-        document.getElementById("spell icon").src = "assets/aoe.png";
-        document.getElementById("item icon").src = "assets/bomb.png";
-    } else if (player === 1){
-        document.getElementById("weapon icon").src = "assets/solaire-sword.png";
-        document.getElementById("spell icon").src = "assets/lightning_storm.png";
-        document.getElementById("item icon").src = "assets/lightning_urn.png";
-    } else {
-        document.getElementById("weapon icon").src = "assets/sword.png";
-        document.getElementById("spell icon").src = "assets/affinity.png";
-        document.getElementById("item icon").src = "assets/throwing_knife.png";
-    }
+    //change button assets
+    document.getElementById("weapon icon").src = bAattack[gameMode][player];
+    document.getElementById("spell icon").src = bAaoe[gameMode][player];
+    document.getElementById("item icon").src = bAitem[gameMode][player];
     var attack = document.getElementById("Attack");
     attack.addEventListener("mouseover",function(){
-        if(player === 0){
-            document.getElementById("action").innerHTML = "<strong>Halberd</strong>";
-        } else if (player === 1) {
-            document.getElementById("action").innerHTML = "<strong>Sunlight Sword</strong>";
-        } else if (player === 2) {
-            document.getElementById("action").innerHTML = "<strong>Wolf Knight Sword</strong>";
-        }
+        document.getElementById("action").innerHTML = bTattack[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
     })
     var aoe = document.getElementById("AOE");
     aoe.addEventListener("mouseover",function(){
-        if(player === 0){
-            document.getElementById("action").innerHTML = "<strong>Fire Storm</strong>";
-        } else if (player === 1) {
-            document.getElementById("action").innerHTML = "<strong>Lightning Strike</strong>";
-        } else if (player === 2) {
-            document.getElementById("action").innerHTML = "<strong>Dark Affinity</strong>";
-        }
+        document.getElementById("action").innerHTML = bTaoe[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Area of Effect attack. Low damage(5-15) but damages all enemies. Mana cost:15";
     })
     var heal = document.getElementById("Heal");
     heal.addEventListener("mouseover",function(){
-        document.getElementById("action").innerHTML = "<strong>Estus Flask</strong>";
+        document.getElementById("action").innerHTML = bTheal[gameMode];
         document.getElementById("infoBox").innerHTML = "Heal target from 10-20 health. Mana cost: 10";
     })
     var item = document.getElementById("Item");
     item.addEventListener("mouseover",function(){
-        if(player === 0){
-            document.getElementById("action").innerHTML = "<strong>Fire Bomb</strong>";
-        } else if (player === 1) {
-            document.getElementById("action").innerHTML = "<strong>Lightning Urn</strong>";
-        } else if (player === 2) {
-            document.getElementById("action").innerHTML = "<strong>Throwing Knife</strong>";
-        }
+        document.getElementById("action").innerHTML = bTitem[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
     })
     attack.onclick = function(){
@@ -173,17 +282,19 @@ function playerAction(playerArray,enemyArray,player){
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         //var select = verifyTarget(enemyArray, 0, "attack");
         for(let i = 0; i <= 2; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
                     playerArray[player].damage_single(enemyArray[i],values[0]);
+                    await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -193,6 +304,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
                         setOwnPlayer(next);
                     }
                 }
@@ -200,14 +312,15 @@ function playerAction(playerArray,enemyArray,player){
         }  
     }
 
-    aoe.onclick = function(){
+    aoe.onclick = async function(){
         console.clear();
         playerArray[player].damage(enemyArray,values[1]);
+        await sleep(4000);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
         if(next === -1){
-            console.log("Enemy's turn.");
+            console.log("Enemy's turn");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
                 alert("Team is dead");
@@ -216,24 +329,26 @@ function playerAction(playerArray,enemyArray,player){
                 setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
+            actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
             setOwnPlayer(next);
         }
     }
 
-    heal.onclick = function(){
+    heal.onclick = async function(){
         console.clear();
         for(let i = 3; i <= 5; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 if(preVerifyTarget((i-3),playerArray, 100, "heal")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
+                    await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -243,16 +358,17 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
                         setOwnPlayer(next);
                     }
                 }
             }
         }
     }
-    item.onclick = function(){
+    item.onclick = async function(){
         console.clear();
         for(let i = 0; i <= 2; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 console.log("Help");
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
@@ -260,11 +376,12 @@ function playerAction(playerArray,enemyArray,player){
                         }
                         console.log("Help");
                     playerArray[player].useItem(enemyArray[i],values[3]);
+                    await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
-                        console.log("Enemy's turn.");
+                        console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
                             alert("Team is dead");
@@ -274,6 +391,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
                         setOwnPlayer(next);
                     }
                 }
