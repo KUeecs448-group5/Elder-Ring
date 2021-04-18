@@ -38,7 +38,7 @@ let names = [
 let enames = [
     [
         "Skeleton 1",
-        "Nito",
+        "Skeleton Boss",
         "Skeleton 2"
     ],
     [
@@ -130,7 +130,7 @@ function worldChange(){
         charId[5].style.transform = "scale(0.85)";
         //document.getElementById("player1").style.border = "solid 1px transparent"
     }
-    document.getElementById()
+    document.getElementById("heal icon").src = bAheal[gameMode];
 }
 
 function sleep(ms) {
@@ -154,7 +154,7 @@ async function enemyAttack(){
         }
     }
     await sleep(2000)
-    actionBox.innerHTML = "It is now Spear Knight's turn"
+    actionBox.innerHTML = "It is now "+names[gameMode][0]+"'s turn"
 }
 
 function setOwnPlayer(player){
@@ -169,9 +169,9 @@ let bAattack =[//button Asset attack
         "assets/sword.png"
     ],
     [//attack button
-        "assets/heal.png",
+        "assets/LeatherGlove.png",
         "assets/busterSword.png",
-        "assets/heal.png"
+        "assets/GatlingGun.png"
     ]
 ];
 
@@ -182,9 +182,9 @@ let bAaoe=[
         "assets/affinity.png"
     ],
     [//aoe
-        "assets/heal.png",
-        "assets/heal.png",
-        "assets/heal.png"
+        "assets/DragonClaw.png",
+        "assets/UltimaWeapon.png",
+        "assets/rocketPunch.png"
     ]
 ];
 
@@ -195,9 +195,9 @@ let bAitem=[
         "assets/throwing_knife.png"
     ],
     [
-        "assets/heal.png",
-        "assets/heal.png",
-        "assets/heal.png"
+        "assets/SpiderSilk.png",
+        "assets/VampireFang.png",
+        "assets/NitroPowder.png"
     ]
 ];
 
@@ -213,9 +213,9 @@ let bTattack =[//button Text attack
         "<strong>Wolf Knight Sword</strong>"
     ],
     [//attack button
-        "assets/heal.png",
+        "<strong>Knuckles</strong>",
         "<strong>Buster Sword</strong>",
-        "assets/heal.png"
+        "<strong>Gatling Gun</strong>"
     ]
 ];
 
@@ -226,9 +226,9 @@ let bTaoe=[
         "<strong>Dark Affinity</strong>"
     ],
     [//aoe
-        "assets/heal.png",
-        "assets/heal.png",
-        "assets/heal.png"
+        "<strong>Dragon Claw</strong>",
+        "<strong>Ultima Weapon</strong>",
+        "<strong>Rocket Punch</strong>"
     ]
 ];
 
@@ -239,9 +239,9 @@ let bTitem=[
         "<strong>Throwing Knife</strong>"
     ],
     [
-        "assets/heal.png",
-        "assets/heal.png",
-        "assets/heal.png"
+        "<strong>Spider Silk</strong>",
+        "<strong>Vampire Fang</strong>",
+        "<strong>Nitro Powder</strong>"
     ]
 ];
 
