@@ -48,6 +48,8 @@ let enames = [
     ]
 ]
 
+let actionBox = document.getElementById("infoBox2");
+
 let music = [
     "PPP",
     "OWA"
@@ -131,18 +133,18 @@ function worldChange(){
     document.getElementById()
 }
 
-function sleep(ms) {	
-    return new Promise(resolve => setTimeout(resolve, ms));	
-  }	
-  	
-async function enemyAttack(){	
-    await sleep(2000)	
-    actionBox.innerHTML = "Enemy's Turn";	
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+async function enemyAttack(){
+    await sleep(2000)
+    actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
-            enemyAction(enemyArray, playerArray, enemyArray[i])	
+            enemyAction(enemyArray, playerArray, enemyArray[i])
             await sleep(3000)
         }
         if(checkWin(playerArray)){
@@ -151,7 +153,7 @@ async function enemyAttack(){
             document.getElementById("loseLink").style.visibility = "visible";
         }
     }
-    await sleep(2000)	
+    await sleep(2000)
     actionBox.innerHTML = "It is now Spear Knight's turn"
 }
 
@@ -277,7 +279,7 @@ function playerAction(playerArray,enemyArray,player){
         document.getElementById("action").innerHTML = bTitem[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
     })
-    attack.onclick = function(){
+    attack.onclick =  function(){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         //var select = verifyTarget(enemyArray, 0, "attack");
@@ -433,6 +435,7 @@ function preVerifyTarget(retSelect,group, invalidVal, action){
 function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
+    
     
     if(action === 0){
         toAct.damage_single(playerArray[target],values[4]);
