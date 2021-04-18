@@ -45,7 +45,7 @@ export default class Character{
 		this.item = 3;//number of firebombs
 	}
 
-	applyDamage(defender,damage){
+	async applyDamage(defender,damage){
 		var dam = defender.dM*(damage+this.random(this.crit));//dam = final damage calculation
 		// if(defender.armor>0){
 		// 	var armorDamage = defender.armor - dam;
@@ -80,6 +80,7 @@ export default class Character{
 			}
 		//}
 		//console.log(dam + " damage applied");
+		await this.sleep(3000)
 		document.getElementById(healthId[defender.getNumberValue()][0]).innerHTML = defender.health;
 		let health = document.getElementById(healthId[defender.getNumberValue()][1]);
 		health.value = health.value - dam;
@@ -132,9 +133,13 @@ export default class Character{
 		return Math.trunc(Math.random()*(x+1));
 	}
 	
+	sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	  }
 	damage_single(defender, nums){//nums[0] = damage, nums[1] = mana
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName());
+			//await this.sleep(3000)
 			actionBox.innerHTML = this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName()
 			this.applyDamage(defender, nums[0]);
 		}
@@ -144,6 +149,7 @@ export default class Character{
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName());
 			this.applyHeal(defender,nums[0]);
+			actionBox.innerHTML = this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName()
 		}
 	}
 	
@@ -161,6 +167,7 @@ export default class Character{
 		if(this.item>0){
 			console.log(this.getName() + " used an item on " + defender.getName());
 			this.applyDamage(defender,nums[0]);
+			actionBox.innerHTML = this.getName() + " used an item on " + defender.getName()
 			this.item--;
 			console.log(this.getName() + " item inventory: " + this.item);
 			

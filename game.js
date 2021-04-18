@@ -8,7 +8,7 @@ function newGame(world){
     if(gameMode != 0){
         worldChange(gameMode);
     }
-    document.getElementById(music[gameMode]).play();
+    //document.getElementById(music[gameMode]).play();
     playerArray[0] = new Character(100,100,"Spear Knight",3);
     playerArray[1] = new Character(100,100,"Solaire",4);
     playerArray[2] = new Character(100,100,"Artorias",5);
@@ -97,11 +97,19 @@ function worldChange(i){
     }
 }
 
-function enemyAttack(){
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+async function enemyAttack(){
+    await sleep(2000)
+    actionBox.innerHTML = "Enemy's Turn."
+    await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
-        enemyAction(enemyArray, playerArray, enemyArray[i]);
+            enemyAction(enemyArray, playerArray, enemyArray[i])
+            await sleep(3000)
         }
         if(checkWin(playerArray)){
             alert("You Lost. Press the banner to play again.");
@@ -109,6 +117,8 @@ function enemyAttack(){
             document.getElementById("loseLink").style.visibility = "visible";
         }
     }
+    await sleep(2000)
+    actionBox.innerHTML = "It is now Spear Knight's turn"
 }
 
 function setOwnPlayer(player){
@@ -116,7 +126,8 @@ function setOwnPlayer(player){
 }
 
 function playerAction(playerArray,enemyArray,player){
-    setTimeout(function(){actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"},3000)
+    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"
+    //actionBox.innerHTML = "It is now " + playerArray[player].getName() + "'s turn"
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
     document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     if(player === 0){
@@ -170,19 +181,21 @@ function playerAction(playerArray,enemyArray,player){
         }
         document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
     })
-    attack.onclick = function(){
+    attack.onclick =  function(){
         console.clear();
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         //var select = verifyTarget(enemyArray, 0, "attack");
         for(let i = 0; i <= 2; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
                     playerArray[player].damage_single(enemyArray[i],values[0]);
+                    await sleep(4000)
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
                         console.log("Enemy's turn")
@@ -195,6 +208,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn"
                         setOwnPlayer(next);
                     }
                 }
@@ -202,9 +216,10 @@ function playerAction(playerArray,enemyArray,player){
         }  
     }
 
-    aoe.onclick = function(){
+    aoe.onclick = async function(){
         console.clear();
         playerArray[player].damage(enemyArray,values[1]);
+        await sleep(4000)
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -218,19 +233,21 @@ function playerAction(playerArray,enemyArray,player){
                 setOwnPlayer(getNext(-1,playerArray,enemyArray));
             }
         }else{
+            actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn"
             setOwnPlayer(next);
         }
     }
 
-    heal.onclick = function(){
+    heal.onclick =  function(){
         console.clear();
         for(let i = 3; i <= 5; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 if(preVerifyTarget((i-3),playerArray, 100, "heal")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
+                    await sleep(4000)
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -245,6 +262,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn"
                         setOwnPlayer(next);
                     }
                 }
@@ -254,7 +272,7 @@ function playerAction(playerArray,enemyArray,player){
     item.onclick = function(){
         console.clear();
         for(let i = 0; i <= 2; i++){
-            charId[i].onclick = function(){
+            charId[i].onclick = async function(){
                 console.log("Help");
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
@@ -262,6 +280,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                         console.log("Help");
                     playerArray[player].useItem(enemyArray[i],values[3]);
+                    await sleep(4000)
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -276,6 +295,7 @@ function playerAction(playerArray,enemyArray,player){
                         }
                     }
                     else{
+                        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn"
                         setOwnPlayer(next);
                     }
                 }
@@ -318,9 +338,9 @@ function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
     
-    action = 0
+    
     if(action === 0){
-        setTimeout(function(){toAct.damage_single(playerArray[target],values[4])},2000);
+        toAct.damage_single(playerArray[target],values[4]);
     } else if(action === 1){
         toAct.damage(playerArray,values[5]);
     } else if(action === 2){
