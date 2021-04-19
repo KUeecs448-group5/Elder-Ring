@@ -219,7 +219,7 @@ let bAaoe=[
     [//replace with neon genesis aoe
         "assets/sniper.png",
         "assets/berserk.png",
-        "assets/rocketPunch.png"
+        "assets/beast.png"
     ]
 ];
 
@@ -236,8 +236,8 @@ let bAitem=[
     ],
     [ //neon genesis items
         "assets/cannon.png",
-        "assets/VampireFang.png",
-        "assets/NitroPowder.png"
+        "assets/rifle.png",
+        "assets/bazooka.png"
     ]
 ];
 
@@ -279,7 +279,7 @@ let bTaoe=[
     [//aoe
         "<strong>Sniper Rifle</strong>",
         "<strong>Berserk</strong>",
-        "<strong>Fury</strong>"
+        "<strong>Beast Mode</strong>"
     ]
 ];
 
