@@ -109,15 +109,7 @@ export default class Character{
 		if(man>=0){
 			if(this.getNumberValue()>2){
 				document.getElementById(manaId[this.getNumberValue()]).innerHTML = man;
-				if(this.getNumberValue() == 3){
-					document.getElementById("manabar1").value = man
-				}
-				else if(this.getNumberValue() == 4){
-					document.getElementById("manabar2").value = man
-				}
-				else if(this.getNumberValue() == 5){
-					document.getElementById("manabar3").value = man
-				}
+				document.getElementById(manaId[this.getNumberValue()-3]).value = man;
 			}
 			this.magic = man;
 			//console.log( this.getName() + " used " +  mana + " Mana. " + this.magic + " Mana remaining.");

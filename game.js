@@ -22,7 +22,7 @@ function newGame(world){
 
 let gameMode = 0;
 
-let names = [
+let names = [//names of allies
     [
         "Hodir",
         "Solaire",
@@ -40,7 +40,7 @@ let names = [
     ]
 ];
 
-let enames = [
+let enames = [//names of enemies
     [
         "Skeleton 1",
         "Skeleton Boss",
@@ -60,13 +60,13 @@ let enames = [
 
 let actionBox = document.getElementById("infoBox2");
 
-let music = [
+let music = [//id tag for audio
     "PPP",
     "OWA",
     "NGE"
 ];
 
-let playerIdleGifs = [
+let playerIdleGifs = [//default player animation
     [
         "assets/DS-dir/characters/spear.gif",
         "assets/DS-dir/characters/solaire.gif",
@@ -84,7 +84,7 @@ let playerIdleGifs = [
     ]
 ];
 
-let enemyIdleGifs = [
+let enemyIdleGifs = [//default enemy animation
     [
         "assets/DS-dir/characters/skeleton.gif",
         "assets/DS-dir/characters/nito.gif",
@@ -102,14 +102,14 @@ let enemyIdleGifs = [
     ]
 ];
 
-let background = [
+let background = [//background image
     "assets/DS-dir/Battle.jpeg",
     "assets/FF-dir/Battle2.jpg",
     "assets/NGE-dir/Battle3.jpg"
 ];
 
 
-var charId = [
+var charId = [//character images
     document.getElementById("enemy1Click"),
     document.getElementById("enemy2Click"),
     document.getElementById("enemy3Click"),
@@ -118,13 +118,13 @@ var charId = [
     document.getElementById("player3Click"),
 ];
 
-var nameId = [
+var nameId = [//front end name plates
     document.getElementById("name1"),
     document.getElementById("name2"),
     document.getElementById("name3")
 ];
 
-var values = [
+var values = [//values for attacks [damage, mana cost]
     [15,10],//single attack player 0
     [5,5],//aoe player 1
     [10,15],//heal player 2
@@ -205,7 +205,7 @@ let bAattack =[//button Asset attack
     ]
 ];
 
-let bAaoe=[
+let bAaoe=[//aoe button assets
     [//all aoe button images
         "assets/DS-dir/aoe/aoe.png",
         "assets/DS-dir/aoe/lightning_storm.png",
@@ -223,7 +223,7 @@ let bAaoe=[
     ]
 ];
 
-let bAitem=[
+let bAitem=[//item button assets
     [//all item button images
         "assets/DS-dir/item/bomb.png",
         "assets/DS-dir/item/lightning_urn.png",
@@ -241,7 +241,7 @@ let bAitem=[
     ]
 ];
 
-let bAheal=[
+let bAheal=[//heal button assets
     "assets/DS-dir/heal.png",
     "assets/FF-dir/cure.png",
     "assets/NGE-dir/engine-charge.png"
@@ -265,7 +265,7 @@ let bTattack =[//button Text attack
     ]
 ];
 
-let bTaoe=[
+let bTaoe=[//aoe text
     [//all aoe button images
         "<strong>Fire Storm</strong>",
         "<strong>Lightning Strike</strong>",
@@ -283,7 +283,7 @@ let bTaoe=[
     ]
 ];
 
-let bTitem=[
+let bTitem=[//item text
     [//all item button images
         "<strong>Fire Bomb</strong>",
         "<strong>Lightning Urn</strong>",
@@ -301,7 +301,7 @@ let bTitem=[
     ]
 ];
 
-let bTheal=[
+let bTheal=[//heal text
     "<strong>Estus Flask</strong>",
     "<strong>Cure</strong>",
     "<strong>S2 Engine Charge</strong>"
