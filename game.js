@@ -115,7 +115,7 @@ var values = [
 ];
 
 function worldChange(){
-    console.log("Changing things");
+    console.log("Changing worlds");
     document.getElementById("background").src = background[gameMode];
     for(let i=0;i<=2;i++){
         charId[i].src = enemyIdleGifs[gameMode][i];
@@ -264,22 +264,22 @@ function playerAction(playerArray,enemyArray,player){
     var attack = document.getElementById("Attack");
     attack.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTattack[gameMode][player];
-        document.getElementById("infoBox").innerHTML = "Single attack. Moderate damage(10-25). Mana cost: 10";
+        document.getElementById("infoBox").innerHTML = "Attack a single enemy with your "+bTattack[gameMode][player]+".<br />Damage: 10-25<br />Mana cost: 10";
     })
     var aoe = document.getElementById("AOE");
     aoe.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTaoe[gameMode][player];
-        document.getElementById("infoBox").innerHTML = "Area of Effect attack. Low damage(5-15) but damages all enemies. Mana cost:15";
+        document.getElementById("infoBox").innerHTML = "Attack all enemies with "+bTaoe[gameMode][player]+".<br />Damage: 5-15 (per enemy)<br />Mana cost: 15";
     })
     var heal = document.getElementById("Heal");
     heal.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTheal[gameMode];
-        document.getElementById("infoBox").innerHTML = "Heal target from 10-20 health. Mana cost: 10";
+        document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 10";
     })
     var item = document.getElementById("Item");
     item.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTitem[gameMode][player];
-        document.getElementById("infoBox").innerHTML = "Throw a bomb at a single enemy. Mana cost:0, but only 3 uses";
+        document.getElementById("infoBox").innerHTML = "Throw a "+bTitem[gameMode][player]+" at a single enemy.<br />Damage: 20-30<br />Mana cost: 0<br />Inventory: "+playerArray[player].item;
     })
     attack.onclick =  function(){
         console.clear();
