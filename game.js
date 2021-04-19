@@ -80,7 +80,7 @@ let playerIdleGifs = [//default player animation
     [
         "assets/NGE-dir/characters/unit00.png",
         "assets/NGE-dir/characters/unit01.gif",
-        "assets/NGE-dir/characters/unit02.gif"
+        "assets/NGE-dir/characters/unit02.png"
     ]
 ];
 
@@ -307,6 +307,24 @@ let bTheal=[//heal text
     "<strong>S2 Engine Charge</strong>"
 ];
 
+let bANattack=[
+    [
+        "unit00attack.gif",
+        "unit01attack.gif",
+        "unit02attack.gif"
+    ],
+    [
+        "unit00attack.gif",
+        "unit01attack.gif",
+        "unit02attack.gif"
+    ],
+    [
+        "assets/NGE-dir/animations/unit02attack.gif",
+        "assets/NGE-dir/animations/unit02attack.gif",
+        "assets/NGE-dir/animations/unit02attack.gif"
+    ],
+];
+
 function playerAction(playerArray,enemyArray,player){
     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"	
     //actionBox.innerHTML = "It is now " + playerArray[player].getName() + "'s turn"
@@ -350,7 +368,9 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){};
                     playerArray[player].damage_single(enemyArray[i],values[0]);
+                    charId[i+3].src = bANattack[gameMode][i];
                     await sleep(4000);
+                    charId[i+3].src = playerIdleGifs[gameMode][i];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
