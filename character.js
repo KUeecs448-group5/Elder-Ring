@@ -149,7 +149,7 @@ export default class Character{
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName());
 			this.applyHeal(defender,nums[0]);
-			actionBox.innerHTML = this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName()
+			actionBox.innerHTML = this.getName() + " does heal " + defender.getName() + " for "+ nums[0] +" health on."
 		}
 	}
 	
