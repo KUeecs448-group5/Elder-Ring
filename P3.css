@@ -86,25 +86,28 @@
 
 .characterInfo{
     position: fixed;
-    left: 55%;
+    left: 75%;
     font-size: 150%;
 }
 .label{
     bottom: 25%;
 }
 .c1{
-    top: 17%;
-    left:40%;
+    top: 20%;
+    left:65.75%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c2{
-    top: 37%;
-    left:40%;
+    top: 40%;
+    left:65.75%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c3{
-    top: 57%;
-    left:40%;
+    top: 60%;
+    left:65.75%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .name{
