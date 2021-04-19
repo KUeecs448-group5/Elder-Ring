@@ -24,7 +24,7 @@ let gameMode = 0;
 
 let names = [
     [
-        "Halberd Master, Hodir",
+        "Hodir",
         "Solaire",
         "Artorias"
     ],
