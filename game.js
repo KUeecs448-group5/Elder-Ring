@@ -291,6 +291,10 @@ function playerAction(playerArray,enemyArray,player){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
+                    attack.onclick = function(){};
+                    aoe.onclick = function(){};
+                    heal.onclick = function(){};
+                    item.onclick = function(){};
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -318,6 +322,13 @@ function playerAction(playerArray,enemyArray,player){
 
     aoe.onclick = async function(){
         console.clear();
+        attack.onclick = function(){};//disable buttons to prevent spam click
+        aoe.onclick = function(){};
+        heal.onclick = function(){};
+        item.onclick = function(){};
+        for(let i = 0; i <= 5; i++){//disable buttons
+            charId[i].onclick = function(){};
+        }
         playerArray[player].damage(enemyArray,values[1]);
         await sleep(4000);
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -346,6 +357,10 @@ function playerAction(playerArray,enemyArray,player){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
+                    attack.onclick = function(){};
+                    aoe.onclick = function(){};
+                    heal.onclick = function(){};
+                    item.onclick = function(){};
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
                     await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -378,7 +393,10 @@ function playerAction(playerArray,enemyArray,player){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
                         }
-                        console.log("Help");
+                    attack.onclick = function(){};
+                    aoe.onclick = function(){};
+                    heal.onclick = function(){};
+                    item.onclick = function(){};
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     await sleep(4000);
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
