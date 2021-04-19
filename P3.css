@@ -51,6 +51,7 @@
 
 .boss img{
     width: 15%;
+    max-height: 16%;
 }
 
 .HP{
@@ -213,6 +214,10 @@
 
 .FF{
     top: 62vh;
+}
+
+.NGE{
+    top: 67vh;
 }
 
 #infoBox2{

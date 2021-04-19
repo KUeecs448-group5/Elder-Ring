@@ -34,6 +34,11 @@ let names = [
         "Tifa Lockhart",
         "Cloud Strife",
         "Barret Wallace"
+    ],
+    [
+        "Unit 00, Rei",
+        "Unit 01, Shinji",
+        "Unit 02, Asuka"
     ]
 ];
 
@@ -47,6 +52,11 @@ let enames = [
         "Skeleton 1",
         "Sephiroth",
         "Skeleton 2"
+    ],
+    [
+        "Skeleton 1",
+        "Angel",
+        "Skeleton 2"
     ]
 ]
 
@@ -54,7 +64,8 @@ let actionBox = document.getElementById("infoBox2");
 
 let music = [
     "PPP",
-    "OWA"
+    "OWA",
+    "NGE"
 ];
 
 let playerIdleGifs = [
@@ -67,6 +78,11 @@ let playerIdleGifs = [
         "assets/FFGirlIdle.gif",
         "assets/cloudStrifeIdle.gif",
         "assets/barretWallaceIdle.gif"
+    ],
+    [
+        "assets/unit00.png",
+        "assets/unit01.gif",
+        "assets/unit02.gif"
     ]
 ];
 
@@ -80,12 +96,18 @@ let enemyIdleGifs = [
         "assets/skeleton.gif",
         "assets/SephirothIdle.gif",
         "assets/skeleton.gif"
+    ],
+    [
+        "assets/skeleton.gif",
+        "assets/angel.gif",
+        "assets/skeleton.gif"
     ]
 ];
 
 let background = [
     "assets/Battle.jpeg",
-    "assets/Battle2.jpg"
+    "assets/Battle2.jpg",
+    "assets/Battle3.jpg"
 ];
 
 
@@ -174,6 +196,11 @@ let bAattack =[//button Asset attack
         "assets/LeatherGlove.png",
         "assets/busterSword.png",
         "assets/GatlingGun.png"
+    ],
+    [//replace with progressive knife png
+        "assets/LeatherGlove.png",
+        "assets/busterSword.png",
+        "assets/GatlingGun.png"
     ]
 ];
 
@@ -184,6 +211,11 @@ let bAaoe=[
         "assets/affinity.png"
     ],
     [//aoe
+        "assets/DragonClaw.png",
+        "assets/UltimaWeapon.png",
+        "assets/rocketPunch.png"
+    ],
+    [//replace with neon genesis aoe
         "assets/DragonClaw.png",
         "assets/UltimaWeapon.png",
         "assets/rocketPunch.png"
@@ -200,11 +232,17 @@ let bAitem=[
         "assets/SpiderSilk.png",
         "assets/VampireFang.png",
         "assets/NitroPowder.png"
+    ],
+    [ //neon genesis items
+        "assets/SpiderSilk.png",
+        "assets/VampireFang.png",
+        "assets/NitroPowder.png"
     ]
 ];
 
 let bAheal=[
     "assets/heal.png",
+    "assets/cure.png",
     "assets/cure.png"
 ];
 
@@ -218,6 +256,11 @@ let bTattack =[//button Text attack
         "<strong>Knuckles</strong>",
         "<strong>Buster Sword</strong>",
         "<strong>Gatling Gun</strong>"
+    ],
+    [//attack button
+        "<strong>Spear of Longinus</strong>",
+        "<strong>Progressive Knife</strong>",
+        "<strong>Sonic Glaive</strong>"
     ]
 ];
 
@@ -231,6 +274,11 @@ let bTaoe=[
         "<strong>Dragon Claw</strong>",
         "<strong>Ultima Weapon</strong>",
         "<strong>Rocket Punch</strong>"
+    ],
+    [//aoe
+        "<strong>Sniper Rifle</strong>",
+        "<strong>Berserk</strong>",
+        "<strong>Fury</strong>"
     ]
 ];
 
@@ -244,12 +292,18 @@ let bTitem=[
         "<strong>Spider Silk</strong>",
         "<strong>Vampire Fang</strong>",
         "<strong>Nitro Powder</strong>"
+    ],
+    [
+        "<strong>Positron Sniper Rifle</strong>",
+        "<strong>Pallet Rifle</strong>",
+        "<strong>Bazooka</strong>"
     ]
 ];
 
 let bTheal=[
     "<strong>Estus Flask</strong>",
-    "<strong>Cure</strong>"
+    "<strong>Cure</strong>",
+    "<strong>Umbilical Cable Charge</strong>"
 ];
 
 function playerAction(playerArray,enemyArray,player){
