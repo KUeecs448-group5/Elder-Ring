@@ -227,3 +227,16 @@
     color: white;
     font-size: 125%;
 }
+
+#restart{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px;
+}
+
+#restart:hover{
+    background-color: rgba(255, 255, 255, 0.25);
+}
