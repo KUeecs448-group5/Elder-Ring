@@ -68,44 +68,44 @@ let music = [
 
 let playerIdleGifs = [
     [
-        "assets/spear.gif",
-        "assets/solaire.gif",
-        "assets/artorias.gif"
+        "assets/DS-dir/characters/spear.gif",
+        "assets/DS-dir/characters/solaire.gif",
+        "assets/DS-dir/characters/artorias.gif"
     ],
     [
-        "assets/FFGirlIdle.gif",
-        "assets/cloudStrifeIdle.gif",
-        "assets/barretWallaceIdle.gif"
+        "assets/FF-dir/characters/FFGirlIdle.gif",
+        "assets/FF-dir/characters/cloudStrifeIdle.gif",
+        "assets/FF-dir/characters/barretWallaceIdle.gif"
     ],
     [
-        "assets/unit00.png",
-        "assets/unit01.gif",
-        "assets/unit02.gif"
+        "assets/NGE-dir/characters/unit00.png",
+        "assets/NGE-dir/characters/unit01.gif",
+        "assets/NGE-dir/characters/unit02.gif"
     ]
 ];
 
 let enemyIdleGifs = [
     [
-        "assets/skeleton.gif",
-        "assets/nito.gif",
-        "assets/skeleton.gif"
+        "assets/DS-dir/characters/skeleton.gif",
+        "assets/DS-dir/characters/nito.gif",
+        "assets/DS-dir/characters/skeleton.gif"
     ],
     [
-        "assets/skeleton.gif",
-        "assets/SephirothIdle.gif",
-        "assets/skeleton.gif"
+        "assets/FF-dir/characters/skeleton.gif",
+        "assets/FF-dir/characters/SephirothIdle.gif",
+        "assets/FF-dir/characters/skeleton.gif"
     ],
     [
-        "assets/massProducedEva2.png",
-        "assets/angel.gif",
-        "assets/massProducedEva1flip.png"
+        "assets/NGE-dir/characters/massProducedEva2.png",
+        "assets/NGE-dir/characters/angel.gif",
+        "assets/NGE-dir/characters/massProducedEva1flip.png"
     ]
 ];
 
 let background = [
-    "assets/Battle.jpeg",
-    "assets/Battle2.jpg",
-    "assets/Battle3.jpg"
+    "assets/DS-dir/Battle.jpeg",
+    "assets/FF-dir/Battle2.jpg",
+    "assets/NGE-dir/Battle3.jpg"
 ];
 
 
@@ -189,62 +189,62 @@ function setOwnPlayer(player){
 
 let bAattack =[//button Asset attack
     [//all sword button images
-        "assets/halberd.png",
-        "assets/solaire-sword.png",
-        "assets/sword.png"
+        "assets/DS-dir/single/halberd.png",
+        "assets/DS-dir/single/solaire-sword.png",
+        "assets/DS-dir/single/sword.png"
     ],
     [//attack button
-        "assets/LeatherGlove.png",
-        "assets/busterSword.png",
-        "assets/GatlingGun.png"
+        "assets/FF-dir/single/LeatherGlove.png",
+        "assets/FF-dir/single/busterSword.png",
+        "assets/FF-dir/single/GatlingGun.png"
     ],
     [//replace with progressive knife png
-        "assets/spear_of_longinus.png",
-        "assets/vibroKnife.png",
-        "assets/kensara.png"
+        "assets/NGE-dir/single/spear_of_longinus.png",
+        "assets/NGE-dir/single/vibroKnife.png",
+        "assets/NGE-dir/single/kensara.png"
     ]
 ];
 
 let bAaoe=[
     [//all aoe button images
-        "assets/aoe.png",
-        "assets/lightning_storm.png",
-        "assets/affinity.png"
+        "assets/DS-dir/aoe/aoe.png",
+        "assets/DS-dir/aoe/lightning_storm.png",
+        "assets/DS-dir/aoe/affinity.png"
     ],
     [//aoe
-        "assets/DragonClaw.png",
-        "assets/UltimaWeapon.png",
-        "assets/rocketPunch.png"
+        "assets/FF-dir/aoe/DragonClaw.png",
+        "assets/FF-dir/aoe/UltimaWeapon.png",
+        "assets/FF-dir/aoe/rocketPunch.png"
     ],
     [//replace with neon genesis aoe
-        "assets/sniper.png",
-        "assets/berserk.png",
-        "assets/beast.png"
+        "assets/NGE-dir/aoe/sniper.png",
+        "assets/NGE-dir/aoe/berserk.png",
+        "assets/NGE-dir/aoe/beast.png"
     ]
 ];
 
 let bAitem=[
     [//all item button images
-        "assets/bomb.png",
-        "assets/lightning_urn.png",
-        "assets/throwing_knife.png"
+        "assets/DS-dir/item/bomb.png",
+        "assets/DS-dir/item/lightning_urn.png",
+        "assets/DS-dir/item/throwing_knife.png"
     ],
     [
-        "assets/SpiderSilk.png",
-        "assets/VampireFang.png",
-        "assets/NitroPowder.png"
+        "assets/FF-dir/item/SpiderSilk.png",
+        "assets/FF-dir/item/VampireFang.png",
+        "assets/FF-dir/item/NitroPowder.png"
     ],
     [ //neon genesis items
-        "assets/cannon.png",
-        "assets/rifle.png",
-        "assets/bazooka.png"
+        "assets/NGE-dir/item/cannon.png",
+        "assets/NGE-dir/item/rifle.png",
+        "assets/NGE-dir/item/bazooka.png"
     ]
 ];
 
 let bAheal=[
-    "assets/heal.png",
-    "assets/cure.png",
-    "assets/engine-charge.png"
+    "assets/DS-dir/heal.png",
+    "assets/FF-dir/cure.png",
+    "assets/NGE-dir/engine-charge.png"
 ];
 
 let bTattack =[//button Text attack
