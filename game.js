@@ -7,9 +7,7 @@ function newGame(world){
     var menu = document.getElementById("start");
     menu.style.visibility = "hidden";
     gameMode = world;
-    if(gameMode != 0){
-        worldChange();
-    }
+    worldChange();
     document.getElementById(music[gameMode]).play();
     playerArray[0] = new Character(100,100,names[gameMode][0],3);
     playerArray[1] = new Character(100,100,names[gameMode][1],4);
@@ -26,7 +24,7 @@ let gameMode = 0;
 
 let names = [
     [
-        "Spear Knight",
+        "Halberd Master, Hodir",
         "Solaire",
         "Artorias"
     ],
@@ -198,7 +196,7 @@ let bAattack =[//button Asset attack
         "assets/GatlingGun.png"
     ],
     [//replace with progressive knife png
-        "assets/LeatherGlove.png",
+        "assets/spear_of_longinus.png",
         "assets/busterSword.png",
         "assets/GatlingGun.png"
     ]
@@ -310,7 +308,6 @@ function playerAction(playerArray,enemyArray,player){
     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"	
     //actionBox.innerHTML = "It is now " + playerArray[player].getName() + "'s turn"
     document.getElementById("name"+(player+1)).style.borderBottom = "solid yellow";
-    document.getElementById("MP"+(player+1)).style.borderBottom = "solid blue";
     //change button assets
     document.getElementById("weapon icon").src = bAattack[gameMode][player];
     document.getElementById("spell icon").src = bAaoe[gameMode][player];
