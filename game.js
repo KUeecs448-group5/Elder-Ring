@@ -98,9 +98,9 @@ let enemyIdleGifs = [
         "assets/skeleton.gif"
     ],
     [
-        "assets/skeleton.gif",
+        "assets/massProducedEva2.png",
         "assets/angel.gif",
-        "assets/skeleton.gif"
+        "assets/massProducedEva1flip.png"
     ]
 ];
 
@@ -154,6 +154,9 @@ function worldChange(){
         charId[5].style.transform = "scale(0.85)";
         //document.getElementById("player1").style.border = "solid 1px transparent"
     }
+    if(gameMode == 2){
+        charId[2].style.marginTop = "3%";
+    }
     document.getElementById("heal icon").src = bAheal[gameMode];
 }
 
@@ -199,7 +202,7 @@ let bAattack =[//button Asset attack
     ],
     [//replace with progressive knife png
         "assets/LeatherGlove.png",
-        "assets/busterSword.png",
+        "assets/vibroKnife.png",
         "assets/GatlingGun.png"
     ]
 ];
