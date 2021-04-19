@@ -199,17 +199,9 @@ let bAattack =[//button Asset attack
         "assets/GatlingGun.png"
     ],
     [//replace with progressive knife png
-<<<<<<< HEAD
         "assets/spear_of_longinus.png",
-        "assets/busterSword.png",
-||||||| 3a28e60
-        "assets/LeatherGlove.png",
-        "assets/busterSword.png",
-=======
-        "assets/LeatherGlove.png",
         "assets/vibroKnife.png",
->>>>>>> 41882384db8689c21074928c517760fa3beb11f6
-        "assets/GatlingGun.png"
+        "assets/kensara.png"
     ]
 ];
 
@@ -225,8 +217,8 @@ let bAaoe=[
         "assets/rocketPunch.png"
     ],
     [//replace with neon genesis aoe
-        "assets/DragonClaw.png",
-        "assets/UltimaWeapon.png",
+        "assets/sniper.png",
+        "assets/berserk.png",
         "assets/rocketPunch.png"
     ]
 ];
@@ -243,7 +235,7 @@ let bAitem=[
         "assets/NitroPowder.png"
     ],
     [ //neon genesis items
-        "assets/SpiderSilk.png",
+        "assets/cannon.png",
         "assets/VampireFang.png",
         "assets/NitroPowder.png"
     ]
@@ -252,7 +244,7 @@ let bAitem=[
 let bAheal=[
     "assets/heal.png",
     "assets/cure.png",
-    "assets/cure.png"
+    "assets/engine-charge.png"
 ];
 
 let bTattack =[//button Text attack
@@ -269,7 +261,7 @@ let bTattack =[//button Text attack
     [//attack button
         "<strong>Spear of Longinus</strong>",
         "<strong>Progressive Knife</strong>",
-        "<strong>Sonic Glaive</strong>"
+        "<strong>Kensara</strong>"
     ]
 ];
 
@@ -303,7 +295,7 @@ let bTitem=[
         "<strong>Nitro Powder</strong>"
     ],
     [
-        "<strong>Positron Sniper Rifle</strong>",
+        "<strong>Positron Cannon</strong>",
         "<strong>Pallet Rifle</strong>",
         "<strong>Bazooka</strong>"
     ]
@@ -312,7 +304,7 @@ let bTitem=[
 let bTheal=[
     "<strong>Estus Flask</strong>",
     "<strong>Cure</strong>",
-    "<strong>Umbilical Cable Charge</strong>"
+    "<strong>S2 Engine Charge</strong>"
 ];
 
 function playerAction(playerArray,enemyArray,player){
@@ -341,7 +333,7 @@ function playerAction(playerArray,enemyArray,player){
     var item = document.getElementById("Item");
     item.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTitem[gameMode][player];
-        document.getElementById("infoBox").innerHTML = "Throw a "+bTitem[gameMode][player]+" at a single enemy.<br />Damage: 20-30<br />Mana cost: 0<br />Inventory: "+playerArray[player].item;
+        document.getElementById("infoBox").innerHTML = "Use "+bTitem[gameMode][player]+" on a single enemy.<br />Damage: 20-30<br />Mana cost: 0<br />Inventory: "+playerArray[player].item;
     })
     attack.onclick =  function(){
         console.clear();
