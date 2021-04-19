@@ -52,9 +52,9 @@ let enames = [
         "Skeleton 2"
     ],
     [
-        "Skeleton 1",
+        "Mass Produced Eva 1",
         "Angel",
-        "Skeleton 2"
+        "Mass Produced Eva 2"
     ]
 ]
 
