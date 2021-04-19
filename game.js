@@ -4,6 +4,8 @@ import Character from './character.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 function newGame(world){
+    var menu = document.getElementById("start");
+    menu.style.visibility = "hidden";
     gameMode = world;
     if(gameMode != 0){
         worldChange(gameMode);

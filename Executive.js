@@ -3,12 +3,18 @@ import Character from './character.js';
 import * as gameRules from './game.js';
 
 var menu = document.getElementById("start");
+var dsStart = document.getElementById("start0");
+var ffStart = document.getElementById("start1");
 var debug = false;
+/*
 document.addEventListener("DOMContentLoaded", ()=>{
-    menu.onclick = function() {
+    dsStart.onclick = function() {
         console.log("Clicked")
         menu.style.visibility  = "hidden";
         gameRules.newGame(1);//start world 0/1
     }
-})    
+})
+*/
+dsStart.onclick = function() {gameRules.newGame(0)};
+ffStart.onclick = function() {gameRules.newGame(1)};
 export default debug;

@@ -196,15 +196,23 @@
     width: 40%;
     top: 40vh;
 }
-.DarkSouls{
+
+.start{
     z-index:0.5;
     font-size: 100%;
     position: fixed;
-    top: 57vh;
-    width: 36%;
-    left: 44%;
+    width: 40%;
+    left: 30%;
     color: white;
-    position: fixed;
+    background-color: black;
+}
+
+.DS{   
+    top: 57vh;
+}
+
+.FF{
+    top: 62vh;
 }
 
 #infoBox2{
