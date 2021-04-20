@@ -170,7 +170,7 @@ async function enemyAttack(){
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
             enemyAction(enemyArray, playerArray, enemyArray[i])
-            await sleep(3000)
+            await sleep(3000);
         }
         if(checkWin(playerArray)){
             alert("You Lost. Press the banner to play again.");
@@ -179,7 +179,12 @@ async function enemyAttack(){
         }
     }
     await sleep(2000)
-    actionBox.innerHTML = "It is now "+names[gameMode][0]+"'s turn"
+    for(let i=0; i<playerArray.length; i++){
+        if(playerArray[i].health !== 0){
+            actionBox.innerHTML = "It is now "+names[gameMode][0]+"'s turn";
+        }
+        i=playerArray.length;
+    }
 }
 
 function setOwnPlayer(player){
@@ -325,7 +330,7 @@ let bANattack=[
     ],
 ];
 
-let bANheal=[
+let bANdamage=[
     [
         "unit00attack.gif",
         "unit01attack.gif",
@@ -337,9 +342,9 @@ let bANheal=[
         "unit02attack.gif"
     ],
     [
-        "assets/NGE-dir/animations/unit00heal.gif",
-        "assets/NGE-dir/animations/unit01heal.gif",
-        "assets/NGE-dir/animations/unit02heal.gif"
+        "assets/NGE-dir/animations/unit02damage.gif",
+        "assets/NGE-dir/animations/unit02damage.gif",
+        "assets/NGE-dir/animations/unit02damage.gif"
     ],    
 ];
 
@@ -487,7 +492,6 @@ function playerAction(playerArray,enemyArray,player){
         console.clear();
         for(let i = 0; i <= 2; i++){
             charId[i].onclick = async function(){
-                console.log("Help");
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
@@ -553,20 +557,45 @@ function preVerifyTarget(retSelect,group, invalidVal, action){
     }
 }
 
-function enemyAction(enemyArray, playerArray, toAct){
+async function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
     
     
     if(action === 0){
         toAct.damage_single(playerArray[target],values[4]);
+        charId[target+3].src = bANdamage[gameMode][target];
+        await sleep(2500);
+        charId[target+3].src = playerIdleGifs[gameMode][target];
     } else if(action === 1){
         toAct.damage(playerArray,values[5]);
+        for(let i = 0; i < 3; i++){
+            charId[i+3].src = bANdamage[gameMode][i];
+        }
+        await sleep(2500);
+        for(let i = 0; i < 3; i++){
+            charId[i+3].src = playerIdleGifs[gameMode][i];
+        }
     } else if(action === 2){
         toAct.useItem(playerArray[target],values[3]);
+        charId[target+3].src = bANdamage[gameMode][target];
+        await sleep(2500);
+        charId[target+3].src = playerIdleGifs[gameMode][target];
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         target = retLowestHealth(enemyArray);
         toAct.heal_single(enemyArray[target],values[6]);
+        for(let i = 0; i < 3; i++){
+            charId[target].src = bAheal[gameMode];
+            await sleep(400);
+            charId[target].src = enemyIdleGifs[gameMode][target];
+            await sleep(400);
+        }
+    }
+    for(let i = 0; i < 3; i++){
+        charId[i].src = enemyIdleGifs[gameMode][i];
+    }
+    for(let i = 0; i < 3; i++){
+        charId[i+3].src = playerIdleGifs[gameMode][i];
     }
 }
 
