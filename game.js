@@ -332,18 +332,18 @@ let bANattack=[
 
 let bANdamage=[
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/NGE-dir/animations/",
+        "assets/DS-dir/animations/",
+        "assets/DS-dir/animations/",
     ],
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/FF-dir/animations/",
+        "assets/FF-dir/animations/",
+        "assets/FF-dir/animations/",
     ],
     [
-        "assets/NGE-dir/animations/unit02damage.gif",
-        "assets/NGE-dir/animations/unit02damage.gif",
+        "assets/NGE-dir/animations/unit00damage.gif",
+        "assets/NGE-dir/animations/unit01damage.gif",
         "assets/NGE-dir/animations/unit02damage.gif"
     ],    
 ];
