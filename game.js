@@ -319,10 +319,28 @@ let bANattack=[
         "unit02attack.gif"
     ],
     [
-        "assets/NGE-dir/animations/unit02attack.gif",
-        "assets/NGE-dir/animations/unit02attack.gif",
+        "assets/NGE-dir/animations/unit00attack.gif",
+        "assets/NGE-dir/animations/unit01attack.gif",
         "assets/NGE-dir/animations/unit02attack.gif"
     ],
+];
+
+let bANheal=[
+    [
+        "unit00attack.gif",
+        "unit01attack.gif",
+        "unit02attack.gif"
+    ],
+    [
+        "unit00attack.gif",
+        "unit01attack.gif",
+        "unit02attack.gif"
+    ],
+    [
+        "assets/NGE-dir/animations/unit00heal.gif",
+        "assets/NGE-dir/animations/unit01heal.gif",
+        "assets/NGE-dir/animations/unit02heal.gif"
+    ],    
 ];
 
 function playerAction(playerArray,enemyArray,player){
@@ -404,7 +422,9 @@ function playerAction(playerArray,enemyArray,player){
             charId[i].onclick = function(){};
         }
         playerArray[player].damage(enemyArray,values[1]);
+        charId[player+3].src = bANattack[gameMode][player];
         await sleep(4000);
+        charId[player+3].src = playerIdleGifs[gameMode][player];
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -436,7 +456,12 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){};
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
-                    await sleep(4000);
+                    for(let j = 0; j < 4; j++){
+                    charId[player+i].src = bAheal[gameMode];
+                    await sleep(500);
+                    charId[player+i].src = playerIdleGifs[gameMode][i-3];
+                    await sleep(500);
+                    }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -472,7 +497,9 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){};
                     playerArray[player].useItem(enemyArray[i],values[3]);
+                    charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
+                    charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
