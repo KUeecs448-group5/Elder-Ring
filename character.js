@@ -27,6 +27,10 @@ var manaId = [
 	"mana2",
 	"mana3"
 ]
+//For the Stamina 
+//var Stamina = Stamina + 10
+//if (fight with boss)
+//  {  return Stamina}
 
 let actionBox = document.getElementById("infoBox2");
 export default class Character{
