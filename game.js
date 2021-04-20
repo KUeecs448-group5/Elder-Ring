@@ -368,9 +368,9 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){};
                     playerArray[player].damage_single(enemyArray[i],values[0]);
-                    charId[i+3].src = bANattack[gameMode][i];
+                    charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
-                    charId[i+3].src = playerIdleGifs[gameMode][i];
+                    charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
