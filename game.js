@@ -457,9 +457,9 @@ function playerAction(playerArray,enemyArray,player){
                     item.onclick = function(){};
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
                     for(let j = 0; j < 4; j++){
-                    charId[player+i].src = bAheal[gameMode];
+                    charId[i].src = bAheal[gameMode];
                     await sleep(500);
-                    charId[player+i].src = playerIdleGifs[gameMode][i-3];
+                    charId[i].src = playerIdleGifs[gameMode][i-3];
                     await sleep(500);
                     }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
