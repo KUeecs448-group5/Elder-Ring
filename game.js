@@ -127,7 +127,7 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){};                    
-            aoe.onclick = async function(){
+           // aoe.onclick = async function(){
                     console.clear();
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
