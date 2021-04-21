@@ -122,6 +122,9 @@ export default class Character{
 		}
 		
 	}
+	// if(player.getMana < get[x][1])
+	//{ return Player.regen;
+	//}
 	
 	random(x){//function for returning a random number between 0 and x
 		return Math.trunc(Math.random()*(x+1));
