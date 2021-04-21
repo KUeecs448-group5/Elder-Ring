@@ -126,48 +126,8 @@ function playerAction(playerArray,enemyArray,player){
                     attack.onclick = function(){};
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
-                    item.onclick = function(){};
-                    //if(player.getMana < value[0][1])
-//{attack.onlick=function(){recharge mana}
-//else
-//{attack.onclick=function(){  for(let i = 0; i <= 2; i++){
-            //charId[i].onclick = async function(){
-                //if(preVerifyTarget(i,enemyArray, 0, "attack")){
-                    //for(let i = 0; i <= 5; i++){//disable buttons
-                        //    charId[i].onclick = function(){};
-                      //  }
-                    //attack.onclick = function(){};
-                    //aoe.onclick = function(){};
-                    //heal.onclick = function(){};
-                    //item.onclick = function(){};
-                    //playerArray[player].damage_single(enemyArray[i],values[0]);
-                    //charId[player+3].src = bANattack[gameMode][player];
-                    //await sleep(4000);
-                    //charId[player+3].src = playerIdleGifs[gameMode][player];
-                    //document.getElementById("name"+(player+1)).style.borderBottom = "none";
-                    //document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-                    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
-                    //var next = getNext(player, playerArray, enemyArray);
-                    //if(next === -1){
-                        //console.log("Enemy's turn");
-                        //enemyAttack();
-                        //if(!playerArray || playerArray.length == 0){
-                          //  alert("Team is dead");
-                        //}
-                        //else{
-                        //    setOwnPlayer(getNext(-1,playerArray,enemyArray));
-                      //  }
-                    //}
-                  //  else{
-                //        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
-              //          setOwnPlayer(next);
-            //        }
-          //      }
-        //    }
-      //  }
-    //}
-
-              aoe.onclick = async function(){
+                    item.onclick = function(){};                    
+            aoe.onclick = async function(){
                     console.clear();
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
@@ -279,6 +239,45 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){};
+                         //if(player.getMana < value[0][1])
+//{attack.onlick=function(){recharge mana}
+//else
+//{attack.onclick=function(){  for(let i = 0; i <= 2; i++){
+            //charId[i].onclick = async function(){
+                //if(preVerifyTarget(i,enemyArray, 0, "attack")){
+                    //for(let i = 0; i <= 5; i++){//disable buttons
+                        //    charId[i].onclick = function(){};
+                      //  }
+                    //attack.onclick = function(){};
+                    //aoe.onclick = function(){};
+                    //heal.onclick = function(){};
+                    //item.onclick = function(){};
+                    //playerArray[player].damage_single(enemyArray[i],values[0]);
+                    //charId[player+3].src = bANattack[gameMode][player];
+                    //await sleep(4000);
+                    //charId[player+3].src = playerIdleGifs[gameMode][player];
+                    //document.getElementById("name"+(player+1)).style.borderBottom = "none";
+                    //document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                    //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
+                    //var next = getNext(player, playerArray, enemyArray);
+                    //if(next === -1){
+                        //console.log("Enemy's turn");
+                        //enemyAttack();
+                        //if(!playerArray || playerArray.length == 0){
+                          //  alert("Team is dead");
+                        //}
+                        //else{
+                        //    setOwnPlayer(getNext(-1,playerArray,enemyArray));
+                      //  }
+                    //}
+                  //  else{
+                //        actionBox.innerHTML = "It is now " + playerArray[next].getName() + "'s turn";
+              //          setOwnPlayer(next);
+            //        }
+          //      }
+        //    }
+      //  }
+    //}
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
