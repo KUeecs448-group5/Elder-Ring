@@ -126,7 +126,10 @@ function playerAction(playerArray,enemyArray,player){
                     attack.onclick = function(){};
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
-                    item.onclick = function(){};                    
+                    item.onclick = function(){};
+                    //if(play.getMana()<value[0][1])
+//                      {recharge mana}
+//                      else{ these thing bleow}
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
