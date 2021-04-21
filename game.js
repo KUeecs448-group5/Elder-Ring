@@ -164,9 +164,8 @@ function playerAction(playerArray,enemyArray,player){
       //  }
     //}
 
-    //aoe.onclick = async function(){
-  //      console.clear();
-//}
+              aoe.onclick = async function(){
+                    console.clear();
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
