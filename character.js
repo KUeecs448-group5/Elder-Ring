@@ -185,6 +185,9 @@ export default class Character{
 	getHealth(){
 		return this.health;
 	}
+	getMana(){
+		return this.Magic;
+	}
 
 	isAlive(){
 		if(this.health < 1){
