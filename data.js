@@ -229,9 +229,9 @@ let bTheal=[//heal text
 
 let bANattack=[
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/DS-dir/animations/halberdGif.gif",
+        "assets/DS-dir/animations/solaireCrop.png",
+        "assets/DS-dir/animations/solairPraise.png"
     ],
     [
         "unit00attack.gif",

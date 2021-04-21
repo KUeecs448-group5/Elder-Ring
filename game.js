@@ -28,25 +28,28 @@ let actionBox = document.getElementById("infoBox2");
 function worldChange(){
     console.log("Changing worlds");
     document.getElementById("background").src = background[gameMode];
-    for(let i=0;i<=2;i++){
+    for(let i=0;i<=2;i++){//loop for changing the enemies
         charId[i].src = enemyIdleGifs[gameMode][i];
     }
-    for(let i=0;i<=2;i++){
+    for(let i=0;i<=2;i++){//loop for changing the players
         charId[i+3].src = playerIdleGifs[gameMode][i];
     }
-    for(let i=0;i<=2;i++){
+    for(let i=0;i<=2;i++){//loop for changing player names
         nameId[i].innerHTML = names[gameMode][i];
     }
-    if(gameMode == 1){
+    for(let i=4;i<=6;i++){//loop for changing enemy damage values
+        values[i][1] = values[i][1] + (gameMode*5);
+    }
+    if(gameMode == 1){//conditional for adjusting some image scales
         charId[3].style.transform = "scale(0.85)";
         charId[4].style.width = "200px";
         charId[5].style.transform = "scale(0.85)";
         //document.getElementById("player1").style.border = "solid 1px transparent"
     }
-    if(gameMode == 2){
+    if(gameMode == 2){//conditional for adjusting some image scales
         charId[2].style.marginTop = "3%";
     }
-    document.getElementById("heal icon").src = bAheal[gameMode];
+    document.getElementById("heal icon").src = bAheal[gameMode];//heal button has to be changed here}
 }
 
 function sleep(ms) {
