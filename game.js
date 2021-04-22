@@ -134,9 +134,9 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){}; 
-                    //if(play.getMana()<value[0][1])
-                    //{recharge mana}
-                    //}else{            
+                   if(playerArray[player].getMana()<value[0][1])
+                     {playerArray[player].magic= playerArray[player].magic+10;}// recharge mana
+                else{            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
@@ -144,6 +144,7 @@ function playerAction(playerArray,enemyArray,player){
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
+                    }
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
