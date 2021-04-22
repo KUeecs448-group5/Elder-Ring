@@ -36,6 +36,7 @@ function worldChange(){
     }
     for(let i=0;i<=2;i++){//loop for changing player names
         nameId[i].innerHTML = names[gameMode][i];
+        nameId[i+3].innerHTML = enames[gameMode][i];
     }
     for(let i=4;i<=6;i++){//loop for changing enemy damage values
         values[i][1] = values[i][1] + (gameMode*5);
@@ -63,8 +64,10 @@ async function enemyAttack(){
     for(let i = 0; i < enemyArray.length; i++){
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
+            document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
             enemyAction(enemyArray, playerArray, enemyArray[i])
             await sleep(3000);
+            document.getElementById("name"+(3+i)).style.borderBottom = "none";
         }
         if(checkWin(playerArray)){
             alert("You Lost. Press the banner to play again.");
@@ -118,7 +121,11 @@ function playerAction(playerArray,enemyArray,player){
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         //var select = verifyTarget(enemyArray, 0, "attack");
         for(let i = 0; i <= 2; i++){
+            
+            charId[i].onmouseover = function(){this.style.border = "dashed red 2.5px"}; //highlight potential target
+            charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
             charId[i].onclick = async function(){
+                this.style.border = "solid red 2.5px"; //highlight target
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
@@ -133,10 +140,10 @@ function playerAction(playerArray,enemyArray,player){
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
+                    this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-                    
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
@@ -159,6 +166,9 @@ function playerAction(playerArray,enemyArray,player){
     }
 
     aoe.onclick = async function(){
+        for(let i = 0; i < 3; i++){ //highlight targets
+            charId[i].style.border = "solid red 2.5px";
+        }
         console.clear();
         attack.onclick = function(){};//disable buttons to prevent spam click
         aoe.onclick = function(){};
@@ -170,6 +180,9 @@ function playerAction(playerArray,enemyArray,player){
         playerArray[player].damage(enemyArray,values[1]);
         charId[player+3].src = bANattack[gameMode][player];
         await sleep(4000);
+        for(let i = 0; i < 3; i++){  //remove highlight from targets
+            charId[i].style.border = "none";
+        }
         charId[player+3].src = playerIdleGifs[gameMode][player];
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
@@ -192,6 +205,8 @@ function playerAction(playerArray,enemyArray,player){
     heal.onclick = async function(){
         console.clear();
         for(let i = 3; i <= 5; i++){
+            charId[i].onmouseover = function(){this.style.border = "dashed orange 2.5px"}; //highlight potential target
+            charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
             charId[i].onclick = async function(){
                 if(preVerifyTarget((i-3),playerArray, 100, "heal")){
                     for(let i = 0; i <= 5; i++){//disable buttons
@@ -233,7 +248,10 @@ function playerAction(playerArray,enemyArray,player){
     item.onclick = async function(){
         console.clear();
         for(let i = 0; i <= 2; i++){
+            charId[i].onmouseover = function(){this.style.border = "dashed red 2.5px"}; //highlight potential target
+            charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
             charId[i].onclick = async function(){
+                this.style.border = "solid red 2.5px"; //highlight target
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
@@ -246,9 +264,9 @@ function playerAction(playerArray,enemyArray,player){
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
+                    this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
-                    document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
                         console.log("Enemy's turn");

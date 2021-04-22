@@ -27,20 +27,20 @@
 #row1{
     width: 100%;
     position: fixed;
-    top: 5%;
+    top: 1%;
 }
 #row2{
     width: 100%;
     position: fixed;
-    top: 25%;
+    top: 23.5%;
 }
 #row3{
     width: 100%;
     position: fixed;
-    top: 45%;
+    top: 46%;
 }
 .player{
-    position: fixed;
+    position: absolute;
     right: 2.5%;
 }
 .player img{
@@ -48,15 +48,17 @@
     height: 175px;
 }
 .enemy{
+    position: absolute;
     left: 2.5%;
 }
 .skeleton img{
-    width: 7%;
+    height: 175px;
+    width: auto;
 }
 
 .boss img{
-    width: 15%;
-    max-height: 16%;
+    height: 250px;
+    width: auto;
 }
 
 .HP{
@@ -92,31 +94,45 @@
 .characterInfo{
     position: fixed;
     left: 75%;
-    font-size: 150%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .label{
     bottom: 25%;
 }
 .c1{
     top: 20%;
-    left:65.75%;
-    background-color: rgba(0, 0, 0, 0.1);
+    left:65.75%; 
 }
 
 .c2{
     top: 40%;
-    left:65.75%;
-    background-color: rgba(0, 0, 0, 0.1);
+    left:65.75%;   
 }
 
 .c3{
     top: 60%;
-    left:65.75%;
-    background-color: rgba(0, 0, 0, 0.1);
+    left:65.75%;    
+}
+
+.e1{
+    top: 25%;
+    left:25.75%;
+}
+
+.e2{
+    top: 45%;
+    left:25.75%;
+}
+
+.e3{
+    top: 65%;
+    left:25.75%;
 }
 
 .name{
     color: yellow;
+    font-size: 150%;
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .mana{

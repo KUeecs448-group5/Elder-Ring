@@ -94,7 +94,10 @@ var charId = [//character images
 var nameId = [//front end name plates
     document.getElementById("name1"),
     document.getElementById("name2"),
-    document.getElementById("name3")
+    document.getElementById("name3"),
+    document.getElementById("name4"),
+    document.getElementById("name5"),
+    document.getElementById("name6")
 ];
 
 var values = [//values for attacks [damage, mana cost]
