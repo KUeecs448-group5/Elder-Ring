@@ -128,15 +128,15 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){}; 
                     //if(play.getMana()<value[0][1])
-//                      {recharge mana}
-                }else{            
+                    //{recharge mana}
+                    //}else{            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-                    }
+                    
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
@@ -268,6 +268,7 @@ function playerAction(playerArray,enemyArray,player){
             }
         }
     }
+}
 
 /*function verifyTarget(group, invalidVal, action){
     var retSelect = parseInt(prompt("Who would you like to " + action + "?:"));
