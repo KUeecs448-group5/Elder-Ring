@@ -27,8 +27,10 @@ var manaId = [
 	"mana2",
 	"mana3"
 ]
-
-let actionBox = document.getElementById("infoBox2");
+//For the Stamina 
+//var Stamina = Stamina + 10
+//if (fight with boss)
+//  {  return Stamina}
 export default class Character{
 	
 	constructor(m_health, m_magic, m_name, numberValue){
@@ -120,6 +122,9 @@ export default class Character{
 		}
 		
 	}
+	// if(player.getMana < get[x][1])
+	//{ return Player.regen;
+	//}
 	
 	random(x){//function for returning a random number between 0 and x
 		return Math.trunc(Math.random()*(x+1));
@@ -132,7 +137,7 @@ export default class Character{
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName());
 			//await this.sleep(3000)
-			actionBox.innerHTML = this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName()
+			//actionBox.innerHTML = this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName()
 			this.applyDamage(defender, nums[0]);
 		}
 	}
@@ -141,7 +146,7 @@ export default class Character{
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName());
 			this.applyHeal(defender,nums[0]);
-			actionBox.innerHTML = this.getName() + " does heal " + defender.getName() + " for "+ nums[0] +" base health."
+			//actionBox.innerHTML = this.getName() + " does heal " + defender.getName() + " for "+ nums[0] +" base health."
 		}
 	}
 	
@@ -159,13 +164,13 @@ export default class Character{
 		if(this.item>0){
 			console.log(this.getName() + " used an item on " + defender.getName());
 			this.applyDamage(defender,nums[0]);
-			actionBox.innerHTML = this.getName() + " used an item on " + defender.getName()
+			//actionBox.innerHTML = this.getName() + " used an item on " + defender.getName()
 			this.item--;
 			console.log(this.getName() + " item inventory: " + this.item);
 			
 		}
 		else{
-			actionBox.innerHTML = "Failed attacking with item";
+			//actionBox.innerHTML = "Failed attacking with item";
 		}
 	}
 	
@@ -179,6 +184,9 @@ export default class Character{
 
 	getHealth(){
 		return this.health;
+	}
+	getMana(){
+		return this.Magic;
 	}
 
 	isAlive(){
