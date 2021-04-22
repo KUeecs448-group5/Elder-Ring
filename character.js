@@ -68,7 +68,7 @@ export default class Character{
 		// 	}
 		// }
 		// else{
-			if(defender.health - dam >= 0)
+			if(defender.health - dam > 0)
 			{
 				defender.health = defender.health - dam;
 			}
