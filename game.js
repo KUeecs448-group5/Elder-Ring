@@ -1,7 +1,7 @@
 //overall game function
 import debug from './Executive.js';
 import Character from './character.js';
-import {names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage} from './data.js';
+import {names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 function newGame(world){
@@ -10,7 +10,7 @@ function newGame(world){
     gameMode = world;
     worldChange();
     document.getElementById(music[gameMode]).play();
-    playerArray[0] = new Character(100,100,names[gameMode][0],3);
+    playerArray[0] = new Character(100,10,names[gameMode][0],3);
     playerArray[1] = new Character(100,100,names[gameMode][1],4);
     playerArray[2] = new Character(100,100,names[gameMode][2],5);
 
@@ -134,17 +134,22 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){}; 
-                   if(playerArray[player].getMana()<value[0][1])
-                     {playerArray[player].magic= playerArray[player].magic+10;}// recharge mana
+                    if(playerArray[player].getMana()<values[0][1]){   
+                        playerArray[player].magic= playerArray[player].magic+10;
+                        if(playerArray[player].getNumberValue()>2){
+                            document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
+                            document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
+                    }
+                }// recharge mana
                 else{            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
+                }
                     await sleep(4000);
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
-                    }
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){

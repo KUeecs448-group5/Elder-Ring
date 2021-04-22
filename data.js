@@ -266,4 +266,31 @@ let bANdamage=[
     ],    
 ];
 
-export{names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage};
+var deathId = [
+	"enemy1",
+	"enemy2",
+	"enemy3",
+	"player1",
+	"player2",
+	"player3"
+];
+
+var healthId = [
+	["ehealth1","ehealthbar1"],
+	["ehealth2","ehealthbar2"],
+	["ehealth3","ehealthbar3"],
+	["health1","healthbar1"],
+	["health2","healthbar2"],
+	["health3","healthbar3"]
+];
+
+var manaId = [
+	"manabar1",
+	"manabar2",
+	"manabar3",
+	"mana1",
+	"mana2",
+	"mana3"
+];
+
+export{names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
