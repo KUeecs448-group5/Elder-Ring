@@ -231,7 +231,7 @@ let bANattack=[
     [
         "assets/DS-dir/animations/halberdGif.gif",
         "assets/DS-dir/animations/solaireCrop.png",
-        "assets/DS-dir/animations/solairPraise.png"
+        "assets/DS-dir/animations/artoriasAttack3.gif"
     ],
     [
         "unit00attack.gif",
