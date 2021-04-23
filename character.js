@@ -194,4 +194,8 @@ Param: defender, the enemy being attacked
 			return true;
 		}
 	}
+
+	getInv(){
+		return this.item;
+	}
 }

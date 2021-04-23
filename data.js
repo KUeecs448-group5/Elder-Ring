@@ -293,4 +293,22 @@ var manaId = [//id of the mana bars and numbers
 	"mana3"
 ];
 
-export{names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
+let words = [//attack log text for variety
+    [//attack
+        " slashes ",
+        " blasts ",
+        " hits "
+    ],
+    [
+        " blows them away!",
+        " blasts them!",
+        " goes all out!"
+    ],
+    [
+        " heals ",
+        " cures ",
+        " regenerates "
+    ]
+]
+
+export{words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};

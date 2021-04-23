@@ -1,7 +1,7 @@
 //overall game function
 import debug from './Executive.js';
 import Character from './character.js';
-import {names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
+import {words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 /**
@@ -16,7 +16,7 @@ Param: world, the world id set by the level select
     gameMode = world;
     worldChange();
     document.getElementById(music[gameMode]).play();
-    playerArray[0] = new Character(100,10,names[gameMode][0],3);
+    playerArray[0] = new Character(100,100,names[gameMode][0],3);
     playerArray[1] = new Character(100,100,names[gameMode][1],4);
     playerArray[2] = new Character(100,100,names[gameMode][2],5);
 
@@ -24,6 +24,8 @@ Param: world, the world id set by the level select
     enemyArray[1] = new Character(200,100,enames[gameMode][1],1);
     enemyArray[2] = new Character(100,100,enames[gameMode][2],2);
     
+    actionBox.innerHTML = "Welcome to Elder Ring. To Attack press one of the buttons to the left then click on your target.";
+
     setOwnPlayer(0);
 }
 
@@ -141,10 +143,10 @@ function playerAction(playerArray,enemyArray,player){
     })
     attack.onclick =  function(){
         console.clear();
+        actionBox.innerHTML = "Click the enemy you wish to attack";
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
         //var select = verifyTarget(enemyArray, 0, "attack");
         for(let i = 0; i <= 2; i++){
-            
             charId[i].onmouseover = function(){this.style.border = "dashed red 2.5px"}; //highlight potential target
             charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
             charId[i].onclick = async function(){
@@ -157,20 +159,23 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){}; 
-                    if(playerArray[player].getMana()<values[0][1]){   
+                    if(playerArray[player].getMana()<values[0][1]){
+                        actionBox.innerHTML = playerArray[player].getName() + " is to tired and must rest.";   
                         playerArray[player].magic= playerArray[player].magic+10;
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
                     }
+                    await sleep(2500);
                 }// recharge mana
-                else{            
+                else{
+                    actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
-                }
                     await sleep(4000);
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
+                }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION";
@@ -206,24 +211,25 @@ function playerAction(playerArray,enemyArray,player){
         for(let i = 0; i <= 5; i++){//disable buttons
             charId[i].onclick = function(){};
         } 
-        
-        if(playerArray[player].getMana()<3*(values[1][1])){   
-                        playerArray[player].magic= playerArray[player].magic+10;
-                        if(playerArray[player].getNumberValue()>2){
-                            document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
-                            document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
-                    }
-                }
-                else{            
-                     playerArray[player].damage(enemyArray,values[1]);
-                     charId[player+3].src = bANattack[gameMode][player];
-                }
-       
+        if(playerArray[player].getMana()<3*(values[1][1])){
+            actionBox.innerHTML = playerArray[player].getName() + " is to tired and must rest.";   
+            playerArray[player].magic= playerArray[player].magic+10;
+            if(playerArray[player].getNumberValue()>2){
+                document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
+                document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
+            }
+            await sleep(2500);
+        }
+        else{    
+            actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
+            playerArray[player].damage(enemyArray,values[1]);
+            charId[player+3].src = bANattack[gameMode][player];
         await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
+    }
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
         var next = getNext(player, playerArray, enemyArray);
@@ -244,6 +250,7 @@ function playerAction(playerArray,enemyArray,player){
 
     heal.onclick = async function(){
         console.clear();
+        actionBox.innerHTML = "Click the ally you wish to heal";
         for(let i = 3; i <= 5; i++){
             charId[i].onmouseover = function(){this.style.border = "dashed orange 2.5px"}; //highlight potential target
             charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
@@ -261,18 +268,20 @@ function playerAction(playerArray,enemyArray,player){
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
+                        }
+                        await sleep(2500);
                     }
                 }
                 else{            
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
-                }
-                    
+                    actionBox.innerHTML = playerArray[player].getName() + randomWord(2) + playerArray[i-3].getName();
                     for(let j = 0; j < 4; j++){
                     charId[i].src = bAheal[gameMode];
                     await sleep(500);
                     charId[i].src = playerIdleGifs[gameMode][i-3];
                     await sleep(500);
                     }
+                }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -292,11 +301,12 @@ function playerAction(playerArray,enemyArray,player){
                     }
                 }
             }
-        }
+        
     }
 
     item.onclick = async function(){
         console.clear();
+        if(playerArray[player].getInv()>0){
         for(let i = 0; i <= 2; i++){
             charId[i].onmouseover = function(){this.style.border = "dashed red 2.5px"}; //highlight potential target
             charId[i].onmouseleave = function(){this.style.border = "none"}; //remove highlight
@@ -310,7 +320,7 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){};
-                         
+                    actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
@@ -334,6 +344,10 @@ function playerAction(playerArray,enemyArray,player){
                     }
                 }
             }
+        }
+        }
+        else{
+            actionBox.innerHTML = "Out of Items!";
         }
     }
 }
@@ -372,14 +386,38 @@ Param: enemyArray, enemyArray
 async function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
-    
+    if(toAct.getInv<=0){
+        while (action==2){
+            action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
+        }
+    }
+    while(!playerArray[target].isAlive()){
+        target = Math.floor(Math.random() * playerArray.length); 
+    }
     
     if(action === 0){
+        if(toAct.getMana()<values[4][1])
+        {
+            actionBox.innerHTML = toAct.getName() + " must rest";
+            toAct.magic = toAct.magic + 10;
+            await sleep(2500);
+        }
+        else{
+        actionBox.innerHTML = toAct.getName() + randomWord(0) + playerArray[target].getName();
         toAct.damage_single(playerArray[target],values[4]);
         charId[target+3].src = bANdamage[gameMode][target];
         await sleep(2500);
         charId[target+3].src = playerIdleGifs[gameMode][target];
+        }
     } else if(action === 1){
+        if(toAct.getMana()<(3*values[5][1]))
+        {
+            actionBox.innerHTML = toAct.getName() + " must rest";
+            toAct.magic = toAct.magic + 10;
+            await sleep(2500);
+        }
+        else{
+        actionBox.innerHTML = toAct.getName() + randomWord(1);
         toAct.damage(playerArray,values[5]);
         for(let i = 0; i < 3; i++){
             charId[i+3].src = bANdamage[gameMode][i];
@@ -388,19 +426,30 @@ async function enemyAction(enemyArray, playerArray, toAct){
         for(let i = 0; i < 3; i++){
             charId[i+3].src = playerIdleGifs[gameMode][i];
         }
+        }
     } else if(action === 2){
+        actionBox.innerHTML = toAct.getName() + " uses an item on " + playerArray[target].getName();
         toAct.useItem(playerArray[target],values[3]);
         charId[target+3].src = bANdamage[gameMode][target];
         await sleep(2500);
         charId[target+3].src = playerIdleGifs[gameMode][target];
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
+        if(toAct.getMana()<values[6][1])
+        {
+            actionBox.innerHTML = toAct.getName() + " must rest";
+            toAct.magic = toAct.magic + 10;
+            await sleep(2500);
+        }
+        else{
         target = retLowestHealth(enemyArray);
+        actionBox.innerHTML = toAct.getName() + randomWord(0) + enemyArray[target].getName();
         toAct.heal_single(enemyArray[target],values[6]);
         for(let i = 0; i < 3; i++){
             charId[target].src = bAheal[gameMode];
             await sleep(400);
             charId[target].src = enemyIdleGifs[gameMode][target];
             await sleep(400);
+        }
         }
     }
     for(let i = 0; i < 3; i++){
@@ -470,6 +519,10 @@ function retLowestHealth(array) {
         }
     }
     return(retNum);
+}
+
+function randomWord(type){
+    return words[type][Math.trunc(Math.random()*3)];
 }
 
 export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin
