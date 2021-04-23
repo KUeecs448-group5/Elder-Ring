@@ -83,14 +83,15 @@ Post: all enemies have taken their turn
 Param: 
 **/  
 async function enemyAttack(){
+    attack.disabled = true;
+    aoe.disabled = true;
+    heal.disabled = true;
+    item.disabled = true;
     await sleep(2000)
     actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
-        attack.disabled = true;
-        aoe.disabled = true;
-        heal.disabled = true;
-        item.disabled = true;
+        
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
