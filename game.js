@@ -182,9 +182,20 @@ function playerAction(playerArray,enemyArray,player){
         item.onclick = function(){};
         for(let i = 0; i <= 5; i++){//disable buttons
             charId[i].onclick = function(){};
-        }
-        playerArray[player].damage(enemyArray,values[1]);
-        charId[player+3].src = bANattack[gameMode][player];
+        } 
+        
+        if(playerArray[player].getMana()<values[1][1]){   
+                        playerArray[player].magic= playerArray[player].magic+10;
+                        if(playerArray[player].getNumberValue()>2){
+                            document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
+                            document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
+                    }
+                }
+                else{            
+                     playerArray[player].damage(enemyArray,values[1]);
+                     charId[player+3].src = bANattack[gameMode][player];
+                }
+       
         await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
