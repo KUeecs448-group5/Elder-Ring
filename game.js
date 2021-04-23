@@ -4,7 +4,13 @@ import Character from './character.js';
 import {names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
-function newGame(world){
+/**
+Pre: 
+Post: Characters are created and game is started
+Param: world, the world id set by the level select
+**/
+
+    function newGame(world){
     var menu = document.getElementById("start");
     menu.style.visibility = "hidden";
     gameMode = world;
@@ -25,6 +31,11 @@ let gameMode = 0;
 
 let actionBox = document.getElementById("infoBox2");
 
+/**
+Pre: gameMode is set
+Post: assets are changed to match the world
+Param: 
+**/
 function worldChange(){
     console.log("Changing worlds");
     document.getElementById("background").src = background[gameMode];
@@ -56,7 +67,13 @@ function worldChange(){
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
   
+/**
+Pre: all players have taken their turn 
+Post: all enemies have taken their turn
+Param: 
+**/  
 async function enemyAttack(){
     await sleep(2000)
     actionBox.innerHTML = "Enemy's Turn."
@@ -88,6 +105,12 @@ function setOwnPlayer(player){
     playerAction(playerArray,enemyArray, player);
 }
 
+
+/**
+Pre: 
+Post: player buttons are set to the correct functions relative to that player
+Param:
+**/
 function playerAction(playerArray,enemyArray,player){
     //actionBox.innerHTML = "BEGIN " + playerArray[player].getName() + " ACTION"	
     //actionBox.innerHTML = "It is now " + playerArray[player].getName() + "'s turn"
@@ -315,22 +338,15 @@ function playerAction(playerArray,enemyArray,player){
     }
 }
 
-/*function verifyTarget(group, invalidVal, action){
-    var retSelect = parseInt(prompt("Who would you like to " + action + "?:"));
-    if(retSelect >= group.length || retSelect < 0){
-        alert("Target " + retSelect + " is an invalid target. Please try again.");
-        return verifyTarget(group, invalidVal, action);
-    }
-    else if(group[retSelect].health == invalidVal ||(group[retSelect].health === 0 && action === "heal")){
-        alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
-        return verifyTarget(group, invalidVal, action);
-    }
-    else {
-        return retSelect;
-    }
-}
-*/
 
+/**
+Pre: attack target has been selected
+Post: ensures that this was a valid selection
+Param: retSelect, the enemy
+    group, enemy array
+    invalidVal, 0 if damaging 100 if healing
+    action, "attack" or "heal"
+**/
 function preVerifyTarget(retSelect,group, invalidVal, action){
     if(retSelect >= group.length || retSelect < 0){
         alert("Target " + retSelect + " is an invalid target. Please try again.");
@@ -345,6 +361,14 @@ function preVerifyTarget(retSelect,group, invalidVal, action){
     }
 }
 
+
+/**
+Pre: enemy's turn has begun 
+Post: enemy has ended turn
+Param: enemyArray, enemyArray
+    playerArray, playerArray
+    toAct, current enemy
+**/
 async function enemyAction(enemyArray, playerArray, toAct){
     var action = Math.floor(Math.random() * (checkHeal(enemyArray) ? 4 : 3));
     var target = Math.floor(Math.random() * playerArray.length);
@@ -387,6 +411,11 @@ async function enemyAction(enemyArray, playerArray, toAct){
     }
 }
 
+/**
+Pre: 
+Post: checks if every character in array is dead 
+Param: array, the team you are checking
+**/
 function checkWin(array){
     for( let i = 0; i < array.length; i++){
         if(array[i].isAlive()){ 
@@ -396,6 +425,13 @@ function checkWin(array){
     return(true);
 }
 
+/**
+Pre: end of a character turn
+Post: returns an id identifying the next character
+Param: current, current character id
+    group, the current teams array
+    oppGroup, opposite groups array
+**/
 function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
         alert("You won! Press the banner to play again.");
@@ -412,7 +448,8 @@ function getNext(current, group, oppGroup){
     }
 }
 
-function checkHeal(array) { //returns false if whole team has full health
+//returns false if whole team has full health
+function checkHeal(array) { 
     for(let i = 0; i < array.length; i++){
         if(array[i].health !== array[i].max_health && array[i].health !== 0){
             return(true);
@@ -421,7 +458,8 @@ function checkHeal(array) { //returns false if whole team has full health
     return(false);
 }
 
-function retLowestHealth(array) { //can be used in special enemy attack AI. necessary for enemy healing AI
+//can be used in special enemy attack AI. necessary for enemy healing AI
+function retLowestHealth(array) { 
     //var retNum = Math.floor(Math.random() * array.length); //set initial return value to random character index
     var minGap = 0;
     var retNum;

@@ -9,12 +9,19 @@ import {names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId,
 //  {  return Stamina}
 export default class Character{
 	
+/**
+Pre: 
+Post: character created 
+Param: m_health, max health
+	m_magic, max magic
+	m_name, character name
+	numberValue, id for html
+**/
 	constructor(m_health, m_magic, m_name, numberValue){
 		this.health = m_health;//curent health of character, if this reaches 0 they should die
 		this.max_health = m_health;//max_health to pervent/keep track of overhealing
 		this.magic = m_magic;//current magic level for spells and skills, should fail/not cast if there is not enought magic
 		this.max_magic = m_magic;//max_magic to pervent over"heal"
-		//this.armor = m_armor;//current armor value, armor must all be broken before health begins to go down
 		this.mM = 1;//manaMultiplier, for things like buffs and debuffs / difficulty
 		this.dM = 1;//damageMultiplier, same^
 		this.crit = 10;//random(0-crit) amount of damage added to base damage
@@ -23,27 +30,14 @@ export default class Character{
 		this.item = 3;//number of firebombs
 	}
 
+/**
+Pre:  
+Post: This character attacks defender 
+Param: defender, enemy to attack
+	damage, amount of damage
+**/
 	async applyDamage(defender,damage){
 		var dam = defender.dM*(damage+this.random(this.crit));//dam = final damage calculation
-		// if(defender.armor>0){
-		// 	var armorDamage = defender.armor - dam;
-		// 	if(armorDamage<0){
-		// 		defender.arm1or = 0;
-		// 		armorDamage = -1*armorDamage;
-		// 		defender.health = defender.health - dam;
-		// 	}
-		// 	else{
-		// 		if(defender.health - dam >= 0)
-		//		{
-		//			defender.health = defender.health - dam;
-		//		}
-		//		else
-		//		{
-		//			defender.health = 0;
-		//		}
-		// 	}
-		// }
-		// else{
 			if(defender.health - dam > 0)
 			{
 				defender.health = defender.health - dam;
@@ -98,17 +92,22 @@ export default class Character{
 		}
 		
 	}
-	// if(player.getMana < get[x][1])
-	//{ return Player.regen;
-	//}
-	
-	random(x){//function for returning a random number between 0 and x
+
+	//function for returning a random number between 0 and x
+	random(x){
 		return Math.trunc(Math.random()*(x+1));
 	}
 	
 	sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	  }
+
+/**
+Pre:  
+Post: damage defender using the damage and mana in nums 
+Param: defender, the enemy being attacked
+	  nums, 2 element array, damage and mana cost
+**/
 	damage_single(defender, nums){//nums[0] = damage, nums[1] = mana
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName());
@@ -118,6 +117,12 @@ export default class Character{
 		}
 	}
 
+/**
+Pre: 
+Post: heal's defender with damage and mana in nums
+Param: defender, the ally being healed
+	  nums, 2 element array, damage and mana cost
+**/
 	heal_single(defender, nums){
 		if(this.applyMagic(nums[1])){
 			console.log(this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName());
@@ -126,16 +131,32 @@ export default class Character{
 		}
 	}
 	
-	//THESE 3 ARE THE IMPORTANT ONES
-	//IMPORTANT FOR AOE ATTACKS MANA IS NOT A ONE TIME FEE, FOR A GROUP OF 3 MANA SPENDS 3 TIMES, 2 2, so on.
+/**
+Pre: 
+Post: damage group with damage and mana in nums
+Param: group, the group of enemies being attacked
+	  nums, 2 element array, damage and mana cost
+**/
 	damage(group, nums){//group can be individual or group, nums is array [damage, mana]
-		group.map(x => this.damage_single(x,nums));
+		if (this.magic>=(3*nums[1])){
+			let current = this.magic
+			group.map(x => this.damage_single(x,nums));
+			this.magic = current-(3*(this.mM*nums[1]));
+		}
+
 	}
 
+	//unused
 	heal(group, nums){
 		group.map(x => this.heal_single(x,nums));
 	}
 
+/**
+Pre: 
+Post: attacks defender with damage and mana in nums
+Param: defender, the enemy being attacked
+	  nums, 2 element array, damage and mana cost
+**/
 	useItem(defender, nums){
 		if(this.item>0){
 			console.log(this.getName() + " used an item on " + defender.getName());

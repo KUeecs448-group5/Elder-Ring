@@ -230,7 +230,7 @@ let bTheal=[//heal text
     "<strong>S2 Engine Charge</strong>"
 ];
 
-let bANattack=[
+let bANattack=[//attack animation
     [
         "assets/DS-dir/animations/halberdGif.gif",
         "assets/DS-dir/animations/solaireCrop.png",
@@ -248,7 +248,7 @@ let bANattack=[
     ],
 ];
 
-let bANdamage=[
+let bANdamage=[//damage animation
     [
         "assets/DS-dir/animations/spearDamage.gif",
         "assets/DS-dir/animations/solaireDamage2.gif",
@@ -266,7 +266,7 @@ let bANdamage=[
     ],    
 ];
 
-var deathId = [
+var deathId = [//id of the entire character element
 	"enemy1",
 	"enemy2",
 	"enemy3",
@@ -275,7 +275,7 @@ var deathId = [
 	"player3"
 ];
 
-var healthId = [
+var healthId = [//id of the healthbar numbers and bars
 	["ehealth1","ehealthbar1"],
 	["ehealth2","ehealthbar2"],
 	["ehealth3","ehealthbar3"],
@@ -284,7 +284,7 @@ var healthId = [
 	["health3","healthbar3"]
 ];
 
-var manaId = [
+var manaId = [//id of the mana bars and numbers
 	"manabar1",
 	"manabar2",
 	"manabar3",
