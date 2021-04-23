@@ -184,7 +184,7 @@ function playerAction(playerArray,enemyArray,player){
             charId[i].onclick = function(){};
         } 
         
-        if(playerArray[player].getMana()<values[1][1]){   
+        if(playerArray[player].getMana()<3*(values[1][1])){   
                         playerArray[player].magic= playerArray[player].magic+10;
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
