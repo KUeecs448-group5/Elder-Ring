@@ -442,7 +442,7 @@ async function enemyAction(enemyArray, playerArray, toAct){
         }
         else{
         target = retLowestHealth(enemyArray);
-        actionBox.innerHTML = toAct.getName() + randomWord(0) + enemyArray[target].getName();
+        actionBox.innerHTML = toAct.getName() + randomWord(2) + enemyArray[target].getName();
         toAct.heal_single(enemyArray[target],values[6]);
         for(let i = 0; i < 3; i++){
             charId[target].src = bAheal[gameMode];
