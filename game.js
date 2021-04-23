@@ -91,7 +91,7 @@ async function enemyAttack(){
     actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
-        
+
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
@@ -149,7 +149,7 @@ function playerAction(playerArray,enemyArray,player){
     
     heal.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTheal[gameMode];
-        document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 10";
+        document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 15";
     })
     
     item.addEventListener("mouseover",function(){
@@ -191,12 +191,15 @@ function playerAction(playerArray,enemyArray,player){
                 else{
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
-                    charId[i].src = enemyAnimate[gameMode][i];
                     charId[player+3].src = bANattack[gameMode][player];
-                    await sleep(4000);
+                    for(let j = 0; j < 4; j++){
+                        charId[i].src = enemyAnimate[gameMode][i];
+                        await sleep(500);
+                        charId[i].src = enemyIdleGifs[gameMode][i];
+                        await sleep(500);
+                    }
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
-                    charId[i].src = enemyIdleGifs[gameMode][i];
                 }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
@@ -250,15 +253,23 @@ function playerAction(playerArray,enemyArray,player){
             {
                 charId[i].src = enemyAnimate[gameMode][i];
             }
-        await sleep(4000);
+            for(let j = 0; j < 4; j++){
+                for(let i=0; i<=2;i++)
+                {
+                    charId[i].src = enemyAnimate[gameMode][i];
+                }
+                await sleep(500);
+                for(let i=0; i<=2;i++)
+                {
+                    charId[i].src = enemyIdleGifs[gameMode][i];
+                }
+                await sleep(500);
+            }
+        //await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
-        for(let i=0; i<=2;i++)
-        {
-            charId[i].src = enemyIdleGifs[gameMode][i];
-        }
     }
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
@@ -363,9 +374,12 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    charId[i].src = enemyAnimate[gameMode][i];
-                    await sleep(4000);
-                    charId[i].src = enemyIdleGifs[gameMode][i];
+                    for(let j = 0; j < 4; j++){
+                        charId[i].src = enemyAnimate[gameMode][i];
+                        await sleep(500);
+                        charId[i].src = enemyIdleGifs[gameMode][i];
+                        await sleep(500);
+                    }
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
