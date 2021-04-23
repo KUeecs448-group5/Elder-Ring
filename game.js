@@ -192,11 +192,36 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
+                    if(gameMode==1){//scaleing for barret walaces attack
+                        if(player==2){
+                            charId[5].style.transform = "scale(3)";
+                            charId[5].style.marginRight = "10%";
+                            document.getElementById("name3").style.visibility = "hidden";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(2)";
+                            charId[4].style.marginRight = "10%";
+                            document.getElementById("name2").style.visibility = "hidden";
+                        }
+                    }
                     for(let j = 0; j < 4; j++){
                         charId[i].src = enemyAnimate[gameMode][i];
                         await sleep(500);
                         charId[i].src = enemyIdleGifs[gameMode][i];
                         await sleep(500);
+                    }
+                    if(gameMode==1){
+                        if(player==2){
+                            charId[5].style.transform = "scale(0.8)";
+                            charId[5].style.marginRight = "0%";
+                            document.getElementById("name1").style.visibility = "";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(1)";
+                            charId[4].style.marginRight = "0%";
+                            document.getElementById("name2").style.visibility = "";
+
+                        }
                     }
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
@@ -249,6 +274,18 @@ function playerAction(playerArray,enemyArray,player){
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
             charId[player+3].src = bANattack[gameMode][player];
+            if(gameMode==1){//scaleing for barret walaces attack
+                if(player==2){
+                    charId[5].style.transform = "scale(3)";
+                    charId[5].style.marginRight = "10%";
+                    document.getElementById("name3").style.visibility = "hidden";
+                }
+                if(player==1){
+                    charId[4].style.transform = "scale(2)";
+                    charId[4].style.marginRight = "10%";
+                    document.getElementById("name2").style.visibility = "hidden";
+                }
+            }
             for(let i=0; i<=2;i++)
             {
                 charId[i].src = enemyAnimate[gameMode][i];
@@ -268,6 +305,19 @@ function playerAction(playerArray,enemyArray,player){
         //await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
+        }
+        if(gameMode==1){
+            if(player==2){
+                charId[5].style.transform = "scale(0.8)";
+                charId[5].style.marginRight = "0%";
+                document.getElementById("name3").style.visibility = "";
+            }
+            if(player==1){
+                charId[4].style.transform = "scale(1)";
+                charId[4].style.marginRight = "0%";
+                document.getElementById("name2").style.visibility = "";
+
+            }
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
     }
@@ -374,6 +424,18 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
+                    if(gameMode==1){//scaleing for barret walaces attack
+                        if(player==2){
+                            charId[5].style.transform = "scale(3)";
+                            charId[5].style.marginRight = "10%";
+                            document.getElementById("name3").style.visibility = "hidden";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(2)";
+                            charId[4].style.marginRight = "10%";
+                            document.getElementById("name2").style.visibility = "hidden";
+                        }
+                    }
                     for(let j = 0; j < 4; j++){
                         charId[i].src = enemyAnimate[gameMode][i];
                         await sleep(500);
@@ -381,6 +443,19 @@ function playerAction(playerArray,enemyArray,player){
                         await sleep(500);
                     }
                     this.style.border = "none"; //remove highlight from target
+                    if(gameMode==1){
+                        if(player==2){
+                            charId[5].style.transform = "scale(0.8)";
+                            charId[5].style.marginRight = "0%";
+                            document.getElementById("name3").style.visibility = "";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(1)";
+                            charId[4].style.marginRight = "0%";
+                            document.getElementById("name2").style.visibility = "";
+
+                        }
+                    }
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);

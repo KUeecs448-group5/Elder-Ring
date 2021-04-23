@@ -237,9 +237,9 @@ let bANattack=[//attack animation
         "assets/DS-dir/animations/artoriasAttack3.gif"
     ],
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/FF-dir/animations/tifaRaw.gif",
+        "assets/FF-dir/animations/cloudAttack.gif",
+        "assets/FF-dir/animations/barretWallaceAttack2.gif"
     ],
     [
         "assets/NGE-dir/animations/unit00attack.gif",
@@ -255,9 +255,9 @@ let bANdamage=[//damage animation
         "assets/DS-dir/animations/artoriasDamage2.gif"
     ],
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/FF-dir/animations/tifaAttack2.gif",
+        "assets/FF-dir/animations/tifaAttack.gif",
+        "assets/FF-dir/animations/tifaAttack.gif"
     ],
     [
         "assets/NGE-dir/animations/unit00damage.gif",
