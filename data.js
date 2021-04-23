@@ -19,7 +19,7 @@ let names = [//names of allies
 let enames = [//names of enemies
     [
         "Skeleton 1",
-        "Skeleton Boss",
+        "Gravelord Nito",
         "Skeleton 2"
     ],
     [

@@ -306,6 +306,7 @@ function playerAction(playerArray,enemyArray,player){
 
     item.onclick = async function(){
         console.clear();
+        actionBox.innerHTML = "Click the enemy you wish to attack";
         if(playerArray[player].getInv()>0){
         for(let i = 0; i <= 2; i++){
             charId[i].onmouseover = function(){this.style.border = "dashed red 2.5px"}; //highlight potential target

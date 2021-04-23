@@ -3,6 +3,10 @@
     src: url(assets/OptimusPrinceps.ttf);
 }
 
+body{
+    font-family: OptimusPrinceps;
+}
+
 .body-img{
     z-index: 0%;
     width: 101%;
@@ -52,12 +56,12 @@
     left: 2.5%;
 }
 .skeleton img{
-    height: 175px;
+    height: 150px;
     width: auto;
 }
 
 .boss img{
-    height: 250px;
+    height: 200px;
     width: auto;
 }
 
