@@ -190,10 +190,12 @@ function playerAction(playerArray,enemyArray,player){
                 else{
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
+                    charId[i].src = enemyAnimate[gameMode][i];
                     charId[player+3].src = bANattack[gameMode][player];
                     await sleep(4000);
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
+                    charId[i].src = enemyIdleGifs[gameMode][i];
                 }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
@@ -360,7 +362,9 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
+                    charId[i].src = enemyAnimate[gameMode][i];
                     await sleep(4000);
+                    charId[i].src = enemyIdleGifs[gameMode][i];
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
