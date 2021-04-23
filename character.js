@@ -38,6 +38,7 @@ Param: defender, enemy to attack
 **/
 	async applyDamage(defender,damage){
 		var dam = defender.dM*(damage+this.random(this.crit));//dam = final damage calculation
+		let temp = defender.health;
 			if(defender.health - dam > 0)
 			{
 				defender.health = defender.health - dam;
@@ -53,9 +54,15 @@ Param: defender, enemy to attack
 		//}
 		//console.log(dam + " damage applied");
 		await this.sleep(3000)
-		document.getElementById(healthId[defender.getNumberValue()][0]).innerHTML = defender.health;
-		let health = document.getElementById(healthId[defender.getNumberValue()][1]);
-		health.value = health.value - dam;
+		let health = document.getElementById(healthId[defender.getNumberValue()][0])
+		let healthbar = document.getElementById(healthId[defender.getNumberValue()][1]);
+		for(let i = 0; i <dam;i++){
+			healthbar.value = healthbar.value - 1;
+			health.innerHTML = temp - 1;
+			temp--
+			await this.sleep(50)
+		}
+		console.log(healthbar.value)
 		//console.log(defender.getName() + " health: "+ defender.health);
 	}
 	
