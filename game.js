@@ -31,6 +31,12 @@ Param: world, the world id set by the level select
 
 let gameMode = 0;
 
+
+var heal = document.getElementById("Heal");
+var item = document.getElementById("Item");
+var attack = document.getElementById("Attack");
+var aoe = document.getElementById("AOE");
+
 let actionBox = document.getElementById("infoBox2");
 
 /**
@@ -81,6 +87,10 @@ async function enemyAttack(){
     actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
+        attack.disabled = true;
+        aoe.disabled = true;
+        heal.disabled = true;
+        item.disabled = true;
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
@@ -95,9 +105,13 @@ async function enemyAttack(){
         }
     }
     await sleep(2000)
+        attack.disabled = false;
+        aoe.disabled = false;
+        heal.disabled = false;
+        item.disabled = false;
     for(let i=0; i<playerArray.length; i++){
         if(playerArray[i].health !== 0){
-            actionBox.innerHTML = "It is now "+names[gameMode][0]+"'s turn";
+            actionBox.innerHTML = "It is now "+names[gameMode][i]+"'s turn";
         }
         i=playerArray.length;
     }
@@ -121,22 +135,22 @@ function playerAction(playerArray,enemyArray,player){
     document.getElementById("weapon icon").src = bAattack[gameMode][player];
     document.getElementById("spell icon").src = bAaoe[gameMode][player];
     document.getElementById("item icon").src = bAitem[gameMode][player];
-    var attack = document.getElementById("Attack");
+
     attack.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTattack[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Attack a single enemy with your "+bTattack[gameMode][player]+".<br />Damage: 10-25<br />Mana cost: 10";
     })
-    var aoe = document.getElementById("AOE");
+    
     aoe.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTaoe[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Attack all enemies with "+bTaoe[gameMode][player]+".<br />Damage: 5-15 (per enemy)<br />Mana cost: 15";
     })
-    var heal = document.getElementById("Heal");
+    
     heal.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTheal[gameMode];
         document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 10";
     })
-    var item = document.getElementById("Item");
+    
     item.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTitem[gameMode][player];
         document.getElementById("infoBox").innerHTML = "Use "+bTitem[gameMode][player]+" on a single enemy.<br />Damage: 20-30<br />Mana cost: 0<br />Inventory: "+playerArray[player].item;
