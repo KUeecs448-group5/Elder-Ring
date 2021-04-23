@@ -156,6 +156,10 @@ function playerAction(playerArray,enemyArray,player){
         document.getElementById("infoBox").innerHTML = "Use "+bTitem[gameMode][player]+" on a single enemy.<br />Damage: 20-30<br />Mana cost: 0<br />Inventory: "+playerArray[player].item;
     })
     attack.onclick =  function(){
+        for(let i = 0; i <= 5; i++){//disable character buttons
+            charId[i].onclick = function(){};
+            charId[i].onmouseover = function(){};
+        }
         console.clear();
         actionBox.innerHTML = "Click the enemy you wish to attack";
         //var select = parseInt(prompt("who would you like to attack (0-2)?:"));
@@ -168,6 +172,7 @@ function playerAction(playerArray,enemyArray,player){
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
+                            charId[i].onmouseover = function(){};
                         }
                     attack.onclick = function(){};
                     aoe.onclick = function(){};
@@ -214,9 +219,9 @@ function playerAction(playerArray,enemyArray,player){
     }
 
     aoe.onclick = async function(){
-        for(let i = 0; i < 3; i++){ //highlight targets
+        /*for(let i = 0; i < 3; i++){ //highlight targets
             charId[i].style.border = "solid red 2.5px";
-        }
+        }*/
         console.clear();
         attack.onclick = function(){};//disable buttons to prevent spam click
         aoe.onclick = function(){};
@@ -263,6 +268,10 @@ function playerAction(playerArray,enemyArray,player){
     }
 
     heal.onclick = async function(){
+        for(let i = 0; i <= 5; i++){//disable buttons
+            charId[i].onclick = function(){};
+            charId[i].onmouseover = function(){};
+        }
         console.clear();
         actionBox.innerHTML = "Click the ally you wish to heal";
         for(let i = 3; i <= 5; i++){
@@ -272,6 +281,7 @@ function playerAction(playerArray,enemyArray,player){
                 if(preVerifyTarget((i-3),playerArray, 100, "heal")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
+                            charId[i].onmouseover = function(){};
                         }
                     attack.onclick = function(){};
                     aoe.onclick = function(){};
@@ -285,17 +295,16 @@ function playerAction(playerArray,enemyArray,player){
                         }
                         await sleep(2500);
                     }
-                }
-                else{            
-                    playerArray[player].heal_single(playerArray[i-3],values[2]);
-                    actionBox.innerHTML = playerArray[player].getName() + randomWord(2) + playerArray[i-3].getName();
-                    for(let j = 0; j < 4; j++){
-                    charId[i].src = bAheal[gameMode];
-                    await sleep(500);
-                    charId[i].src = playerIdleGifs[gameMode][i-3];
-                    await sleep(500);
+                    else{            
+                        playerArray[player].heal_single(playerArray[i-3],values[2]);
+                        actionBox.innerHTML = playerArray[player].getName() + randomWord(2) + playerArray[i-3].getName();
+                        for(let j = 0; j < 4; j++){
+                            charId[i].src = bAheal[gameMode];
+                            await sleep(500);
+                            charId[i].src = playerIdleGifs[gameMode][i-3];
+                            await sleep(500);
+                        }
                     }
-                }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     document.getElementById("MP"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -315,10 +324,14 @@ function playerAction(playerArray,enemyArray,player){
                     }
                 }
             }
-        
+        }
     }
 
     item.onclick = async function(){
+        for(let i = 0; i <= 5; i++){//disable buttons
+            charId[i].onclick = function(){};
+            charId[i].onmouseover = function(){};
+        }
         console.clear();
         actionBox.innerHTML = "Click the enemy you wish to attack";
         if(playerArray[player].getInv()>0){
@@ -330,6 +343,7 @@ function playerAction(playerArray,enemyArray,player){
                 if(preVerifyTarget(i,enemyArray, 0, "attack")){
                     for(let i = 0; i <= 5; i++){//disable buttons
                             charId[i].onclick = function(){};
+                            charId[i].onmouseover = function(){};
                         }
                     attack.onclick = function(){};
                     aoe.onclick = function(){};
@@ -378,11 +392,13 @@ Param: retSelect, the enemy
 **/
 function preVerifyTarget(retSelect,group, invalidVal, action){
     if(retSelect >= group.length || retSelect < 0){
+        //this code should be redundent now
         alert("Target " + retSelect + " is an invalid target. Please try again.");
         return false;
     }
     else if(group[retSelect].health == invalidVal ||(group[retSelect].health === 0 && action === "heal")){
-        alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
+        actionBox.innerHTML = "Cannot"+randomWord(2).replace("s "," ")+group[retSelect].getName()+" , health already full.";
+        //alert("Cannot " + action + " " + group[retSelect].getName() + ". Please try again.");
         return false;
     }
     else {
