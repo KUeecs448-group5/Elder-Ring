@@ -311,4 +311,22 @@ let words = [//attack log text for variety
     ]
 ]
 
-export{words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
+let enemyAnimate = [
+    [
+        "assets/DS-dir/animations/skeletonDamage.gif",
+        "assets/DS-dir/animations/nitoDamaged.gif",
+        "assets/DS-dir/animations/skeletonDamage.gif"
+    ],
+    [
+        "assets/FF-dir/animations/skeletonDamage.gif",
+        "assets/FF-dir/animations/sephirothDamage.gif",
+        "assets/FF-dir/animations/skeletonDamage.gif"
+    ],
+    [
+        "assets/NGE-dir/animations/massDamage2.png",
+        "assets/NGE-dir/animations/angelDamage.gif",
+        "assets/NGE-dir/animations/massDamage1.png"
+    ]
+];
+
+export{enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};

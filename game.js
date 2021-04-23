@@ -1,7 +1,7 @@
 //overall game function
 import debug from './Executive.js';
 import Character from './character.js';
-import {words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
+import {enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 /**
@@ -229,11 +229,19 @@ function playerAction(playerArray,enemyArray,player){
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
             charId[player+3].src = bANattack[gameMode][player];
+            for(let i=0; i<=2;i++)
+            {
+                charId[i].src = enemyAnimate[gameMode][i];
+            }
         await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
+        for(let i=0; i<=2;i++)
+        {
+            charId[i].src = enemyIdleGifs[gameMode][i];
+        }
     }
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
         document.getElementById("MP"+(player+1)).style.borderBottom = "none";
