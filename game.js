@@ -222,7 +222,17 @@ function playerAction(playerArray,enemyArray,player){
                     aoe.onclick = function(){};
                     heal.onclick = function(){};
                     item.onclick = function(){};
+                    if(playerArray[player].getMana()<values[2][1]){   
+                        playerArray[player].magic= playerArray[player].magic+10;
+                        if(playerArray[player].getNumberValue()>2){
+                            document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
+                            document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
+                    }
+                }
+                else{            
                     playerArray[player].heal_single(playerArray[i-3],values[2]);
+                }
+                    
                     for(let j = 0; j < 4; j++){
                     charId[i].src = bAheal[gameMode];
                     await sleep(500);
