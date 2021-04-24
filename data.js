@@ -237,9 +237,9 @@ let bANattack=[//attack animation
         "assets/DS-dir/animations/artoriasAttack3.gif"
     ],
     [
-        "assets/FF-dir/animations/ACTifaAttack.png",
-        "assets/FF-dir/animations/CloudSwipe2.png",
-        "assets/FF-dir/animations/BarretAttack.png"
+        "assets/FF-dir/animations/TifaLimit.gif",
+        "assets/FF-dir/animations/cloudAttack2.gif",
+        "assets/FF-dir/animations/barretWallaceAttack2.gif"
     ],
     [
         "assets/NGE-dir/animations/unit00attack.gif",

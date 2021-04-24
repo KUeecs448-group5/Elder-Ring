@@ -98,7 +98,7 @@ async function enemyAttack(){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
             enemyAction(enemyArray, playerArray, enemyArray[i])
             await sleep(3000);
-            document.getElementById("name"+(3+i)).style.borderBottom = "none";
+            document.getElementById("name"+(4+i)).style.borderBottom = "none";
         }
         if(checkWin(playerArray)){
             //alert("You Lost. Press the banner to play again.");
@@ -195,22 +195,15 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    if(gameMode==1){//scaling for barret walaces attack
+                    if(gameMode==1){//scaling for final fantasy single attacks
                         if(player==0){
-                            charId[3].style.transform = "scale(1.5)";
-                            
+                            charId[3].style.transform = "scale(4) translate(-150%, "+(-10+i*30)+"%)"; 
                         }
                         if(player==1){
-                            charId[4].style.left = "1000px";
-                            charId[4].style.transform = "scale(2)";
-
-                            //charId[4].style.marginRight = "10%";1
-                            //document.getElementById("name2").style.visibility = "hidden";
+                            charId[4].style.transform = "scale(4) translate(-100%, "+(-40+i*30)+"%)";
                         }
                         if(player==2){
-                            charId[5].style.transform = "scale(1)";
-                            //charId[5].style.marginRight = "10%";
-                            //document.getElementById("name3").style.visibility = "hidden";
+                            charId[5].style.transform = "scale(4) translate(-200%, "+(-60+i*30)+"%)";
                         }
                     }
                     for(let j = 0; j < 4; j++){
@@ -219,24 +212,8 @@ function playerAction(playerArray,enemyArray,player){
                         charId[i].src = enemyIdleGifs[gameMode][i];
                         await sleep(450);
                     }
-                    if(gameMode==1){
-                        if(player==0){
-                            charId[3].style.transform = "scale(0.85)";
-                            charId[3].style.marginRight = "0%";
-                            document.getElementById("name1").style.visibility = "";
-                        }
-                        if(player==1){
-                            charId[4].style.transform = "scale(1)";
-                            charId[4].style.marginRight = "0%";
-                            document.getElementById("name2").style.visibility = "";
-                        }
-                        if(player==2){
-                            charId[5].style.transform = "scale(0.8)";
-                            charId[5].style.marginRight = "0%";
-                            document.getElementById("name1").style.visibility = "";
-                        }
-                    }
                     this.style.border = "none"; //remove highlight from target
+                    charId[player+3].style.transform="";
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                 }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -288,22 +265,15 @@ function playerAction(playerArray,enemyArray,player){
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
             charId[player+3].src = bANattack[gameMode][player];
-            if(gameMode==1){//scaling for barret walaces attack
+            if(gameMode==1){//scaling for final fantasy aoe attacks
                 if(player==0){
-                    charId[3].style.transform = "scale(1.5)";
-                    charId[3].style.left = "50%";
+                    charId[3].style.transform = "scale(4) translate(-150%, 20%)"; 
                 }
                 if(player==1){
-                    charId[4].style.left = "1000px";
-                    charId[4].style.transform = "scale(2)";
-
-                    //charId[4].style.marginRight = "10%";1
-                    //document.getElementById("name2").style.visibility = "hidden";
+                    charId[4].style.transform = "scale(4) translate(-100%, -10%)";
                 }
                 if(player==2){
-                    charId[5].style.transform = "scale(1)";
-                    //charId[5].style.marginRight = "10%";
-                    //document.getElementById("name3").style.visibility = "hidden";
+                    charId[5].style.transform = "scale(4) translate(-200%, -30%)";
                 }
             }
             for(let i=0; i<=2;i++)
@@ -326,23 +296,7 @@ function playerAction(playerArray,enemyArray,player){
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
         }
-        if(gameMode==1){
-            if(player==0){
-                charId[3].style.transform = "scale(0.85)";
-                charId[3].style.marginRight = "0%";
-                document.getElementById("name1").style.visibility = "";
-            }
-            if(player==1){
-                charId[4].style.transform = "scale(1)";
-                charId[4].style.marginRight = "0%";
-                document.getElementById("name2").style.visibility = "";
-            }
-            if(player==2){
-                charId[5].style.transform = "scale(0.8)";
-                charId[5].style.marginRight = "0%";
-                document.getElementById("name1").style.visibility = "";
-            }
-        }
+        charId[player+3].style.transform="";
         charId[player+3].src = playerIdleGifs[gameMode][player];
     }
         document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -450,16 +404,15 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    if(gameMode==1){//scaleing for barret walaces attack
-                        if(player==2){
-                            charId[5].style.transform = "scale(3)";
-                            charId[5].style.marginRight = "10%";
-                            document.getElementById("name3").style.visibility = "hidden";
+                    if(gameMode==1){//scaling for final fantasy
+                        if(player==0){
+                            charId[3].style.transform = "scale(4) translate(-150%, "+(-10+i*30)+"%)"; 
                         }
                         if(player==1){
-                            charId[4].style.transform = "scale(2)";
-                            charId[4].style.marginRight = "10%";
-                            document.getElementById("name2").style.visibility = "hidden";
+                            charId[4].style.transform = "scale(4) translate(-100%, "+(-40+i*30)+"%)";
+                        }
+                        if(player==2){
+                            charId[5].style.transform = "scale(4) translate(-200%, "+(-60+i*30)+"%)";
                         }
                     }
                     for(let j = 0; j < 4; j++){
@@ -469,19 +422,7 @@ function playerAction(playerArray,enemyArray,player){
                         await sleep(500);
                     }
                     this.style.border = "none"; //remove highlight from target
-                    if(gameMode==1){
-                        if(player==2){
-                            charId[5].style.transform = "scale(0.8)";
-                            charId[5].style.marginRight = "0%";
-                            document.getElementById("name3").style.visibility = "";
-                        }
-                        if(player==1){
-                            charId[4].style.transform = "scale(1)";
-                            charId[4].style.marginRight = "0%";
-                            document.getElementById("name2").style.visibility = "";
-
-                        }
-                    }
+                    charId[player+3].style.transform="";
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
