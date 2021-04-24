@@ -408,17 +408,23 @@ function playerAction(playerArray,enemyArray,player){
                     item.onclick = function(){};
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
-                    charId[player+3].src = bANattack[gameMode][player];
+                    
                     if(gameMode==1){//scaling for final fantasy
                         if(player==0){
-                            charId[3].style.transform = "scale(4) translate(-150%, "+(-10+i*30)+"%)"; 
+                            charId[player+3].src = "assets/FF-dir/animations/TifaAttack.png";
+                            charId[player+3].style.transform = "scale(1.75) translate(-300%, "+(i*70)+"%)";
                         }
                         if(player==1){
-                            charId[4].style.transform = "scale(4) translate(-100%, "+(-40+i*30)+"%)";
+                            charId[player+3].src = "assets/FF-dir/animations/CloudCombo.png";
+                            charId[player+3].style.transform = "scale(3) translate(-200%, "+(-60+i*40)+"%)";
                         }
                         if(player==2){
-                            charId[5].style.transform = "scale(4) translate(-200%, "+(-60+i*30)+"%)";
+                            charId[player+3].src = "assets/FF-dir/animations/BarretMagic.gif";
+                            charId[player+3].style.transform = "translate(-600%, "+(-240+i*120)+"%)";
                         }
+                    }
+                    else {
+                        charId[player+3].src = bANattack[gameMode][player];
                     }
                     for(let j = 0; j < 4; j++){
                         charId[i].src = enemyAnimate[gameMode][i];
