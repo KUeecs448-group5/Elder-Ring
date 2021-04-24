@@ -192,7 +192,7 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    if(gameMode==1){//scaleing for barret walaces attack
+                    if(gameMode==1){//scaling for barret walaces attack
                         if(player==2){
                             charId[5].style.transform = "scale(3)";
                             charId[5].style.marginRight = "10%";

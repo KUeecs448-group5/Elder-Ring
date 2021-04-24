@@ -1,11 +1,13 @@
 
 import Character from './character.js';
 import * as gameRules from './game.js';
+import * as testing from './test.js';
 
 var menu = document.getElementById("start");
 var dsStart = document.getElementById("start0");
 var ffStart = document.getElementById("start1");
 var ngeStart = document.getElementById("start2");
+var test = document.getElementById("test")
 var dsIcon = document.getElementById("DS-icon1");
 var debug = false;
 /*
@@ -27,6 +29,7 @@ ngeStart.onmouseleave = function(){disappear(2)};
 dsStart.onclick = function() {gameRules.newGame(0)};
 ffStart.onclick = function() {gameRules.newGame(1)};
 ngeStart.onclick = function() {gameRules.newGame(2)};
+test.onclick = function(){testing.testAll()}
 
 function appear(index){
     if(index==0){

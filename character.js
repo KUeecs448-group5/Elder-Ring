@@ -62,14 +62,13 @@ Param: defender, enemy to attack
 			temp--
 			await this.sleep(50)
 		}
-		console.log(healthbar.value)
+		//console.log(healthbar.value)
 		//console.log(defender.getName() + " health: "+ defender.health);
 	}
 	
 	//heals defender, makes sure no overheal
 	applyHeal(defender,damage){
 		var dam = defender.dM*(damage+this.random(this.crit));
-		console.log(this.name +" healed "+defender.name+" for "+ dam);
 		if((dam+defender.health)>defender.max_health){
 			defender.health = defender.max_health;
 		}
@@ -117,7 +116,7 @@ Param: defender, the enemy being attacked
 **/
 	damage_single(defender, nums){//nums[0] = damage, nums[1] = mana
 		if(this.applyMagic(nums[1])){
-			console.log(this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName());
+			//console.log(this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName());
 			//await this.sleep(3000)
 			//actionBox.innerHTML = this.getName() + " does attack with " + nums[0] + " base damage on " + defender.getName()
 			this.applyDamage(defender, nums[0]);
@@ -132,7 +131,6 @@ Param: defender, the ally being healed
 **/
 	heal_single(defender, nums){
 		if(this.applyMagic(nums[1])){
-			console.log(this.getName() + " does heal with " + nums[0] + " base health on " + defender.getName());
 			this.applyHeal(defender,nums[0]);
 			//actionBox.innerHTML = this.getName() + " does heal " + defender.getName() + " for "+ nums[0] +" base health."
 		}
@@ -166,11 +164,11 @@ Param: defender, the enemy being attacked
 **/
 	useItem(defender, nums){
 		if(this.item>0){
-			console.log(this.getName() + " used an item on " + defender.getName());
+			//console.log(this.getName() + " used an item on " + defender.getName());
 			this.applyDamage(defender,nums[0]);
 			//actionBox.innerHTML = this.getName() + " used an item on " + defender.getName()
 			this.item--;
-			console.log(this.getName() + " item inventory: " + this.item);
+			//console.log(this.getName() + " item inventory: " + this.item);
 			
 		}
 		else{
