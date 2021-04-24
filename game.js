@@ -1,7 +1,7 @@
 //overall game function
 import debug from './Executive.js';
 import Character from './character.js';
-import {enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
+import {FFwinAnimate, FFhealAnimate, enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 /**
@@ -272,13 +272,13 @@ function playerAction(playerArray,enemyArray,player){
             charId[player+3].src = bANattack[gameMode][player];
             if(gameMode==1){//scaling for final fantasy aoe attacks
                 if(player==0){
-                    charId[3].style.transform = "scale(4) translate(-150%, 20%)"; 
+                    charId[3].style.transform = "scale(4) translate(-100%, 20%)"; 
                 }
                 if(player==1){
                     charId[4].style.transform = "scale(4) translate(-100%, -10%)";
                 }
                 if(player==2){
-                    charId[5].style.transform = "scale(4) translate(-200%, -30%)";
+                    charId[5].style.transform = "scale(4) translate(-125%, -30%)";
                 }
             }
             for(let i=0; i<=2;i++)
@@ -354,11 +354,18 @@ function playerAction(playerArray,enemyArray,player){
                     else{            
                         playerArray[player].heal_single(playerArray[i-3],values[2]);
                         actionBox.innerHTML = playerArray[player].getName() + randomWord(2) + playerArray[i-3].getName();
-                        for(let j = 0; j < 4; j++){
-                            charId[i].src = bAheal[gameMode];
-                            await sleep(500);
+                        if(gameMode == 1){
+                            charId[i].src = FFhealAnimate[i-3];
+                            await sleep(2500);
                             charId[i].src = playerIdleGifs[gameMode][i-3];
                             await sleep(500);
+                        } else {
+                            for(let j = 0; j < 4; j++){
+                                charId[i].src = bAheal[gameMode];
+                                await sleep(500);
+                                charId[i].src = playerIdleGifs[gameMode][i-3];
+                                await sleep(500);
+                            }
                         }
                     }
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
@@ -412,15 +419,15 @@ function playerAction(playerArray,enemyArray,player){
                     if(gameMode==1){//scaling for final fantasy
                         if(player==0){
                             charId[player+3].src = "assets/FF-dir/animations/TifaAttack.png";
-                            charId[player+3].style.transform = "scale(1.75) translate(-300%, "+(i*70)+"%)";
+                            charId[player+3].style.transform = "scale(1.75) translate(-250%, "+(i*70)+"%)";
                         }
                         if(player==1){
                             charId[player+3].src = "assets/FF-dir/animations/CloudCombo.png";
-                            charId[player+3].style.transform = "scale(3) translate(-200%, "+(-60+i*40)+"%)";
+                            charId[player+3].style.transform = "scale(3) translate(-150%, "+(-60+i*40)+"%)";
                         }
                         if(player==2){
                             charId[player+3].src = "assets/FF-dir/animations/BarretMagic.gif";
-                            charId[player+3].style.transform = "translate(-600%, "+(-240+i*120)+"%)";
+                            charId[player+3].style.transform = "translate(-500%, "+(-240+i*120)+"%)";
                         }
                     }
                     else {
@@ -597,6 +604,11 @@ function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
         actionBox.innerHTML = "Congratulations! You Won! Press the banner to play again!";
         //alert("You won! Press the banner to play again.");
+        if(gameMode == 1){
+            for(let i = 0; i < 3; i++){
+                document.getElementById("player"+(i+1)+"Click").src = FFwinAnimate[i];
+            }
+        }
         document.getElementById("youDW").src = "assets/victory.png";
             document.getElementById("loseLink").style.visibility = "visible";
     }else if(current + 1 === group.length){

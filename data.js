@@ -88,7 +88,7 @@ var charId = [//character images
     document.getElementById("enemy3Click"),
     document.getElementById("player1Click"),
     document.getElementById("player2Click"),
-    document.getElementById("player3Click"),
+    document.getElementById("player3Click")
 ];
 
 var nameId = [//front end name plates
@@ -329,4 +329,16 @@ let enemyAnimate = [//enemy damage gif
     ]
 ];
 
-export{enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
+let FFhealAnimate = [
+    "assets/FF-dir/animations/TifaHeal.gif",
+    "assets/FF-dir/animations/CloudHeal.gif",
+    "assets/FF-dir/animations/BarretHeal.gif"
+]
+
+let FFwinAnimate = [
+    "assets/FF-dir/animations/TifaWin.gif",
+    "assets/FF-dir/animations/CloudWin.gif",
+    "assets/FF-dir/animations/BarretWin.gif"
+]
+
+export{FFwinAnimate, FFhealAnimate, enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
