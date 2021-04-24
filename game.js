@@ -83,6 +83,7 @@ Post: all enemies have taken their turn
 Param: 
 **/  
 async function enemyAttack(){
+    //disable action buttons
     attack.disabled = true;
     aoe.disabled = true;
     heal.disabled = true;
@@ -106,6 +107,7 @@ async function enemyAttack(){
         }
     }
     await sleep(2000)
+        //enable buttons
         attack.disabled = false;
         aoe.disabled = false;
         heal.disabled = false;
