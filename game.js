@@ -387,7 +387,7 @@ function playerAction(playerArray,enemyArray,player){
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
-                        }
+                        }// get every turn heal
                         await sleep(2500);
                     }
                     else{            
@@ -684,4 +684,4 @@ function randomWord(type){
     return words[type][Math.trunc(Math.random()*3)];
 }
 
-export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin
+export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin reset a new game
