@@ -183,7 +183,7 @@ function playerAction(playerArray,enemyArray,player){
                     heal.onclick = function(){};
                     item.onclick = function(){}; 
                     if(playerArray[player].getMana()<values[0][1]){
-                        actionBox.innerHTML = playerArray[player].getName() + " is to tired and must rest.";   
+                        actionBox.innerHTML = playerArray[player].getName() + " is too tired and must rest.";   
                         playerArray[player].magic= playerArray[player].magic+10;
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
@@ -194,17 +194,22 @@ function playerAction(playerArray,enemyArray,player){
                 else{
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
-                    charId[player+3].src = bANattack[gameMode][player];
                     if(gameMode==1){//scaling for final fantasy single attacks
                         if(player==0){
-                            charId[3].style.transform = "scale(4) translate(-150%, "+(-10+i*30)+"%)"; 
+                            charId[player+3].src = "assets/FF-dir/animations/ACTifaAttack.png";
+                            charId[3].style.transform = "scale(2) translate(-300%, "+(-10+i*60)+"%)"; 
                         }
                         if(player==1){
-                            charId[4].style.transform = "scale(4) translate(-100%, "+(-40+i*30)+"%)";
+                            charId[player+3].src = "assets/FF-dir/animations/CloudSwipe.gif";
+                            charId[4].style.transform = "scale(2) translate(-300%, "+(-60+i*60)+"%)";
                         }
                         if(player==2){
-                            charId[5].style.transform = "scale(4) translate(-200%, "+(-60+i*30)+"%)";
+                            charId[player+3].src = "assets/FF-dir/animations/BarretAttack.png";
+                            charId[5].style.transform = "translate(-600%, "+(-240+i*120)+"%)";
                         }
+                    }
+                    else {
+                        charId[player+3].src = bANattack[gameMode][player];
                     }
                     for(let j = 0; j < 4; j++){
                         charId[i].src = enemyAnimate[gameMode][i];
