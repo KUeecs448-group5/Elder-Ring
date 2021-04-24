@@ -311,7 +311,7 @@ let words = [//attack log text for variety
     ]
 ]
 
-let enemyAnimate = [
+let enemyAnimate = [//enemy damage gif
     [
         "assets/DS-dir/animations/skeletonDamage.gif",
         "assets/DS-dir/animations/nitoDamaged.gif",
