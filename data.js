@@ -47,9 +47,9 @@ let playerIdleGifs = [//default player animation
         "assets/DS-dir/characters/artorias.gif"
     ],
     [
-        "assets/FF-dir/characters/FFGirlIdle.gif",
+        "assets/FF-dir/characters/ACTifaIdle.gif",
         "assets/FF-dir/characters/cloudStrifeIdle.gif",
-        "assets/FF-dir/characters/barretWallaceIdle.gif"
+        "assets/FF-dir/characters/BarretIdle.gif"
     ],
     [
         "assets/NGE-dir/characters/unit00.png",
@@ -237,9 +237,9 @@ let bANattack=[//attack animation
         "assets/DS-dir/animations/artoriasAttack3.gif"
     ],
     [
-        "assets/FF-dir/animations/tifaRaw.gif",
-        "assets/FF-dir/animations/cloudAttack.gif",
-        "assets/FF-dir/animations/barretWallaceAttack2.gif"
+        "assets/FF-dir/animations/ACTifaAttack.png",
+        "assets/FF-dir/animations/CloudSwipe2.png",
+        "assets/FF-dir/animations/BarretAttack.png"
     ],
     [
         "assets/NGE-dir/animations/unit00attack.gif",
@@ -255,9 +255,9 @@ let bANdamage=[//damage animation
         "assets/DS-dir/animations/artoriasDamage2.gif"
     ],
     [
-        "assets/FF-dir/animations/tifaDamage.gif",
+        "assets/FF-dir/animations/ACTifaDamaged.gif",
         "assets/FF-dir/animations/cloudDamage.gif",
-        "assets/FF-dir/animations/barretWallaceDamage.gif"
+        "assets/FF-dir/animations/BarretDamaged.gif"
     ],
     [
         "assets/NGE-dir/animations/unit00damage.gif",

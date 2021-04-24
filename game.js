@@ -187,41 +187,51 @@ function playerAction(playerArray,enemyArray,player){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
                     }
-                    await sleep(2500);
+                    await sleep(2000);
                 }// recharge mana
                 else{
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
                     if(gameMode==1){//scaling for barret walaces attack
-                        if(player==2){
-                            charId[5].style.transform = "scale(3)";
-                            charId[5].style.marginRight = "10%";
-                            document.getElementById("name3").style.visibility = "hidden";
+                        if(player==0){
+                            charId[3].style.transform = "scale(1.5)";
+                            
                         }
                         if(player==1){
+                            charId[4].style.left = "1000px";
                             charId[4].style.transform = "scale(2)";
-                            charId[4].style.marginRight = "10%";
-                            document.getElementById("name2").style.visibility = "hidden";
+
+                            //charId[4].style.marginRight = "10%";1
+                            //document.getElementById("name2").style.visibility = "hidden";
+                        }
+                        if(player==2){
+                            charId[5].style.transform = "scale(1)";
+                            //charId[5].style.marginRight = "10%";
+                            //document.getElementById("name3").style.visibility = "hidden";
                         }
                     }
                     for(let j = 0; j < 4; j++){
                         charId[i].src = enemyAnimate[gameMode][i];
-                        await sleep(500);
+                        await sleep(450);
                         charId[i].src = enemyIdleGifs[gameMode][i];
-                        await sleep(500);
+                        await sleep(450);
                     }
                     if(gameMode==1){
-                        if(player==2){
-                            charId[5].style.transform = "scale(0.8)";
-                            charId[5].style.marginRight = "0%";
+                        if(player==0){
+                            charId[3].style.transform = "scale(0.85)";
+                            charId[3].style.marginRight = "0%";
                             document.getElementById("name1").style.visibility = "";
                         }
                         if(player==1){
                             charId[4].style.transform = "scale(1)";
                             charId[4].style.marginRight = "0%";
                             document.getElementById("name2").style.visibility = "";
-
+                        }
+                        if(player==2){
+                            charId[5].style.transform = "scale(0.8)";
+                            charId[5].style.marginRight = "0%";
+                            document.getElementById("name1").style.visibility = "";
                         }
                     }
                     this.style.border = "none"; //remove highlight from target
@@ -276,16 +286,22 @@ function playerAction(playerArray,enemyArray,player){
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
             charId[player+3].src = bANattack[gameMode][player];
-            if(gameMode==1){//scaleing for barret walaces attack
-                if(player==2){
-                    charId[5].style.transform = "scale(3)";
-                    charId[5].style.marginRight = "10%";
-                    document.getElementById("name3").style.visibility = "hidden";
+            if(gameMode==1){//scaling for barret walaces attack
+                if(player==0){
+                    charId[3].style.transform = "scale(1.5)";
+                    charId[3].style.left = "50%";
                 }
                 if(player==1){
+                    charId[4].style.left = "1000px";
                     charId[4].style.transform = "scale(2)";
-                    charId[4].style.marginRight = "10%";
-                    document.getElementById("name2").style.visibility = "hidden";
+
+                    //charId[4].style.marginRight = "10%";1
+                    //document.getElementById("name2").style.visibility = "hidden";
+                }
+                if(player==2){
+                    charId[5].style.transform = "scale(1)";
+                    //charId[5].style.marginRight = "10%";
+                    //document.getElementById("name3").style.visibility = "hidden";
                 }
             }
             for(let i=0; i<=2;i++)
@@ -309,16 +325,20 @@ function playerAction(playerArray,enemyArray,player){
             charId[i].style.border = "none";
         }
         if(gameMode==1){
-            if(player==2){
-                charId[5].style.transform = "scale(0.8)";
-                charId[5].style.marginRight = "0%";
-                document.getElementById("name3").style.visibility = "";
+            if(player==0){
+                charId[3].style.transform = "scale(0.85)";
+                charId[3].style.marginRight = "0%";
+                document.getElementById("name1").style.visibility = "";
             }
             if(player==1){
                 charId[4].style.transform = "scale(1)";
                 charId[4].style.marginRight = "0%";
                 document.getElementById("name2").style.visibility = "";
-
+            }
+            if(player==2){
+                charId[5].style.transform = "scale(0.8)";
+                charId[5].style.marginRight = "0%";
+                document.getElementById("name1").style.visibility = "";
             }
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
