@@ -29,8 +29,13 @@ ngeStart.onmouseleave = function(){disappear(2)};
 dsStart.onclick = function() {gameRules.newGame(0)};
 ffStart.onclick = function() {gameRules.newGame(1)};
 ngeStart.onclick = function() {gameRules.newGame(2)};
-test.onclick = function(){testing.testAll()}
-
+document.addEventListener('keyup', function(event){
+    if (event.key === 't'){
+        testing.testAll();
+    }
+});
+//test.onclick = function(){testing.testAll()}
+//<button id="test" class = "test start"><img> Test</button>
 function appear(index){
     if(index==0){
         document.getElementById("DS-icon1").style.visibility="visible";
