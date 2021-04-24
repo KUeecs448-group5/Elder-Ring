@@ -1,7 +1,7 @@
 //overall game function
 import debug from './Executive.js';
 import Character from './character.js';
-import {words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
+import {enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
     const playerArray = []; //player character array
     const enemyArray = []; //enemy character array
 /**
@@ -24,7 +24,7 @@ Param: world, the world id set by the level select
     enemyArray[1] = new Character(200,100,enames[gameMode][1],1);
     enemyArray[2] = new Character(100,100,enames[gameMode][2],2);
     
-    actionBox.innerHTML = "Welcome to Elder Ring. To Attack press one of the buttons to the left then click on your target.";
+    actionBox.innerHTML = "Welcome to Elder Ring. To take an action press one of the buttons to the left then click on your target. If you lack the mana to complete an action your character will rest and recover a small amount";
 
     setOwnPlayer(0);
 }
@@ -92,7 +92,7 @@ async function enemyAttack(){
     actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
-        
+
         console.log("\n\n");
         if(enemyArray[i].health !== 0){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
@@ -101,7 +101,8 @@ async function enemyAttack(){
             document.getElementById("name"+(3+i)).style.borderBottom = "none";
         }
         if(checkWin(playerArray)){
-            alert("You Lost. Press the banner to play again.");
+            //alert("You Lost. Press the banner to play again.");
+            actionBox.innerHTML = "Oh dear... It appears you have lost... May I advise Getting Good? Press the banner to try again.";
             document.getElementById("youDW").src = "assets/youdied.png";
             document.getElementById("loseLink").style.visibility = "visible";
         }
@@ -151,7 +152,7 @@ function playerAction(playerArray,enemyArray,player){
     
     heal.addEventListener("mouseover",function(){
         document.getElementById("action").innerHTML = bTheal[gameMode];
-        document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 10";
+        document.getElementById("infoBox").innerHTML = "Heal ally with "+bTheal[gameMode]+"<br />Heal: 10-20<br />Mana cost: 15";
     })
     
     item.addEventListener("mouseover",function(){
@@ -188,13 +189,53 @@ function playerAction(playerArray,enemyArray,player){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
                     }
-                    await sleep(2500);
+                    await sleep(2000);
                 }// recharge mana
                 else{
                     actionBox.innerHTML = playerArray[player].getName() + randomWord(0) + enemyArray[i].getName();            
                     playerArray[player].damage_single(enemyArray[i],values[0]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    await sleep(4000);
+                    if(gameMode==1){//scaling for barret walaces attack
+                        if(player==0){
+                            charId[3].style.transform = "scale(1.5)";
+                            
+                        }
+                        if(player==1){
+                            charId[4].style.left = "1000px";
+                            charId[4].style.transform = "scale(2)";
+
+                            //charId[4].style.marginRight = "10%";1
+                            //document.getElementById("name2").style.visibility = "hidden";
+                        }
+                        if(player==2){
+                            charId[5].style.transform = "scale(1)";
+                            //charId[5].style.marginRight = "10%";
+                            //document.getElementById("name3").style.visibility = "hidden";
+                        }
+                    }
+                    for(let j = 0; j < 4; j++){
+                        charId[i].src = enemyAnimate[gameMode][i];
+                        await sleep(450);
+                        charId[i].src = enemyIdleGifs[gameMode][i];
+                        await sleep(450);
+                    }
+                    if(gameMode==1){
+                        if(player==0){
+                            charId[3].style.transform = "scale(0.85)";
+                            charId[3].style.marginRight = "0%";
+                            document.getElementById("name1").style.visibility = "";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(1)";
+                            charId[4].style.marginRight = "0%";
+                            document.getElementById("name2").style.visibility = "";
+                        }
+                        if(player==2){
+                            charId[5].style.transform = "scale(0.8)";
+                            charId[5].style.marginRight = "0%";
+                            document.getElementById("name1").style.visibility = "";
+                        }
+                    }
                     this.style.border = "none"; //remove highlight from target
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                 }
@@ -206,6 +247,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -246,9 +288,60 @@ function playerAction(playerArray,enemyArray,player){
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
             charId[player+3].src = bANattack[gameMode][player];
-        await sleep(4000);
+            if(gameMode==1){//scaling for barret walaces attack
+                if(player==0){
+                    charId[3].style.transform = "scale(1.5)";
+                    charId[3].style.left = "50%";
+                }
+                if(player==1){
+                    charId[4].style.left = "1000px";
+                    charId[4].style.transform = "scale(2)";
+
+                    //charId[4].style.marginRight = "10%";1
+                    //document.getElementById("name2").style.visibility = "hidden";
+                }
+                if(player==2){
+                    charId[5].style.transform = "scale(1)";
+                    //charId[5].style.marginRight = "10%";
+                    //document.getElementById("name3").style.visibility = "hidden";
+                }
+            }
+            for(let i=0; i<=2;i++)
+            {
+                charId[i].src = enemyAnimate[gameMode][i];
+            }
+            for(let j = 0; j < 4; j++){
+                for(let i=0; i<=2;i++)
+                {
+                    charId[i].src = enemyAnimate[gameMode][i];
+                }
+                await sleep(500);
+                for(let i=0; i<=2;i++)
+                {
+                    charId[i].src = enemyIdleGifs[gameMode][i];
+                }
+                await sleep(500);
+            }
+        //await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
+        }
+        if(gameMode==1){
+            if(player==0){
+                charId[3].style.transform = "scale(0.85)";
+                charId[3].style.marginRight = "0%";
+                document.getElementById("name1").style.visibility = "";
+            }
+            if(player==1){
+                charId[4].style.transform = "scale(1)";
+                charId[4].style.marginRight = "0%";
+                document.getElementById("name2").style.visibility = "";
+            }
+            if(player==2){
+                charId[5].style.transform = "scale(0.8)";
+                charId[5].style.marginRight = "0%";
+                document.getElementById("name1").style.visibility = "";
+            }
         }
         charId[player+3].src = playerIdleGifs[gameMode][player];
     }
@@ -259,6 +352,7 @@ function playerAction(playerArray,enemyArray,player){
             console.log("Enemy's turn");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
+                //I think this code is redundant
                 alert("Team is dead");
             }
             else{
@@ -295,7 +389,7 @@ function playerAction(playerArray,enemyArray,player){
                         if(playerArray[player].getNumberValue()>2){
                             document.getElementById(manaId[playerArray[player].getNumberValue()]).innerHTML = playerArray[player].magic;
                             document.getElementById(manaId[playerArray[player].getNumberValue()-3]).value = playerArray[player].magic;
-                        }
+                        }// get every turn heal
                         await sleep(2500);
                     }
                     else{            
@@ -315,6 +409,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -355,8 +450,38 @@ function playerAction(playerArray,enemyArray,player){
                     actionBox.innerHTML = playerArray[player].getName() + " uses an item on " + enemyArray[i].getName();  
                     playerArray[player].useItem(enemyArray[i],values[3]);
                     charId[player+3].src = bANattack[gameMode][player];
-                    await sleep(4000);
+                    if(gameMode==1){//scaleing for barret walaces attack
+                        if(player==2){
+                            charId[5].style.transform = "scale(3)";
+                            charId[5].style.marginRight = "10%";
+                            document.getElementById("name3").style.visibility = "hidden";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(2)";
+                            charId[4].style.marginRight = "10%";
+                            document.getElementById("name2").style.visibility = "hidden";
+                        }
+                    }
+                    for(let j = 0; j < 4; j++){
+                        charId[i].src = enemyAnimate[gameMode][i];
+                        await sleep(500);
+                        charId[i].src = enemyIdleGifs[gameMode][i];
+                        await sleep(500);
+                    }
                     this.style.border = "none"; //remove highlight from target
+                    if(gameMode==1){
+                        if(player==2){
+                            charId[5].style.transform = "scale(0.8)";
+                            charId[5].style.marginRight = "0%";
+                            document.getElementById("name3").style.visibility = "";
+                        }
+                        if(player==1){
+                            charId[4].style.transform = "scale(1)";
+                            charId[4].style.marginRight = "0%";
+                            document.getElementById("name2").style.visibility = "";
+
+                        }
+                    }
                     charId[player+3].src = playerIdleGifs[gameMode][player];
                     document.getElementById("name"+(player+1)).style.borderBottom = "none";
                     var next = getNext(player, playerArray, enemyArray);
@@ -364,6 +489,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -517,7 +643,8 @@ Param: current, current character id
 **/
 function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
-        alert("You won! Press the banner to play again.");
+        actionBox.innerHTML = "Congratulations! You Won! Press the banner to play again!";
+        //alert("You won! Press the banner to play again.");
         document.getElementById("youDW").src = "assets/victory.png";
             document.getElementById("loseLink").style.visibility = "visible";
     }else if(current + 1 === group.length){
@@ -559,4 +686,4 @@ function randomWord(type){
     return words[type][Math.trunc(Math.random()*3)];
 }
 
-export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin
+export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin reset a new game

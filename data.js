@@ -47,9 +47,9 @@ let playerIdleGifs = [//default player animation
         "assets/DS-dir/characters/artorias.gif"
     ],
     [
-        "assets/FF-dir/characters/FFGirlIdle.gif",
+        "assets/FF-dir/characters/ACTifaIdle.gif",
         "assets/FF-dir/characters/cloudStrifeIdle.gif",
-        "assets/FF-dir/characters/barretWallaceIdle.gif"
+        "assets/FF-dir/characters/BarretIdle.gif"
     ],
     [
         "assets/NGE-dir/characters/unit00.png",
@@ -237,9 +237,9 @@ let bANattack=[//attack animation
         "assets/DS-dir/animations/artoriasAttack3.gif"
     ],
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/FF-dir/animations/ACTifaAttack.png",
+        "assets/FF-dir/animations/CloudSwipe2.png",
+        "assets/FF-dir/animations/BarretAttack.png"
     ],
     [
         "assets/NGE-dir/animations/unit00attack.gif",
@@ -255,9 +255,9 @@ let bANdamage=[//damage animation
         "assets/DS-dir/animations/artoriasDamage2.gif"
     ],
     [
-        "unit00attack.gif",
-        "unit01attack.gif",
-        "unit02attack.gif"
+        "assets/FF-dir/animations/ACTifaDamaged.gif",
+        "assets/FF-dir/animations/cloudDamage.gif",
+        "assets/FF-dir/animations/BarretDamaged.gif"
     ],
     [
         "assets/NGE-dir/animations/unit00damage.gif",
@@ -311,4 +311,22 @@ let words = [//attack log text for variety
     ]
 ]
 
-export{words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};
+let enemyAnimate = [//enemy damage gif
+    [
+        "assets/DS-dir/animations/skeletonDamage.gif",
+        "assets/DS-dir/animations/nitoDamaged.gif",
+        "assets/DS-dir/animations/skeletonDamage.gif"
+    ],
+    [
+        "assets/FF-dir/animations/skeletonDamage.gif",
+        "assets/FF-dir/animations/sephirothDamage.gif",
+        "assets/FF-dir/animations/skeletonDamage.gif"
+    ],
+    [
+        "assets/NGE-dir/animations/massDamage2.png",
+        "assets/NGE-dir/animations/angelDamage.gif",
+        "assets/NGE-dir/animations/massDamage1.png"
+    ]
+];
+
+export{enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId};

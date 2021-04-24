@@ -251,6 +251,9 @@ body{
     top: 70vh;
 }
 
+.test{
+    top:80vh;
+}
 #infoBox2{
     position:fixed;
     right:3%;
