@@ -24,7 +24,7 @@ Param: world, the world id set by the level select
     enemyArray[1] = new Character(200,100,enames[gameMode][1],1);
     enemyArray[2] = new Character(100,100,enames[gameMode][2],2);
     
-    actionBox.innerHTML = "Welcome to Elder Ring. To Attack press one of the buttons to the left then click on your target.";
+    actionBox.innerHTML = "Welcome to Elder Ring. To take an action press one of the buttons to the left then click on your target. If you lack the mana to complete an action your character will rest and recover a small amount";
 
     setOwnPlayer(0);
 }
@@ -100,7 +100,8 @@ async function enemyAttack(){
             document.getElementById("name"+(3+i)).style.borderBottom = "none";
         }
         if(checkWin(playerArray)){
-            alert("You Lost. Press the banner to play again.");
+            //alert("You Lost. Press the banner to play again.");
+            actionBox.innerHTML = "Oh dear... It appears you have lost... May I advise Getting Good? Press the banner to try again.";
             document.getElementById("youDW").src = "assets/youdied.png";
             document.getElementById("loseLink").style.visibility = "visible";
         }
@@ -234,6 +235,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -328,6 +330,7 @@ function playerAction(playerArray,enemyArray,player){
             console.log("Enemy's turn");
             enemyAttack();
             if(!playerArray || playerArray.length == 0){
+                //I think this code is redundant
                 alert("Team is dead");
             }
             else{
@@ -384,6 +387,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -463,6 +467,7 @@ function playerAction(playerArray,enemyArray,player){
                         console.log("Enemy's turn");
                         enemyAttack();
                         if(!playerArray || playerArray.length == 0){
+                            //I think this code is redundant
                             alert("Team is dead");
                         }
                         else{
@@ -616,7 +621,8 @@ Param: current, current character id
 **/
 function getNext(current, group, oppGroup){
     if(checkWin(oppGroup)){
-        alert("You won! Press the banner to play again.");
+        actionBox.innerHTML = "Congratulations! You Won! Press the banner to play again!";
+        //alert("You won! Press the banner to play again.");
         document.getElementById("youDW").src = "assets/victory.png";
             document.getElementById("loseLink").style.visibility = "visible";
     }else if(current + 1 === group.length){
