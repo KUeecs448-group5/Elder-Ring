@@ -76,8 +76,17 @@ Bai     - 1 hour        - Add comments
 Wesley  - 2 hours       - Integration strategy
 Caden   - 3.5 hours     - Final Fantasy animations
 Caden   - 2 hours       - Test Suite, README and bug detection documentation additons and improvements
+Caden   - 0.5 hours     - Update time log and works cited to match logs on team Discord
+Steven  - 4 hours       - Sephiroth animations
 
-Total: 66.5
+4/25
+Steven  - 1 hour        - Test suite
+Steven  - 1 hour        - Deployment plan
+Bai     - 1 hour        - Adding comments
+Caden   - 4 hours       - Project demonstration video
+Wesley  - 3 hours       - Integration and maintenance documentation
+
+Total: 81
 
 ########################   PROJECT 3   ########################
 

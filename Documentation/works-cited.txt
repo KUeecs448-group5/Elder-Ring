@@ -9,6 +9,9 @@ Functions:
 -Audio autoplay (Chrome): https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome
 -Audio: https://www.w3schools.com/html/html5_audio.asp
 
+Documentation:
+-Deployment: https://developer.mozilla.org/en-US/docs/Games/Publishing_games/Game_distribution
+
 Assets:
 -Banners:
 --You died banner: https://www.deviantart.com/tackyinsertion8/art/Dark-Souls-you-died-screen-766220302
@@ -18,7 +21,7 @@ Assets:
 --Solaire: https://i.pinimg.com/originals/c0/d3/8c/c0d38c518fdbf6012e0475bb7a0598a5.gif
 --Halbert guy: https://64.media.tumblr.com/c89dd9f4cc48cd4c5cf3d42372445a58/tumblr_inline_p8448tPMTS1r2gwmq_400.gifv
 --Artorias: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/b94e2f13-a4d0-4a60-bd6d-3280fc81da10/d9ew9qo-ce00ef0a-2577-455f-b0d5-8ca3d12dc363.gif
---All Final Fantasy Worlds: https://www.ffbegif.com/
+--All Final Fantasy Characters: https://www.ffbegif.com/
 --Unit 0, Rei: https://i.pinimg.com/originals/4b/49/1e/4b491ed4fa690c907c7b2061cd43d11f.jpg
 --Unit 1, Shinji: https://i.pinimg.com/originals/41/06/d4/4106d4aff90056dd8e4a78a92022e7ce.gif
 --Unit 2, Asuka: https://static.wikia.nocookie.net/characterprofile/images/1/1f/EVA_Unit_02.png/revision/latest?cb=20160326113437
