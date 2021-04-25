@@ -266,7 +266,7 @@ function playerAction(playerArray,enemyArray,player){
         else{    
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
-            //charId[player+3].src = bANattack[gameMode][player];
+            charId[player+3].src = bANattack[gameMode][player];
             if(gameMode==1){//scaling for final fantasy aoe attacks
                 if(player==0){
                     charId[3].style.transform = "scale(4) translate(-100%, 20%)"; 
@@ -275,7 +275,6 @@ function playerAction(playerArray,enemyArray,player){
                     charId[4].style.transform = "scale(4) translate(-100%, -10%)";
                 }
                 if(player==2){
-                    charId[player+3].src = bANattack[gameMode][player];
                     charId[5].style.transform = "scale(4) translate(-125%, -30%)";
                 }
             }
