@@ -82,7 +82,7 @@ Pre: all players have taken their turn
 Post: all enemies have taken their turn
 Param: 
 **/  
-async function enemyAttack(){
+async function enemyAttack(playerArray,enemyArray){
     //disable action buttons
     attack.disabled = true;
     aoe.disabled = true;
@@ -225,7 +225,7 @@ function playerAction(playerArray,enemyArray,player){
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
                         console.log("Enemy's turn");
-                        enemyAttack();
+                        enemyAttack(playerArray,enemyArray);
                         if(!playerArray || playerArray.length == 0){
                             //I think this code is redundant
                             alert("Team is dead");
@@ -301,7 +301,7 @@ function playerAction(playerArray,enemyArray,player){
         var next = getNext(player, playerArray, enemyArray);
         if(next === -1){
             console.log("Enemy's turn");
-            enemyAttack();
+            enemyAttack(playerArray,enemyArray);
             if(!playerArray || playerArray.length == 0){
                 //I think this code is redundant
                 alert("Team is dead");
@@ -365,7 +365,7 @@ function playerAction(playerArray,enemyArray,player){
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
                         console.log("Enemy's turn");
-                        enemyAttack();
+                        enemyAttack(playerArray,enemyArray);
                         if(!playerArray || playerArray.length == 0){
                             //I think this code is redundant
                             alert("Team is dead");
@@ -437,7 +437,7 @@ function playerAction(playerArray,enemyArray,player){
                     var next = getNext(player, playerArray, enemyArray);
                     if(next === -1){
                         console.log("Enemy's turn");
-                        enemyAttack();
+                        enemyAttack(playerArray,enemyArray);
                         if(!playerArray || playerArray.length == 0){
                             //I think this code is redundant
                             alert("Team is dead");
@@ -682,4 +682,4 @@ function randomWord(type){
     return words[type][Math.trunc(Math.random()*3)];
 }
 
-export {newGame,playerAction,checkHeal,retLowestHealth}; //add checkwin reset a new game
+export {newGame,playerAction,checkHeal,retLowestHealth,getNext,enemyAttack,sleep}; //add checkwin reset a new game

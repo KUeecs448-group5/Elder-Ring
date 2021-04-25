@@ -1,6 +1,6 @@
 import Character from './character.js';
 import {enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
-import { checkHeal, newGame, retLowestHealth } from './game.js';
+import { checkHeal, newGame, retLowestHealth, getNext,enemyAttack,sleep } from './game.js';
 export {testAll}
 
 const testplayerArray = []
@@ -24,6 +24,8 @@ function testAll(){
     testHealCheck()
     testAIHealSelect()
     testIsAlive()
+    testGetNext()
+    testEnemyLoop()
     console.log("Test complete. Restart window to reload assets")
 }
 
@@ -138,4 +140,64 @@ function testIsAlive(){
         status = "Passed"
     }
     console.log("Character Alive Check Test (Return true if character health is greater than 0, and false otherwise): "+status)
+}
+
+function testGetNext(){
+    let player = 0
+    status = "Failed"
+    let next = getNext(player,testplayerArray,testenemyArray)
+    if(next == 1){
+        status = "Passed"
+    }
+
+    console.log("Game Loop Test(if passed, will move from Player 1's turn to Player 2's): "+status)
+
+    status = "Failed"
+    next = getNext(next,testplayerArray,testenemyArray)
+    if(next == 2){
+        status = "Passed"
+    }
+
+    console.log("Game Loop Test(if passed, will move from Player 2's turn to Player 3's): "+status)
+
+    status = "Failed"
+    next = getNext(next,testplayerArray,testenemyArray)
+    if(next == -1){
+        status = "Passed"
+    }
+
+    console.log("Game Loop Test(if passed, will move from Player 3's turn to enemy's turn): "+status)
+}
+
+async function testEnemyLoop(){
+    testplayerArray[0].health = 100
+    testplayerArray[1].health = 100
+    testplayerArray[2].health = 100
+    testplayerArray[0].magic = 100
+    testplayerArray[1].magic = 100
+    testplayerArray[2].magic = 100
+    
+    testenemyArray[0].health = 100
+    testenemyArray[1].health = 100
+    testenemyArray[2].health = 100
+    testenemyArray[0].magic = 100
+    testenemyArray[1].magic = 100
+    testenemyArray[2].magic = 100
+    status = "Failed"
+    enemyAttack(testplayerArray,testenemyArray)
+    await sleep(15000)
+    console.log( "Player 1's health: "+testplayerArray[0].health)
+    console.log( "Player 2's health: "+testplayerArray[1].health)
+    console.log( "Player 3's health: "+testplayerArray[2].health)
+
+    console.log( "Enemy 1's magic: " + testenemyArray[0].magic)
+    console.log( "Enemy 1's item inventory: " + testenemyArray[0].item)
+    
+    console.log( "Enemy 2's magic: " + testenemyArray[1].magic)
+    console.log( "Enemy 2's item inventory: " + testenemyArray[1].item)
+    
+    console.log( "Enemy 3's magic: " + testenemyArray[2].magic)
+    console.log( "Enemy 3's item inventory: " + testenemyArray[2].item)
+
+    console.log("Enemy Loop Test): "+status)
 }
