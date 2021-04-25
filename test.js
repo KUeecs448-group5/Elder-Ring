@@ -112,8 +112,8 @@ function testHealCheck(){
     testplayerArray[1].health = 100
     testplayerArray[2].health = 100
     testenemyArray[0].health = 90
-    testenemyArray[0].health = 100
-    testenemyArray[0].health = 100
+    testenemyArray[1].health = 100
+    testenemyArray[2].health = 100
     status = "Failed"
     if(!checkHeal(testplayerArray) && checkHeal(testenemyArray)){
         status = "Passed"
