@@ -1,18 +1,32 @@
-GIF Rotator: https://ezgif.com/rotate
-
-Player characters:
-Solaire: https://i.pinimg.com/originals/c0/d3/8c/c0d38c518fdbf6012e0475bb7a0598a5.gif
-Halbert guy: https://64.media.tumblr.com/c89dd9f4cc48cd4c5cf3d42372445a58/tumblr_inline_p8448tPMTS1r2gwmq_400.gifv
-Artorias: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/b94e2f13-a4d0-4a60-bd6d-3280fc81da10/d9ew9qo-ce00ef0a-2577-455f-b0d5-8ca3d12dc363.gif
-
-Enemy characters:
-Nito: https://i.pinimg.com/originals/a3/5c/e8/a35ce8c6039b3a1a23aca7706e07c6fa.gif
-Skeleton: https://img.itch.zone/aW1nLzIxODY1MTMuZ2lm/original/VIGEEd.gif
-
-Banners:
-You died banner: https://www.deviantart.com/tackyinsertion8/art/Dark-Souls-you-died-screen-766220302
-Victory banner: https://staticdelivery.nexusmods.com/mods/482/images/513-3-1413756594.png
+GIF Tools:
+-Multi-purpose GIF editor: https://ezgif.com/rotate
+-Background remover: https://www.unscreen.com/
 
 Functions:
-Math.random: https://www.w3schools.com/jsref/jsref_random.asp
-Truncation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+-Math.random: https://www.w3schools.com/jsref/jsref_random.asp
+-Truncation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+-Keyboard Event: https://alligator.io/js/listening-to-keyboard/
+-Audio autoplay (Chrome): https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome
+-Audio: https://www.w3schools.com/html/html5_audio.asp
+
+Assets:
+-Banners:
+--You died banner: https://www.deviantart.com/tackyinsertion8/art/Dark-Souls-you-died-screen-766220302
+--Victory banner: https://staticdelivery.nexusmods.com/mods/482/images/513-3-1413756594.png
+
+-Player characters (idle):
+--Solaire: https://i.pinimg.com/originals/c0/d3/8c/c0d38c518fdbf6012e0475bb7a0598a5.gif
+--Halbert guy: https://64.media.tumblr.com/c89dd9f4cc48cd4c5cf3d42372445a58/tumblr_inline_p8448tPMTS1r2gwmq_400.gifv
+--Artorias: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/b94e2f13-a4d0-4a60-bd6d-3280fc81da10/d9ew9qo-ce00ef0a-2577-455f-b0d5-8ca3d12dc363.gif
+--All Final Fantasy Worlds: https://www.ffbegif.com/
+--Unit 0, Rei: https://i.pinimg.com/originals/4b/49/1e/4b491ed4fa690c907c7b2061cd43d11f.jpg
+--Unit 1, Shinji: https://i.pinimg.com/originals/41/06/d4/4106d4aff90056dd8e4a78a92022e7ce.gif
+--Unit 2, Asuka: https://static.wikia.nocookie.net/characterprofile/images/1/1f/EVA_Unit_02.png/revision/latest?cb=20160326113437
+
+-Enemy characters (idle):
+--Nito: https://i.pinimg.com/originals/a3/5c/e8/a35ce8c6039b3a1a23aca7706e07c6fa.gif
+--Skeleton: https://img.itch.zone/aW1nLzIxODY1MTMuZ2lm/original/VIGEEd.gif
+--Sephiroth: https://www.ffbegif.com/
+--Angel: https://www.andersonkenya1.net/uploads/monthly_2021_01/03_75334.thumb.gif.fbb4d2cc03679edb1492b6f62b476eee.gif
+--Mass Produced Eva 1: https://www.nicepng.com/png/full/358-3588268_mass-produced-evangelions-evangelion-mass-production-unit.png
+--Mass Produced Eva 2: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/31e9f9fa-7480-407c-a843-af3231e00da3/d7qifu0-ffb33e2f-67b1-4031-a9ae-9b8ea9d0afef.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMzFlOWY5ZmEtNzQ4MC00MDdjLWE4NDMtYWYzMjMxZTAwZGEzXC9kN3FpZnUwLWZmYjMzZTJmLTY3YjEtNDAzMS1hOWFlLTliOGVhOWQwYWZlZi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.ky2BA8GhLZNvjGFrAAbjshycYOp3ZDPhnR47BGVIjx0
