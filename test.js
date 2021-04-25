@@ -27,7 +27,7 @@ function testAll(){
     testGetNext()
     testEnemyLoop()
     console.log("Test complete. Restart window to reload assets")
-}
+}//set the character
 
 function testHealthDepletion(){
     testplayerArray[0].health = 100
@@ -48,7 +48,7 @@ function testManaDepletion(){
         status = "Passed"
     }
     console.log("Mana Depletion Test: " + status)
-}
+}//get mana
 
 function testSingleAttack(){
     testplayerArray[0].magic = 100
@@ -58,7 +58,7 @@ function testSingleAttack(){
         status = "Passed"
     }
     console.log("Single Attack Test (enemy damaged and player's mana reduced): " + status)
-}
+}// set singleattack 
 
 
 function testHeal(){
