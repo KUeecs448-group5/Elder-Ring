@@ -1,6 +1,8 @@
 # Elder Ring
 Turn-based battle game - inspired by Final Fantasy & Dark Souls
+
 Created with JavaScript, HTML, and CSS
+
 User vs AI
 
 ## Initialization
