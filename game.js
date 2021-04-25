@@ -26,7 +26,7 @@ Param: world, the world id set by the level select
     
     actionBox.innerHTML = "Welcome to Elder Ring. To take an action press one of the buttons to the left then click on your target. If you lack the mana to complete an action your character will rest and recover a small amount";
 
-    setOwnPlayer(0);
+    setOwnPlayer(1);
 }
 
 let gameMode = 0;
@@ -92,8 +92,6 @@ async function enemyAttack(){
     actionBox.innerHTML = "Enemy's Turn."
     await sleep(2000)
     for(let i = 0; i < enemyArray.length; i++){
-
-        console.log("\n\n");
         if(enemyArray[i].health !== 0){
             document.getElementById("name"+(4+i)).style.borderBottom = "solid yellow";
             enemyAction(enemyArray, playerArray, enemyArray[i])
@@ -249,7 +247,6 @@ function playerAction(playerArray,enemyArray,player){
         /*for(let i = 0; i < 3; i++){ //highlight targets
             charId[i].style.border = "solid red 2.5px";
         }*/
-        console.clear();
         attack.onclick = function(){};//disable buttons to prevent spam click
         aoe.onclick = function(){};
         heal.onclick = function(){};
@@ -269,7 +266,7 @@ function playerAction(playerArray,enemyArray,player){
         else{    
             actionBox.innerHTML = playerArray[player].getName() + randomWord(1);      
             playerArray[player].damage(enemyArray,values[1]);
-            charId[player+3].src = bANattack[gameMode][player];
+            //charId[player+3].src = bANattack[gameMode][player];
             if(gameMode==1){//scaling for final fantasy aoe attacks
                 if(player==0){
                     charId[3].style.transform = "scale(4) translate(-100%, 20%)"; 
@@ -278,25 +275,20 @@ function playerAction(playerArray,enemyArray,player){
                     charId[4].style.transform = "scale(4) translate(-100%, -10%)";
                 }
                 if(player==2){
+                    charId[player+3].src = bANattack[gameMode][player];
                     charId[5].style.transform = "scale(4) translate(-125%, -30%)";
                 }
             }
-            for(let i=0; i<=2;i++)
-            {
-                charId[i].src = enemyAnimate[gameMode][i];
-            }
-            for(let j = 0; j < 4; j++){
-                for(let i=0; i<=2;i++)
-                {
-                    charId[i].src = enemyAnimate[gameMode][i];
+            for(let i = 0; i < 3; i++){
+                charId[0].src = enemyAnimate[gameMode][0];
+                charId[1].src = enemyAnimate[gameMode][1];
+                charId[2].src = enemyAnimate[gameMode][2];
+                await sleep(300);
+                charId[0].src = enemyIdleGifs[gameMode][0];
+                charId[1].src = enemyIdleGifs[gameMode][1];
+                charId[2].src = enemyIdleGifs[gameMode][2];
+                await sleep(300);
                 }
-                await sleep(500);
-                for(let i=0; i<=2;i++)
-                {
-                    charId[i].src = enemyIdleGifs[gameMode][i];
-                }
-                await sleep(500);
-            }
         //await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
             charId[i].style.border = "none";
@@ -396,7 +388,6 @@ function playerAction(playerArray,enemyArray,player){
             charId[i].onclick = function(){};
             charId[i].onmouseover = function(){};
         }
-        console.clear();
         actionBox.innerHTML = "Click the enemy you wish to attack";
         if(playerArray[player].getInv()>0){
         for(let i = 0; i <= 2; i++){
@@ -513,20 +504,26 @@ async function enemyAction(enemyArray, playerArray, toAct){
     while(!playerArray[target].isAlive()){
         target = Math.floor(Math.random() * playerArray.length); 
     }
-    
+   
+    action = 3
     if(action === 0){
-        if(toAct.getMana()<values[4][1])
-        {
+        if(toAct.getMana()<values[4][1]){
             actionBox.innerHTML = toAct.getName() + " must rest";
             toAct.magic = toAct.magic + 10;
             await sleep(2500);
         }
         else{
-        actionBox.innerHTML = toAct.getName() + randomWord(0) + playerArray[target].getName();
-        toAct.damage_single(playerArray[target],values[4]);
-        charId[target+3].src = bANdamage[gameMode][target];
-        await sleep(2500);
-        charId[target+3].src = playerIdleGifs[gameMode][target];
+            actionBox.innerHTML = toAct.getName() + randomWord(0) + playerArray[target].getName();
+            toAct.damage_single(playerArray[target],values[4]);
+            if(toAct.name == "Sephiroth"){
+                charId[1].src = "assets/FF-dir/animations/SephirothAttack.gif"
+                if(target == 2){
+                    charId[1].style.transform = "scale(2.5) translate(150%, "+(-90+target*60)+"%)";
+                    }
+                    else{
+                         charId[1].style.transform = "scale(2.5) translate(150%, "+(-58+target*60)+"%)";
+                        }
+                    }
         }
     } else if(action === 1){
         if(toAct.getMana()<(3*values[5][1]))
@@ -536,22 +533,38 @@ async function enemyAction(enemyArray, playerArray, toAct){
             await sleep(2500);
         }
         else{
-        actionBox.innerHTML = toAct.getName() + randomWord(1);
-        toAct.damage(playerArray,values[5]);
-        for(let i = 0; i < 3; i++){
-            charId[i+3].src = bANdamage[gameMode][i];
-        }
-        await sleep(2500);
-        for(let i = 0; i < 3; i++){
-            charId[i+3].src = playerIdleGifs[gameMode][i];
-        }
+            actionBox.innerHTML = toAct.getName() + randomWord(1);
+            toAct.damage(playerArray,values[5]);
+            if(toAct.name == "Sephiroth"){
+                console.log(target)
+                charId[1].src = "assets/FF-dir/animations/SephirothAOE.gif"
+                charId[1].style.transform = "scale(7.5) translate(100%, -30%)";
+            }
+
+            for(let i = 0; i < 3; i++){
+                charId[3].src = bANdamage[gameMode][0];
+                charId[4].src = bANdamage[gameMode][1];
+                charId[5].src = bANdamage[gameMode][2];
+                await sleep(300);
+                charId[3].src = playerIdleGifs[gameMode][0];
+                charId[4].src = playerIdleGifs[gameMode][1];
+                charId[5].src = playerIdleGifs[gameMode][2];
+                await sleep(300);
+            }
         }
     } else if(action === 2){
         actionBox.innerHTML = toAct.getName() + " uses an item on " + playerArray[target].getName();
         toAct.useItem(playerArray[target],values[3]);
-        charId[target+3].src = bANdamage[gameMode][target];
-        await sleep(2500);
-        charId[target+3].src = playerIdleGifs[gameMode][target];
+        if(toAct.name == "Sephiroth"){
+            charId[1].src = "assets/FF-dir/animations/SephirothItem2.gif"
+            if(target ==0){
+                charId[1].style.transform = "scale(2.5) translate(30%, "+(-50+target*60)+"%)";
+            }
+            else{
+                charId[1].style.transform = "scale(2.5) translate(30%, "+(-90+target*60)+"%)";
+            }
+            //await sleep(1200)
+        }
     } else if(action === 3){ //heal MUST be last to remove possibility of AI choosing to heal when impossible (all allys are at full heath)
         if(toAct.getMana()<values[6][1])
         {
@@ -561,24 +574,42 @@ async function enemyAction(enemyArray, playerArray, toAct){
         }
         else{
         target = retLowestHealth(enemyArray);
-        actionBox.innerHTML = toAct.getName() + randomWord(2) + enemyArray[target].getName();
-        toAct.heal_single(enemyArray[target],values[6]);
+        actionBox.innerHTML = toAct.name + randomWord(2) + enemyArray[1].name;
+        toAct.heal_single(enemyArray[1],values[6]);
+        if(gameMode == 1){
+            if(enemyArray[target].name =="Sephiroth"||toAct.name =="Sephiroth"){
+                charId[1].src = "assets/FF-dir/animations/SephirothHeal.gif";
+                await sleep(1000);
+            }
+            else{
+                charId[target].src = bAheal[gameMode];
+                await sleep(1000);
+                charId[target].src = enemyIdleGifs[gameMode][target];
+            }
+        }
+        // else{
+        //     for(let i = 0; i < 3; i++){
+        //         charId[target].src = bAheal[gameMode];
+        //         await sleep(400);
+        //         charId[target].src = enemyIdleGifs[gameMode][target];
+        //         await sleep(400);
+        //     }
+        // }
+        }
+    }
+    if(action==0|| action==2){
         for(let i = 0; i < 3; i++){
-            charId[target].src = bAheal[gameMode];
-            await sleep(400);
-            charId[target].src = enemyIdleGifs[gameMode][target];
-            await sleep(400);
-        }
+            charId[target+3].src = bANdamage[gameMode][target];
+            await sleep(300);
+            charId[target+3].src = playerIdleGifs[gameMode][target];
+            await sleep(300);
         }
     }
-    for(let i = 0; i < 3; i++){
-        charId[i].src = enemyIdleGifs[gameMode][i];
-    }
-    for(let i = 0; i < 3; i++){
-        charId[i+3].src = playerIdleGifs[gameMode][i];
+    if(toAct.name =="Sephiroth" ||enemyArray[target].name =="Sephiroth"){
+        charId[1].style.transform="";
+        charId[1].src = enemyIdleGifs[gameMode][1];
     }
 }
-
 /**
 Pre: 
 Post: checks if every character in array is dead 

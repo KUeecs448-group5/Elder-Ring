@@ -53,7 +53,7 @@ Param: defender, enemy to attack
 			}
 		//}
 		//console.log(dam + " damage applied");
-		await this.sleep(3000)
+		await this.sleep(2000)
 		let health = document.getElementById(healthId[defender.getNumberValue()][0])
 		let healthbar = document.getElementById(healthId[defender.getNumberValue()][1]);
 		for(let i = 0; i <dam;i++){
