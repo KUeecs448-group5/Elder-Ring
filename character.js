@@ -26,7 +26,7 @@ Param: m_health, max health
 		this.dM = 1;//damageMultiplier, same^
 		this.crit = 10;//random(0-crit) amount of damage added to base damage
 		this.name = m_name;//set a name
-		this.numberValue = numberValue;
+		this.numberValue = numberValue;//get a value
 		this.item = 3;//number of firebombs
 	}
 
