@@ -1,8 +1,8 @@
-# eecs448-project3
+# Elder Ring
 Turn-based battle game - inspired by Final Fantasy & Dark Souls
 Created with JavaScript, HTML, and CSS
 
-# Initialization
+## Initialization
 To run this program, open p3.HTML as a live server (requires the Live Server VSCode Extension, or equivalent)
 
 ## Mechanics
