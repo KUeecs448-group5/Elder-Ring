@@ -1,6 +1,6 @@
 import Character from './character.js';
 import {enemyAnimate, words, names, enames, music, playerIdleGifs, enemyIdleGifs, background, charId, nameId, values, bAattack, bAaoe, bAitem, bAheal, bTattack, bTaoe, bTitem, bTheal, bANattack, bANdamage, healthId, manaId, deathId} from './data.js';
-import { checkHeal, newGame, retLowestHealth, getNext,enemyAttack,sleep } from './game.js';
+import { checkHeal, newGame, retLowestHealth, getNext,enemyAttack,sleep,checkWin } from './game.js';
 export {testAll}
 
 const testplayerArray = []
@@ -21,12 +21,12 @@ function testAll(){
     testHeal()
     testItem()
     testAoE()
+    testWinCondition()
     testHealCheck()
     testAIHealSelect()
     testIsAlive()
     testGetNext()
     testEnemyLoop()
-    console.log("Test complete. Restart window to reload assets")
 }//set the character
 
 function testHealthDepletion(){
@@ -101,10 +101,10 @@ function testWinCondition(){
     testenemyArray[1].health = 0
     testenemyArray[2].health = 0
     status = "Failed"
-    if(checkWin(enemyArray)){
+    if(checkWin(testenemyArray)){
         status = "Passed"
     }
-    console.log("Win Condition Test (win condition returns true when all enemies have 0 health): ")
+    console.log("Win Condition Test (win condition returns true when all enemies have 0 health): " + status )
 }
 
 function testHealCheck(){
@@ -112,8 +112,8 @@ function testHealCheck(){
     testplayerArray[1].health = 100
     testplayerArray[2].health = 100
     testenemyArray[0].health = 90
-    testenemyArray[0].health = 100
-    testenemyArray[0].health = 100
+    testenemyArray[1].health = 100
+    testenemyArray[2].health = 100
     status = "Failed"
     if(!checkHeal(testplayerArray) && checkHeal(testenemyArray)){
         status = "Passed"
@@ -184,8 +184,8 @@ async function testEnemyLoop(){
     testenemyArray[1].magic = 100
     testenemyArray[2].magic = 100
     status = "Failed"
-    enemyAttack(testplayerArray,testenemyArray)
-    await sleep(11000)
+    console.log("Waiting for Enemy Loop Test to finish...")
+    await enemyAttack(testplayerArray,testenemyArray)
     // console.log( "Player 1's health: "+testplayerArray[0].health)
     // console.log( "Player 2's health: "+testplayerArray[1].health)
     // console.log( "Player 3's health: "+testplayerArray[2].health)
@@ -205,4 +205,5 @@ async function testEnemyLoop(){
         status = "Passed"
     }
     console.log("Enemy Loop Test: "+status)
+    console.log("Test complete. Restart window to reload assets")
 }
