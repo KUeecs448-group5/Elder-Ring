@@ -185,19 +185,24 @@ async function testEnemyLoop(){
     testenemyArray[2].magic = 100
     status = "Failed"
     enemyAttack(testplayerArray,testenemyArray)
-    await sleep(15000)
-    console.log( "Player 1's health: "+testplayerArray[0].health)
-    console.log( "Player 2's health: "+testplayerArray[1].health)
-    console.log( "Player 3's health: "+testplayerArray[2].health)
+    await sleep(11000)
+    // console.log( "Player 1's health: "+testplayerArray[0].health)
+    // console.log( "Player 2's health: "+testplayerArray[1].health)
+    // console.log( "Player 3's health: "+testplayerArray[2].health)
 
-    console.log( "Enemy 1's magic: " + testenemyArray[0].magic)
-    console.log( "Enemy 1's item inventory: " + testenemyArray[0].item)
+    // console.log( "Enemy 1's magic: " + testenemyArray[0].magic)
+    // console.log( "Enemy 1's item inventory: " + testenemyArray[0].item)
     
-    console.log( "Enemy 2's magic: " + testenemyArray[1].magic)
-    console.log( "Enemy 2's item inventory: " + testenemyArray[1].item)
+    // console.log( "Enemy 2's magic: " + testenemyArray[1].magic)
+    // console.log( "Enemy 2's item inventory: " + testenemyArray[1].item)
     
-    console.log( "Enemy 3's magic: " + testenemyArray[2].magic)
-    console.log( "Enemy 3's item inventory: " + testenemyArray[2].item)
+    // console.log( "Enemy 3's magic: " + testenemyArray[2].magic)
+    // console.log( "Enemy 3's item inventory: " + testenemyArray[2].item)
 
-    console.log("Enemy Loop Test): "+status)
+    if((testenemyArray[0].magic < 100||testenemyArray[0].item <3)
+    &&(testenemyArray[1].magic < 100||testenemyArray[1].item <3)
+    &&(testenemyArray[2].magic < 100||testenemyArray[2].item <3)){
+        status = "Passed"
+    }
+    console.log("Enemy Loop Test: "+status)
 }
