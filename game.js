@@ -26,7 +26,7 @@ function newGame(world){
     
     actionBox.innerHTML = "Welcome to Elder Ring. To take an action press one of the buttons to the left then click on your target. If you lack the mana to complete an action your character will rest and recover a small amount";
 
-    setOwnPlayer(1);
+    setOwnPlayer(0);
 }
 
 let gameMode = 0;
@@ -505,7 +505,7 @@ async function enemyAction(enemyArray, playerArray, toAct){
         target = Math.floor(Math.random() * playerArray.length); 
     }
    
-    action = 3
+    
     if(action === 0){
         if(toAct.getMana()<values[4][1]){
             actionBox.innerHTML = toAct.getName() + " must rest";
