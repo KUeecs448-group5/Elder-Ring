@@ -1,4 +1,87 @@
-Team 5 Project 3 Estimated Total Hours: 45
+########################   PROJECT 4   ########################
+
+Team 5 Project 4 Time Estimation:
+***
+Estimation derived through Agile user story method, with Projects 1, 2, and 3 used as our inventory of products.
+We think Project 1 was equivalent to 8 story points, Project 2 was equivalent to 18 story points, and Project 3 was equivalent to 13 story points.
+We estimate Project 3 will be equivalent to an 18 story point project
+Project 1 took 43.5 hours, Project 2 took 58 hours, and Project 3 took 55.5 hours (~4.02 hours per story point)
+We estimate Project 4 will take 72.5 hours
+***
+
+4/9
+Caden   - 2.5 hours     - Restyle front end to adjust for wider screens, create icon buttons and action info box, add favicon, and title banner
+Wesley  - 1.5 hours     - Simplifying character.js and applying changes to game.js
+Steven  - 1 hours       - Fixing bug and text box will change when hovering mouse over buttons
+
+4/10
+Steven  - 0.5 hours     - Health bars
+
+4/11
+Wesley  - 3 hours       - Fixing Autoplay on Chrome, adding start screen, adding character deaths
+
+4/12
+Caden   - 0.5 hours     - Add custom info headers for each action and add info circle font awesome icon
+Wesley  - 1 hour        - Bug fixes and code simplification
+
+4/13
+Wesley  - 2 hours       - Work on enemy click target selection
+Wesley  - 1.5 hour      - Group meeting and finishing target click selection
+Caden   - 1 hour        - Group meeting
+Steven  - 1 hour        - Group meeting
+
+4/14
+Wesley  - 3 hours       - Searching for and implementing Final Fantasy world/character assets
+
+4/17
+Steven  - 2.5 hours     - Move HP, MP, and name next to characters and start on Action box
+
+4/18
+Steven  - 2 hours       - Finish Action box
+Wesley  - 3 hours       - Searching for and implementing Final Fantasy button assets
+
+4/19
+Caden   - 1.5 hours     - Add world selection, dynamic text boxes, and restart button
+Wesley  - 2 hours       - Spam click protection and adding Neon Genesis Evangelion asssets
+Caden   - 2.5 hours     - Find Neon Genesis Evangelion assets and implement the new world. Front end cleanup
+Caden   - 1 hour        - Menu Styling
+Caden   - 1.5 hours     - Animation inclusion in game.js, heal animations for worlds 1-3, damage and attack animations for NGE players
+Caden   - 1 hour        - Team meeting
+Wesley  - 1 hour        - Team meeting
+Steven  - 1 hour        - Team meeting
+
+4/20
+Bai     - 2 hours       - For winning reset a new world
+
+4/21
+Bai     - 2 hours       - Get mana and Stamina
+Wesley  - 2 hours       - Finish DS animation assets
+
+4/22
+Bai     - 1 hour        - Stamina
+Caden   - 2 hours       - Enemy names, restyling front end positioning, targeting borders
+Bai     - 1.5 hours     - Work with Wesley on mana system (finished)
+Wesley  - 1 hour        - Adding comments
+Wesley  - 1.5 hours     - Text box changes
+
+4/23
+Chen    - 0.5 hours     - Stress test
+Wesley  - 3 hours       - Various changes
+Steven  - 0.5 hours     - Heath bars scale down incrementally instead of instantly
+Steven  - 1.5 hours     - Start on test suite
+
+4/24
+Steven  - 3 hours       - Final Fantasy sprites
+Bai     - 1 hour        - Add comments
+Wesley  - 2 hours       - Integration strategy
+Caden   - 3.5 hours     - Final Fantasy animations
+Caden   - 2 hours       - Test Suite, README and bug detection documentation additons and improvements
+
+Total: 66.5
+
+########################   PROJECT 3   ########################
+
+Team 5 Project 3 Time Estimation:
 ***
 Estimation derived through Agile user story method, with Project 1 and Project 2 used as our inventory of products.
 We think Project 1 was equivalent to 8 story points and Project 2 was equivalent to 18 story points.
