@@ -329,13 +329,13 @@ let enemyAnimate = [//enemy damage gif
     ]
 ];
 
-let FFhealAnimate = [
+let FFhealAnimate = [ //final fantasy custom heal animations
     "assets/FF-dir/animations/TifaHeal.gif",
     "assets/FF-dir/animations/CloudHeal.gif",
     "assets/FF-dir/animations/BarretHeal.gif"
 ]
 
-let FFwinAnimate = [
+let FFwinAnimate = [ //final fantasy custom win animations
     "assets/FF-dir/animations/TifaWin.gif",
     "assets/FF-dir/animations/CloudWin.gif",
     "assets/FF-dir/animations/BarretWin.gif"

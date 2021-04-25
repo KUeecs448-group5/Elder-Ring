@@ -10,7 +10,7 @@ Post: Characters are created and game is started
 Param: world, the world id set by the level select
 **/
 
-    function newGame(world){
+function newGame(world){
     var menu = document.getElementById("start");
     menu.style.visibility = "hidden";
     gameMode = world;
