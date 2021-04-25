@@ -276,9 +276,11 @@ function playerAction(playerArray,enemyArray,player){
                 }
                 if(player==2){
                     charId[5].style.transform = "scale(4) translate(-125%, -30%)";
+                    await sleep(2000)
                 }
             }
             for(let i = 0; i < 3; i++){
+                await sleep(300);
                 charId[0].src = enemyAnimate[gameMode][0];
                 charId[1].src = enemyAnimate[gameMode][1];
                 charId[2].src = enemyAnimate[gameMode][2];
@@ -286,7 +288,6 @@ function playerAction(playerArray,enemyArray,player){
                 charId[0].src = enemyIdleGifs[gameMode][0];
                 charId[1].src = enemyIdleGifs[gameMode][1];
                 charId[2].src = enemyIdleGifs[gameMode][2];
-                await sleep(300);
                 }
         //await sleep(4000);
         for(let i = 0; i < 3; i++){  //remove highlight from targets
@@ -505,6 +506,7 @@ async function enemyAction(enemyArray, playerArray, toAct){
     }
    
     
+
     if(action === 0){
         if(toAct.getMana()<values[4][1]){
             actionBox.innerHTML = toAct.getName() + " must rest";
@@ -573,8 +575,8 @@ async function enemyAction(enemyArray, playerArray, toAct){
         }
         else{
         target = retLowestHealth(enemyArray);
-        actionBox.innerHTML = toAct.name + randomWord(2) + enemyArray[1].name;
-        toAct.heal_single(enemyArray[1],values[6]);
+        actionBox.innerHTML = toAct.name + randomWord(2) + enemyArray[target].name;
+        toAct.heal_single(enemyArray[target],values[6]);
         if(gameMode == 1){
             if(enemyArray[target].name =="Sephiroth"||toAct.name =="Sephiroth"){
                 charId[1].src = "assets/FF-dir/animations/SephirothHeal.gif";
