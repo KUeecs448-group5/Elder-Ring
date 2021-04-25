@@ -1,6 +1,7 @@
 # Elder Ring
 Turn-based battle game - inspired by Final Fantasy & Dark Souls
 Created with JavaScript, HTML, and CSS
+User vs AI
 
 ## Initialization
 To run this program, open p3.HTML as a live server (requires the Live Server VSCode Extension, or equivalent)
@@ -15,10 +16,12 @@ Each team will have a turn, in which all their characters can act, then the oppo
 The user has the first turn.
 
 Each turn, each character on a team has four options:
-Attack: Select a single enemy target to attack for moderate damage
-AOE: Attack the entire enemy team for low damage
-Item: Select a single enemy target to attack for high damage (only 3 uses per character)
-Heal: Select a single ally to heal a moderate amount
+- Attack: Select a single enemy target to attack for moderate damage
+- AOE: Attack the entire enemy team for low damage
+- Item: Select a single enemy target to attack for high damage (only 3 uses per character)
+- Heal: Select a single ally to heal a moderate amount
+
+To select your target, click on their image (a dashed outline will appear to indicate a valid target)
 
 After a team has been defeated, the user will be prompted to play again.
 
