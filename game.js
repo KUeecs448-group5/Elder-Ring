@@ -542,15 +542,28 @@ async function enemyAction(enemyArray, playerArray, toAct){
                 charId[1].style.transform = "scale(7.5) translate(100%, -30%)";
             }
 
-            for(let i = 0; i < 3; i++){
-                charId[3].src = bANdamage[gameMode][0];
-                charId[4].src = bANdamage[gameMode][1];
-                charId[5].src = bANdamage[gameMode][2];
-                await sleep(300);
-                charId[3].src = playerIdleGifs[gameMode][0];
-                charId[4].src = playerIdleGifs[gameMode][1];
-                charId[5].src = playerIdleGifs[gameMode][2];
-                await sleep(300);
+            if(gameMode==1){
+                for(let i = 0; i < 3; i++){
+                    charId[3].src = bANdamage[gameMode][0];
+                    charId[4].src = bANdamage[gameMode][1];
+                    charId[5].src = bANdamage[gameMode][2];
+                    await sleep(300);
+                    charId[3].src = playerIdleGifs[gameMode][0];
+                    charId[4].src = playerIdleGifs[gameMode][1];
+                    charId[5].src = playerIdleGifs[gameMode][2];
+                    await sleep(300);
+                }
+            } 
+            else{
+                for(let i=3;i<=5;i++)
+                {
+                    charId[i].src=bANdamage[gameMode][i-3];
+                }
+                await sleep(2000);
+                for(let i=3;i<=5;i++)
+                {
+                    charId[i].src=playerIdleGifs[gameMode][i-3];
+                }
             }
         }
     } else if(action === 2){
@@ -588,23 +601,32 @@ async function enemyAction(enemyArray, playerArray, toAct){
                 charId[target].src = enemyIdleGifs[gameMode][target];
             }
         }
-        // else{
-        //     for(let i = 0; i < 3; i++){
-        //         charId[target].src = bAheal[gameMode];
-        //         await sleep(400);
-        //         charId[target].src = enemyIdleGifs[gameMode][target];
-        //         await sleep(400);
-        //     }
-        // }
+        else{
+            for(let i = 0; i < 3; i++){
+                 charId[target].src = bAheal[gameMode];
+                 await sleep(400);
+                charId[target].src = enemyIdleGifs[gameMode][target];
+                 await sleep(400);
+            }
+        }
         }
     }
-    if(action==0|| action==2){
-        for(let i = 0; i < 3; i++){
-            charId[target+3].src = bANdamage[gameMode][target];
-            await sleep(300);
-            charId[target+3].src = playerIdleGifs[gameMode][target];
-            await sleep(300);
+    if(gameMode==1){
+        if(action==0|| action==2){
+            for(let i = 0; i < 3; i++){
+                charId[target+3].src = bANdamage[gameMode][target];
+                await sleep(300);
+                charId[target+3].src = playerIdleGifs[gameMode][target];
+                await sleep(300);
+            }
         }
+    }
+    else{
+        if(action==0||action==2){
+            charId[target+3].src = bANdamage[gameMode][target];
+            await sleep(2000);
+            charId[target+3].src = playerIdleGifs[gameMode][target]; 
+        } 
     }
     if(toAct.name =="Sephiroth" ||enemyArray[target].name =="Sephiroth"){
         charId[1].style.transform="";
