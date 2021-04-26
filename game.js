@@ -682,4 +682,4 @@ function randomWord(type){
     return words[type][Math.trunc(Math.random()*3)];
 }
 
-export {newGame,playerAction,checkHeal,retLowestHealth,getNext,enemyAttack,sleep}; //add checkwin reset a new game
+export {newGame,playerAction,checkHeal,retLowestHealth,getNext,enemyAttack,sleep,checkWin}; //add checkwin reset a new game
