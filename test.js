@@ -54,6 +54,7 @@ function testSingleAttack(){
     testplayerArray[0].magic = 100
     testenemyArray[0].health = 100
     testplayerArray[0].damage_single(testenemyArray[0],values[0])
+    status = "Failed"
     if(testenemyArray[0].health != 100 && testplayerArray[0].magic < 100){
         status = "Passed"
     }
